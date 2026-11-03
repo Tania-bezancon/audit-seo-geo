@@ -1,0 +1,561 @@
+{
+ "_lisez-moi": "Contenu commun à tous les audits. build_dossier.py et build_pptx.js le fusionnent avec audit.json : une clé présente dans audit.json gagne. categories : la grille (5 critères par catégorie). voies : les trois to-do (la première lettre du code d'une tâche). priorites : P1 à P3, sans dates.",
+ "outils": [
+  {
+   "key": "01",
+   "capture": "01",
+   "name": "PageSpeed Insights, téléphone",
+   "editor": "Google",
+   "group": "Vitesse",
+   "domain": "d-vitesse",
+   "url": "https://pagespeed.web.dev/analysis?url={url_enc}&form_factor=mobile",
+   "reglage": "3 passages, garder la valeur du milieu",
+   "releve": "Performance, LCP, accessibilité, bonnes pratiques, SEO, navigation agentique",
+   "role": "L'outil officiel de Google pour mesurer la vitesse d'une page. Il la charge comme un téléphone moyen sur une connexion 4G lente, et donne une note sur 100, ainsi que des notes d'accessibilité, de bonnes pratiques et de SEO de base. Google utilise ces mêmes mesures pour classer les sites."
+  },
+  {
+   "key": "09",
+   "capture": "09",
+   "name": "PageSpeed Insights, ordinateur",
+   "editor": "Google",
+   "group": "Vitesse",
+   "domain": "d-vitesse",
+   "url": "https://pagespeed.web.dev/analysis?url={url_enc}&form_factor=desktop",
+   "reglage": "3 passages, valeur du milieu",
+   "releve": "Performance et données réelles des visiteurs (Core Web Vitals sur 28 jours)",
+   "role": "Le même outil de Google, sur ordinateur. Il affiche aussi les données réelles de Chrome : la vitesse vécue par les vrais visiteurs du site sur les 28 derniers jours, et pas seulement en test."
+  },
+  {
+   "key": "02",
+   "capture": "02",
+   "name": "Security Headers",
+   "editor": "Snyk",
+   "group": "Sécurité et vie privée",
+   "domain": "d-securite",
+   "url": "https://securityheaders.com/?q={url_enc}&followRedirects=on&hide=on",
+   "reglage": "",
+   "releve": "Note, en-têtes absents et présents, version du serveur affichée",
+   "role": "Il vérifie les consignes de sécurité que le serveur envoie au navigateur (les « en-têtes ») : forcer le https, interdire les scripts non autorisés, limiter les informations transmises. Note de A+ à F. C'est souvent le premier test qu'un responsable sécurité lance sur le site d'un fournisseur."
+  },
+  {
+   "key": "08",
+   "capture": "08",
+   "name": "HTTP Observatory",
+   "editor": "Mozilla",
+   "group": "Sécurité et vie privée",
+   "domain": "d-securite",
+   "url": "https://developer.mozilla.org/en-US/observatory/analyze?host={host}",
+   "reglage": "",
+   "releve": "Note, score sur 100, tests réussis",
+   "role": "L'outil de la fondation Mozilla, qui édite Firefox. Il fait une dizaine de tests de sécurité du site et donne une note de A+ à F et un score sur 100. Il recoupe Security Headers avec une autre méthode."
+  },
+  {
+   "key": "13",
+   "capture": "13",
+   "name": "SSL Server Test",
+   "editor": "Qualys SSL Labs",
+   "group": "Sécurité et vie privée",
+   "domain": "d-securite",
+   "url": "https://www.ssllabs.com/ssltest/analyze.html?d={host}&hideResults=on",
+   "reglage": "attendre la fin du test (2 à 3 min)",
+   "releve": "Note, version TLS, date d'expiration du certificat",
+   "role": "L'outil de Qualys, référence mondiale pour tester le chiffrement de la connexion entre le visiteur et le site (le cadenas https) : version du protocole, certificat, failles connues. Note de A+ à F."
+  },
+  {
+   "key": "14",
+   "capture": "14",
+   "name": "Internet.nl",
+   "editor": "Internet Standards Platform",
+   "group": "Sécurité et vie privée",
+   "domain": "d-securite",
+   "url": "https://internet.nl/site/{host}/",
+   "reglage": "lancer le test de site web",
+   "releve": "Score, IPv6, DNSSEC, HTTPS, HSTS",
+   "role": "Un outil public néerlandais, soutenu par le gouvernement des Pays-Bas. Il vérifie que le site respecte les normes Internet modernes : IPv6, signature du nom de domaine (DNSSEC), https et sécurité du serveur. Score en pourcentage."
+  },
+  {
+   "key": "12",
+   "capture": "12",
+   "name": "Webbkoll",
+   "editor": "5th of July Foundation",
+   "group": "Sécurité et vie privée",
+   "domain": "d-securite",
+   "url": "https://webbkoll.5july.net/en/check?url={url_enc}",
+   "reglage": "",
+   "releve": "Cookies tiers, requêtes vers d'autres sociétés, CSP",
+   "role": "L'outil d'une fondation suédoise de défense de la vie privée. Il ouvre la page comme un visiteur et liste les cookies et les envois de données à d'autres sociétés, avant tout consentement."
+  },
+  {
+   "key": "11",
+   "capture": "11",
+   "name": "Blacklight",
+   "editor": "The Markup",
+   "group": "Sécurité et vie privée",
+   "domain": "d-securite",
+   "url": "https://themarkup.org/blacklight?url={url_noproto_enc}&device=desktop&location=eu",
+   "reglage": "",
+   "releve": "Traceurs publicitaires, cookies tiers, enregistrement de session, empreinte",
+   "role": "L'outil du média d'investigation américain The Markup. Il simule une visite et détecte les traceurs publicitaires, le suivi des clics, l'enregistrement des sessions et l'identification du navigateur."
+  },
+  {
+   "key": "15",
+   "capture": "15",
+   "name": "WAVE",
+   "editor": "WebAIM",
+   "group": "Qualité des pages",
+   "domain": "d-pages",
+   "url": "https://wave.webaim.org/report#/{url}",
+   "reglage": "",
+   "releve": "Note AIM, erreurs, contrastes, images sans description",
+   "role": "L'outil de WebAIM (université d'État de l'Utah), référence de l'accessibilité. Il signale ce qui gêne les personnes en situation de handicap : images sans description, contrastes insuffisants, titres mal ordonnés. Ces défauts gênent aussi Google."
+  },
+  {
+   "key": "10",
+   "capture": "10",
+   "name": "Nu HTML Checker",
+   "editor": "W3C",
+   "group": "Qualité des pages",
+   "domain": "d-pages",
+   "url": "https://validator.w3.org/nu/?doc={url_enc}",
+   "reglage": "",
+   "releve": "Erreurs et avertissements",
+   "role": "Le validateur officiel du W3C, l'organisme qui écrit les normes du web. Il relit le code de la page et liste les erreurs. Un code propre est mieux lu par les navigateurs, par Google et par les IA."
+  },
+  {
+   "key": "lt",
+   "capture": null,
+   "name": "LanguageTool",
+   "editor": "LanguageTooler",
+   "group": "Qualité des pages",
+   "domain": "d-pages",
+   "url": "https://api.languagetool.org/v2/check",
+   "reglage": "script lt.py sur les titres, descriptions, H1 et H2 du crawl",
+   "releve": "Fautes et mots collés",
+   "role": "Un correcteur d'orthographe et de grammaire. On l'a utilisé par son interface publique sur tous les titres, descriptions et intertitres français relevés sur les 178 pages."
+  },
+  {
+   "key": "06",
+   "capture": "06",
+   "name": "Recherche « site: »",
+   "editor": "Google",
+   "group": "Ce que voient Google et Bing",
+   "domain": "d-faits",
+   "url": "https://www.google.com/search?hl={lang}&gl={country}&q=site%3A{host}&num=100",
+   "reglage": "navigation privée, cookies refusés",
+   "releve": "Nombre de résultats, faits affichés par Google (titres, descriptions)",
+   "role": "Une recherche Google avec la commande site: affiche les pages du site que Google a retenues, et la façon dont il les présente : titres, descriptions, extraits. C'est exactement ce que voit un acheteur."
+  },
+  {
+   "key": "21",
+   "capture": "21",
+   "name": "Recherche de marque",
+   "editor": "Bing",
+   "group": "Ce que voient Google et Bing",
+   "domain": "d-faits",
+   "url": "https://www.bing.com/search?q={brand_q}",
+   "reglage": "",
+   "releve": "Position du site, description affichée, langue",
+   "role": "Le moteur de recherche de Microsoft. Il sert aussi de base à Copilot et à une partie des recherches de ChatGPT : ce qu'il affiche compte pour les IA."
+  },
+  {
+   "key": "40",
+   "capture": "40",
+   "name": "Aperçu de partage",
+   "editor": "OpenGraph.xyz",
+   "group": "Ce que voient Google et Bing",
+   "domain": "d-pages",
+   "url": "https://www.opengraph.xyz/url/{url_enc}",
+   "reglage": "",
+   "releve": "Titre, description et image affichés quand on partage la page (LinkedIn, Slack, X, WhatsApp)",
+   "role": "Montre l'aperçu qu'affichent les réseaux sociaux et les messageries quand quelqu'un partage une page du site. Un aperçu sans image ni description fait moins cliquer, et c'est souvent la première impression d'un acheteur."
+  },
+  {
+   "key": "07",
+   "capture": "07",
+   "name": "Test des résultats enrichis",
+   "editor": "Google",
+   "group": "Ce que voient Google et Bing",
+   "domain": "d-google",
+   "url": "https://search.google.com/test/rich-results?url={url_enc}",
+   "reglage": "",
+   "releve": "Types de données structurées détectés",
+   "role": "L'outil officiel de Google qui montre les informations structurées qu'il trouve dans une page (organisation, logiciel, article, FAQ). Ce sont elles qui lui permettent d'afficher des résultats enrichis et d'identifier l'éditeur."
+  },
+  {
+   "key": "16",
+   "capture": "16",
+   "name": "Schema Markup Validator",
+   "editor": "Schema.org",
+   "group": "Ce que voient Google et Bing",
+   "domain": "d-google",
+   "url": "https://validator.schema.org/#url={url_enc}",
+   "reglage": "",
+   "releve": "Éléments et erreurs",
+   "role": "Le validateur de Schema.org, le vocabulaire commun à Google, Bing et aux IA pour décrire une entreprise, un produit ou un article. Il lit toutes les données structurées, même celles que Google n'affiche pas."
+  },
+  {
+   "key": "18",
+   "capture": "18",
+   "name": "Similarweb",
+   "editor": "Similarweb",
+   "group": "Ce que voient Google et Bing",
+   "domain": "d-google",
+   "url": "https://www.similarweb.com/website/{host_nowww}/",
+   "reglage": "estimation : à lire comme une tendance",
+   "releve": "Visites sur 3 mois, tendance, pays, rebond",
+   "role": "Une plateforme qui estime l'audience des sites à partir de panels d'internautes, sans accès à nos statistiques. Utile pour une tendance, imprécise pour un site de notre taille."
+  },
+  {
+   "key": "22",
+   "capture": "22",
+   "name": "Wikidata",
+   "editor": "Wikimedia",
+   "group": "Ce que savent les IA",
+   "domain": "d-ia",
+   "url": "https://www.wikidata.org/w/index.php?search={brand_q}",
+   "reglage": "chercher aussi le nom de l'éditeur",
+   "releve": "Fiche présente ou non",
+   "role": "La base de données libre de la fondation Wikimedia (Wikipédia). Google et les IA s'en servent pour identifier une entreprise : nom exact, date de création, site officiel, dirigeants."
+  },
+  {
+   "key": "41",
+   "capture": "41",
+   "name": "Vérificateur de liens entrants",
+   "editor": "Ahrefs",
+   "group": "Ce que savent les IA",
+   "domain": "d-ia",
+   "url": "https://ahrefs.com/backlink-checker",
+   "reglage": "facultatif ; une case « je suis humain » : c'est à l'utilisateur de la cocher, jamais à Claude",
+   "releve": "Nombre de sites qui renvoient vers le site, autorité estimée, principaux liens",
+   "role": "Compte les autres sites qui font un lien vers le nôtre. Ces liens sont la réputation du site : Google et les IA font davantage confiance à un site que d'autres sites sérieux citent."
+  }
+ ],
+ "assistants": [
+  {
+   "key": "ChatGPT",
+   "name": "ChatGPT",
+   "editor": "OpenAI",
+   "url": "https://chatgpt.com/?hints=search&q={q}",
+   "condition": "sans compte, recherche web activée",
+   "role": "L'assistant IA d'OpenAI, le plus utilisé. Avec la recherche web activée, il consulte des pages en direct, rédige une réponse et cite ses sources."
+  },
+  {
+   "key": "Google Mode IA",
+   "name": "Google Mode IA",
+   "editor": "Google",
+   "url": "https://www.google.com/search?hl={lang}&gl={country}&udm=50&q={q}",
+   "condition": "sans compte, cookies refusés",
+   "role": "Le mode conversationnel de la recherche Google. Il rédige une réponse à partir des résultats de Google et affiche les sites sur lesquels il s'appuie."
+  },
+  {
+   "key": "Brave",
+   "name": "Brave",
+   "editor": "Brave",
+   "url": "https://search.brave.com/ask?q={q}",
+   "condition": "sans compte",
+   "role": "Le moteur de recherche indépendant de Brave, avec sa propre base de pages. Sa fonction « Demander » rédige une réponse sourcée."
+  },
+  {
+   "key": "Perplexity",
+   "name": "Perplexity",
+   "editor": "Perplexity",
+   "url": "https://www.perplexity.ai/search?q={q}",
+   "condition": "sans compte : une seule question acceptée, souvent derrière une demande d'inscription (relever le texte de la page)",
+   "role": "Un moteur de réponse par IA, très utilisé par les profils techniques. Il cite systématiquement ses sources."
+  }
+ ],
+ "lexique": [
+  [
+   "SEO",
+   "Référencement naturel : tout ce qui aide Google à trouver, comprendre et bien classer le site."
+  ],
+  [
+   "GEO",
+   "Le même travail pour les assistants IA (ChatGPT, Google Mode IA, Brave, Perplexity) : être cité dans leurs réponses."
+  ],
+  [
+   "Indexation",
+   "Le fait qu'une page soit enregistrée par Google et puisse apparaître dans ses résultats."
+  ],
+  [
+   "Titre de page (title)",
+   "Le titre affiché dans l'onglet du navigateur et en bleu dans les résultats Google. Invisible sur la page elle-même."
+  ],
+  [
+   "Description (meta description)",
+   "Le court texte sous le titre dans les résultats Google. Sans elle, Google invente l'extrait."
+  ],
+  [
+   "H1, H2",
+   "Le titre principal d'une page et ses intertitres. Google s'en sert pour comprendre le sujet."
+  ],
+  [
+   "Mot collé",
+   "Deux mots séparés à l'écran par un retour à la ligne, mais collés pour Google : « conçuepour »."
+  ],
+  [
+   "Texte alternatif (alt)",
+   "La description d'une image, lue par Google et par les lecteurs d'écran des personnes malvoyantes."
+  ],
+  [
+   "Plan du site (sitemap)",
+   "La liste des pages que l'on demande à Google de lire."
+  ],
+  [
+   "robots.txt",
+   "Le fichier qui dit aux robots ce qu'ils ont le droit de lire."
+  ],
+  [
+   "Redirection 301 / 302",
+   "Le renvoi automatique d'une adresse vers une autre : 301 est définitif (Google transfère la réputation), 302 est temporaire."
+  ],
+  [
+   "Page 404",
+   "La page « introuvable ». Une vraie 404 dit à Google que la page n'existe pas ; renvoyer vers l'accueil l'induit en erreur."
+  ],
+  [
+   "Balise de langue (lang)",
+   "L'indication, dans le code, de la langue de la page."
+  ],
+  [
+   "Canonical, hreflang",
+   "Des indications pour Google : quelle est la version de référence d'une page, et quelles sont ses traductions."
+  ],
+  [
+   "Données structurées (JSON-LD)",
+   "Une fiche d'identité en langage machine, cachée dans la page : nom de l'éditeur, adresse, date, logiciel, auteur d'un article."
+  ],
+  [
+   "llms.txt",
+   "Un fichier récent, à la racine du site, qui résume les faits clés à l'intention des IA."
+  ],
+  [
+   "LCP",
+   "Le temps d'affichage de l'élément principal d'une page (souvent la grande image). Objectif Google : moins de 2,5 s."
+  ],
+  [
+   "Core Web Vitals",
+   "Les 3 mesures de Google sur l'expérience des vrais visiteurs : vitesse d'affichage, réactivité, stabilité."
+  ],
+  [
+   "En-têtes de sécurité",
+   "Des consignes que le serveur envoie au navigateur (HSTS, CSP…) pour bloquer certaines attaques."
+  ],
+  [
+   "Traceurs, cookies tiers",
+   "Des fichiers et scripts d'autres sociétés (Google, LinkedIn…) qui suivent le visiteur. La loi demande son accord avant de les charger."
+  ],
+  [
+   "Search Console",
+   "L'outil gratuit de Google qui montre les clics, les recherches et les erreurs vues par Google."
+  ],
+  [
+   "Wikidata",
+   "La base de données libre de Wikipédia, que Google et les IA lisent pour identifier une entreprise."
+  ],
+  [
+   "Panel GEO",
+   "Les 5 mêmes questions posées aux mêmes IA à chaque mesure, pour suivre si elles nous citent."
+  ],
+  [
+   "INP",
+   "Interaction to Next Paint : le temps que met la page à réagir quand on clique ou qu'on tape. Bon sous 200 ms. Il a remplacé le FID dans les Core Web Vitals."
+  ],
+  [
+   "CLS",
+   "Cumulative Layout Shift : à quel point la page « saute » pendant le chargement. Bon sous 0,1."
+  ],
+  [
+   "TTFB",
+   "Time To First Byte : le temps que met le serveur à envoyer le premier octet. Au-delà de 800 ms, tout le reste est en retard."
+  ],
+  [
+   "Rendu côté serveur (SSR)",
+   "La page arrive déjà écrite, au lieu d'être fabriquée par JavaScript dans le navigateur. Beaucoup de robots d'IA ne lancent pas JavaScript : sans rendu côté serveur, ils voient une page vide."
+  ],
+  [
+   "Compression (Brotli, gzip)",
+   "Le serveur envoie les pages compressées : 3 à 5 fois moins lourdes, donc plus rapides."
+  ],
+  [
+   "Cache-Control",
+   "L'en-tête qui dit au navigateur combien de temps garder une image ou un script, pour ne pas le retélécharger à chaque visite."
+  ],
+  [
+   "Robots des IA",
+   "GPTBot et OAI-SearchBot (OpenAI), ClaudeBot (Anthropic), PerplexityBot, Google-Extended, Applebot-Extended, CCBot. Le robots.txt peut les laisser passer ou les bloquer."
+  ],
+  [
+   "Open Graph",
+   "Les balises qui décident du titre, de la description et de l'image affichés quand on partage une page sur LinkedIn ou dans une messagerie."
+  ],
+  [
+   "E-E-A-T",
+   "Expérience, expertise, autorité, fiabilité : ce que Google cherche pour faire confiance à un contenu (auteurs nommés, sources, mentions légales, avis)."
+  ],
+  [
+   "Liens entrants (backlinks)",
+   "Les liens d'autres sites vers le nôtre. C'est la réputation du site aux yeux de Google et des IA."
+  ],
+  [
+   "WCAG",
+   "Les règles internationales d'accessibilité du web : contrastes, textes alternatifs, navigation au clavier, formulaires lisibles par un lecteur d'écran."
+  ]
+ ],
+ "seo_geo": [
+  [
+   "SEO",
+   "Être trouvé sur Google",
+   "Le référencement naturel. Il s'agit de faire en sorte que Google comprenne le site, lui fasse confiance et le montre quand un acheteur cherche une solution comme la nôtre. Il dépend de la technique (vitesse, réglages), des textes (titres, descriptions) et de la réputation (les autres sites qui parlent de nous)."
+  ],
+  [
+   "GEO",
+   "Être cité par les IA",
+   "Le même travail pour les assistants comme ChatGPT, Google Mode IA, Brave ou Perplexity. De plus en plus d'acheteurs leur demandent directement « quelle solution choisir ? ». Les IA citent surtout des guides de choix, des comparatifs, des pages claires et la presse."
+  ]
+ ],
+ "remesure": {
+  "regles": [
+   "Les mêmes outils, aux mêmes adresses, avec les mêmes réglages",
+   "Les 5 mêmes questions aux IA, posées 3 fois chacune",
+   "PageSpeed lancé 3 fois, on garde la valeur du milieu",
+   "Les mêmes conditions : sans compte, cookies refusés, même navigateur",
+   "Les captures rangées avec le même numéro"
+  ],
+  "bruit": [
+   "PageSpeed : un écart de moins de 5 points ne veut rien dire ; 10 points ou plus, si",
+   "Notes de sécurité : tout changement compte, ces outils sont stables",
+   "IA : une citation compte si elle revient au moins 2 fois sur 3",
+   "Similarweb : seule une tendance confirmée deux fois compte"
+  ],
+  "promesse": "Ce que l'équipe maîtrise, et qu'on peut promettre : les corrections. Ce qui reste incertain : les positions dans Google, le trafic et les citations par les IA, qui dépendent aussi des concurrents et de ce que d'autres sites écrivent sur nous. Aucune promesse de classement."
+ },
+ "categories": [
+  [
+   "A",
+   "Exploration et indexation",
+   "Indexation"
+  ],
+  [
+   "B",
+   "Performance et front-end",
+   "Front-end"
+  ],
+  [
+   "C",
+   "Serveur, sécurité et vie privée",
+   "Back-end"
+  ],
+  [
+   "D",
+   "Contenus et SEO éditorial",
+   "Contenus"
+  ],
+  [
+   "E",
+   "Expérience, accessibilité et conversion",
+   "Expérience"
+  ],
+  [
+   "F",
+   "GEO et autorité",
+   "GEO"
+  ]
+ ],
+ "domaines": [
+  [
+   "d-faits",
+   "3.1",
+   "Faits et cohérence",
+   "Faits"
+  ],
+  [
+   "d-pages",
+   "3.2",
+   "Propreté des pages",
+   "Pages"
+  ],
+  [
+   "d-blog",
+   "3.3",
+   "Le blog",
+   "Blog"
+  ],
+  [
+   "d-vitesse",
+   "3.4",
+   "Vitesse et front-end",
+   "Vitesse"
+  ],
+  [
+   "d-infra",
+   "3.5",
+   "Serveur et rendu",
+   "Serveur"
+  ],
+  [
+   "d-securite",
+   "3.6",
+   "Sécurité et vie privée",
+   "Sécurité"
+  ],
+  [
+   "d-google",
+   "3.7",
+   "Ce que Google comprend",
+   "Google"
+  ],
+  [
+   "d-conversion",
+   "3.8",
+   "Expérience et conversion",
+   "Conversion"
+  ],
+  [
+   "d-ia",
+   "3.9",
+   "Présence dans les IA",
+   "IA"
+  ]
+ ],
+ "voies": [
+  [
+   "C",
+   "Contenu",
+   "ce qui se règle dans l'administration du site",
+   "Textes, chiffres, fautes, titles, descriptions, images et leurs textes alternatifs, articles, pages, FAQ, profils externes (Wikidata, annuaires)"
+  ],
+  [
+   "F",
+   "Front-end",
+   "ce qui se règle dans le code des pages",
+   "Gabarits, HTML sémantique, balises, données structurées, images responsives, JavaScript et CSS, polices, accessibilité, formulaires, rendu sans JavaScript"
+  ],
+  [
+   "B",
+   "Back-end et infra",
+   "ce qui se règle sur le serveur",
+   "Redirections, codes HTTP, robots.txt, sitemap, en-têtes de sécurité et de cache, compression, CDN, certificat, temps de réponse, cookies et consentement, accès Search Console et mesure"
+  ]
+ ],
+ "priorites": [
+  [
+   1,
+   "P1",
+   "Bloquant",
+   "empêche Google ou les IA de lire le site, ou abîme la confiance"
+  ],
+  [
+   2,
+   "P2",
+   "Important",
+   "fait perdre des visiteurs, des citations ou des demandes"
+  ],
+  [
+   3,
+   "P3",
+   "Finition",
+   "rend le site irréprochable"
+  ]
+ ]
+}

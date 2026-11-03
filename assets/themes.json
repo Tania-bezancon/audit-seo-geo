@@ -1,0 +1,72 @@
+{
+  "_lisez-moi": "Un thème par marque. css : variables du dossier HTML (mode clair). pptx : couleurs du PowerPoint (hex sans #). font.family : police du PowerPoint ; font.css : pile de polices du dossier (facultatif) ; font.files : fichiers de assets/fonts intégrés dans la page unique (police sous licence libre seulement). logos : fichiers de assets/logos. Le thème par défaut est « signature ».",
+  "signature": {
+    "label": "Signature (blanc cassé, bleu nuit, corail)",
+    "font": {
+      "family": "Helvetica Neue",
+      "fallback": "Arial, sans-serif",
+      "css": "-apple-system, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif",
+      "files": []
+    },
+    "css": {
+      "--bg": "#FAFAF7",
+      "--ink": "#0B1F4C",
+      "--ink-2": "#1E3870",
+      "--muted": "#5A6C99",
+      "--line": "#E4E6EC",
+      "--accent": "#D9572F",
+      "--accent-soft": "#FFF0EA",
+      "--band": "#0B1F4C",
+      "--band-muted": "#B8C2DA",
+      "--brand": "#FF7A55",
+      "--glow": "#FFD3C2",
+      "--code-bg": "#F1F2F6"
+    },
+    "pptx": {
+      "dark": "0B1F4C",
+      "bright": "FF7A55",
+      "accentText": "D9572F",
+      "soft": "FFF0EA",
+      "ink2": "1E3870",
+      "muted": "5A6C99",
+      "line": "E4E6EC",
+      "bg2": "FAFAF7",
+      "darkMuted": "B8C2DA"
+    },
+    "logos": {}
+  },
+  "neutre": {
+    "label": "Neutre (marque sans charte)",
+    "font": {
+      "family": "Arial",
+      "fallback": "Helvetica, sans-serif",
+      "files": []
+    },
+    "css": {
+      "--bg": "#F5F6F8",
+      "--ink": "#111827",
+      "--ink-2": "#374151",
+      "--muted": "#6B7280",
+      "--line": "#E5E7EB",
+      "--accent": "#1D4ED8",
+      "--accent-soft": "#E0E7FF",
+      "--band": "#111827",
+      "--band-muted": "#AEB4C0",
+      "--brand": "#60A5FA",
+      "--code-bg": "#EEF0F3",
+      "--glow": "#DCE6FF"
+    },
+    "pptx": {
+      "dark": "111827",
+      "bright": "60A5FA",
+      "accentText": "1D4ED8",
+      "soft": "E8EDFC",
+      "ink2": "374151",
+      "muted": "6B7280",
+      "line": "E5E7EB",
+      "bg2": "F3F4F6",
+      "darkMuted": "AEB4C0"
+    },
+    "logos": {}
+  }
+}

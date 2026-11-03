@@ -1,0 +1,23 @@
+
+<style>
+img.zoomable{cursor:zoom-in}
+#lb{position:fixed;inset:0;background:rgba(0,11,40,.88);display:none;align-items:center;justify-content:center;z-index:999;cursor:zoom-out;padding:24px}
+#lb.on{display:flex} #lb img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.4);background:#fff}
+</style>
+<div id="lb" role="dialog" aria-label="Capture agrandie"><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  function show(src){im.src=src;lb.classList.add('on')}
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    if(t.matches&&t.matches('img.zoomable')){e.preventDefault();show(t.src);return}
+    var a=t.closest&&t.closest('a.zoom');
+    if(a){e.preventDefault();var n=a.getAttribute('data-cap');
+      var img=document.querySelector('img[data-cap="'+n+'"]')||(document.getElementById('cap-'+n)||{}).content&&document.getElementById('cap-'+n).content.querySelector('img');
+      if(img)show(img.src);return}
+    if(lb.classList.contains('on'))lb.classList.remove('on');
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on')});
+})();
+</script>

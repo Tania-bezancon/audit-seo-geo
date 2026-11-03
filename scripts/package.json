@@ -1,0 +1,1 @@
+{ "name": "audit-seo-geo-scripts", "private": true, "description": "Dépendance du générateur PowerPoint", "dependencies": { "pptxgenjs": "3.12.0" } }

@@ -1,0 +1,13 @@
+{
+  "_lisez-moi": "Les sites déjà audités : quand l'URL demandée est ici, le skill ne pose aucune question. Ajouter un site après son premier audit. priorites : l'ordre des groupes de la to-do (facultatif).",
+  "atelier-lumen.example": {
+    "activite": "logiciel de devis et de planning pour artisans du bâtiment (site fictif)",
+    "public": "artisans et petites entreprises du bâtiment",
+    "zone": "la France",
+    "objectif": "essais gratuits",
+    "theme": "exemple",
+    "validateur": "le responsable produit",
+    "dossier": "~/Audits/atelier-lumen/",
+    "priorites": ["Les faits", "Des pages propres", "Le blog", "SEO et GEO"]
+  }
+}
