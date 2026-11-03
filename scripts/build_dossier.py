@@ -397,7 +397,7 @@ for L in VOIES:
         md += [f"### {g}", ""]
         for c in codes:
             t = A["tasks"][c]; pr = PRIO[t.get("prio", 2)][0]
-            md.append(f"- [ ] **{c} · {t['name']}** ({pr}) : {t['what']}" + (f". _{t['check']}_" if t.get("check") else ""))
+            md.append(f"- [ ] **{c} · {t['name']}** ({pr}) : {t['what'].rstrip('. ')}" + (f". _{t['check'].rstrip('. ')}_" if t.get("check") else ""))
             rows.append([c, WHO[L], pr, t["name"], t["what"], t.get("check", "")])
         md.append("")
 if A.get("validations"):
