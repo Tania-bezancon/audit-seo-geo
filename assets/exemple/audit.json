@@ -167,6 +167,34 @@
   "Perplexity": [
    "Cité 0 fois sur 4",
    "r"
+  ],
+  "08": [
+   "Note D, 35/100",
+   "r"
+  ],
+  "14": [
+   "Score de 71 %",
+   "o"
+  ],
+  "11": [
+   "Aucun traceur publicitaire",
+   "v"
+  ],
+  "21": [
+   "Premier sur son nom, description à revoir",
+   "o"
+  ],
+  "16": [
+   "Aucun élément",
+   "r"
+  ],
+  "18": [
+   "Trop peu de visites pour une estimation",
+   "o"
+  ],
+  "41": [
+   "12 domaines renvoient vers le site",
+   "o"
   ]
  },
  "fiches": {
@@ -347,6 +375,118 @@
    "says": "Sans fiche, les IA identifient mal l'éditeur",
    "capture": "22-wikidata.png",
    "caption": "Capture 22 · wikidata.org, 2 nov. 2026, 10 h"
+  },
+  "08": {
+   "who": "HTTP Observatory",
+   "big": "35/100",
+   "pills": [
+    [
+     "bad",
+     "Note D, 35/100"
+    ]
+   ],
+   "bullets": [
+    "Quatre réglages de sécurité absents, les mêmes que sur Security Headers"
+   ],
+   "says": "La même mesure, vue par un second outil",
+   "capture": "08-http-observatory.png",
+   "caption": "Capture 08 · developer.mozilla.org, 2 nov. 2026, 10 h"
+  },
+  "14": {
+   "who": "Internet.nl",
+   "big": "71 %",
+   "pills": [
+    [
+     "warn",
+     "Score de 71 %"
+    ]
+   ],
+   "bullets": [
+    "HTTPS correct, IPv6 absent, DNSSEC absent"
+   ],
+   "says": "Le site suit une partie des standards récents",
+   "capture": "14-internet-nl.png",
+   "caption": "Capture 14 · internet.nl, 2 nov. 2026, 10 h"
+  },
+  "11": {
+   "who": "Blacklight",
+   "big": "0",
+   "pills": [
+    [
+     "ok",
+     "Aucun traceur publicitaire"
+    ]
+   ],
+   "bullets": [
+    "Aucun enregistrement de session, aucune empreinte du navigateur"
+   ],
+   "says": "Le visiteur n'est pas pisté",
+   "capture": "11-blacklight.png",
+   "caption": "Capture 11 · themarkup.org, 2 nov. 2026, 10 h"
+  },
+  "21": {
+   "who": "Recherche de marque · Bing",
+   "big": "1er",
+   "pills": [
+    [
+     "ok",
+     "Premier sur son nom"
+    ]
+   ],
+   "bullets": [
+    "La description affichée reprend le chiffre de 1 200 artisans"
+   ],
+   "says": "Le site se trouve sur son nom, avec un chiffre à vérifier",
+   "capture": "21-recherche-bing.png",
+   "caption": "Capture 21 · bing.com, 2 nov. 2026, 10 h"
+  },
+  "16": {
+   "who": "Schema Markup Validator",
+   "big": "0",
+   "pills": [
+    [
+     "bad",
+     "Aucun élément"
+    ]
+   ],
+   "bullets": [
+    "Aucun élément détecté sur l'accueil, confirme le test de Google"
+   ],
+   "says": "Le second outil dit la même chose que Google",
+   "capture": "16-schema-validator.png",
+   "caption": "Capture 16 · validator.schema.org, 2 nov. 2026, 10 h"
+  },
+  "18": {
+   "who": "Similarweb",
+   "big": "—",
+   "pills": [
+    [
+     "warn",
+     "Trop peu de visites"
+    ]
+   ],
+   "bullets": [
+    "Trafic trop faible pour une estimation, à lire comme une tendance"
+   ],
+   "says": "Sans mesure d'audience, on ne connaît pas le trafic réel",
+   "capture": "18-similarweb.png",
+   "caption": "Capture 18 · similarweb.com, 2 nov. 2026, 10 h"
+  },
+  "41": {
+   "who": "Vérificateur de liens entrants · Ahrefs",
+   "big": "12",
+   "pills": [
+    [
+     "warn",
+     "12 domaines"
+    ]
+   ],
+   "bullets": [
+    "Douze domaines renvoient vers le site, aucun média du secteur"
+   ],
+   "says": "Peu de sources extérieures pour appuyer la marque",
+   "capture": "41-liens-entrants.png",
+   "caption": "Capture 41 · ahrefs.com, 2 nov. 2026, 10 h"
   }
  },
  "domaines": {
@@ -405,7 +545,8 @@
     }
    ],
    "tools": [
-    "06"
+    "06",
+    "21"
    ],
    "tasks": [
     "C1",
@@ -661,7 +802,10 @@
    "tools": [
     "02",
     "13",
-    "12"
+    "12",
+    "08",
+    "14",
+    "11"
    ],
    "tasks": [
     "B4"
@@ -693,7 +837,9 @@
     }
    ],
    "tools": [
-    "07"
+    "07",
+    "16",
+    "18"
    ],
    "tasks": [
     "B1",
@@ -745,7 +891,8 @@
     }
    ],
    "tools": [
-    "22"
+    "22",
+    "41"
    ],
    "tasks": [
     "C7",
@@ -1579,6 +1726,48 @@
    "31 mots",
    "14 h",
    "d-infra"
+  ],
+  "08": [
+   "HTTP Observatory",
+   "Mêmes en-têtes absents que sur Security Headers",
+   "10 h",
+   "d-securite"
+  ],
+  "14": [
+   "Internet.nl",
+   "HTTPS correct, IPv6 et DNSSEC absents",
+   "10 h",
+   "d-securite"
+  ],
+  "11": [
+   "Blacklight",
+   "Aucun traceur, aucun enregistrement de session",
+   "10 h",
+   "d-securite"
+  ],
+  "21": [
+   "Recherche de marque",
+   "Le site sort premier, avec le chiffre de 1 200 artisans",
+   "10 h",
+   "d-faits"
+  ],
+  "16": [
+   "Schema Markup Validator",
+   "Aucun élément détecté sur l'accueil",
+   "10 h",
+   "d-google"
+  ],
+  "18": [
+   "Similarweb",
+   "Pas d'estimation de trafic disponible",
+   "10 h",
+   "d-google"
+  ],
+  "41": [
+   "Vérificateur de liens entrants",
+   "Douze domaines, aucun média du secteur",
+   "10 h",
+   "d-ia"
   ]
  },
  "documents": [
