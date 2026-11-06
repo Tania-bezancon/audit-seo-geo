@@ -22,7 +22,7 @@ The PowerPoint needs Node.js and one setup: `scripts/setup_pptx.sh`. Run it the 
 
 ## Choose the speed and the language
 
-**Speed.** The word `quick` in the request (or "fast", "first look", "aperçu", "rapide") means the quick audit: follow `references/quick-mode.md` and stop there. `full` (or "complet") means the rest of this file. If the request says neither, ask one question and recommend quick for a first look at a site: the full audit takes a working day. Without anyone to answer (a scheduled task), run quick.
+**Speed.** The word `quick` in the request (or "fast", "first look", "aperçu", "rapide") means the quick audit: follow `references/quick-mode.md` and stop there. `full` (or "detailed", "complet", "détaillé") means the rest of this file. If the request says neither, ask one question and recommend quick for a first look at a site: the full audit takes a working day. Without anyone to answer (a scheduled task), run quick.
 
 **Comparing.** `compare`, "what changed", "did we progress" or "compare to the last audit" means comparing two audits of the same site: run `scripts/compare.py` (section 9). To measure progress, run a new audit first, of the same kind as the previous one.
 

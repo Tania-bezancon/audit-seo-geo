@@ -31,11 +31,13 @@ Fix my site with this audit.
 
 Claude applies what it can on a branch of its own, asks you what it must not invent, and nothing goes online without you. Once you have published, ask it to recheck: it reads the live site and says which fixes hold.
 
- [See an example](https://tania-bezancon.github.io/audit-seo-geo/demo/quick/).
+[See an example of a quick audit](https://tania-bezancon.github.io/audit-seo-geo/demo/quick/), or [go further with the detailed audit](#go-further-with-the-detailed-audit).
 
-## Two speeds
+## Two audits: quick or detailed
 
-| | Quick | Full |
+Start with the quick audit to see where the site stands. Take the detailed audit when you need evidence to present.
+
+| | Quick | Detailed |
 |---|---|---|
 | Ask for | `quick <url>` | `full <url>` |
 | Time | about 15 minutes | a working day |
@@ -47,6 +49,16 @@ Claude applies what it can on a branch of its own, asks you what it must not inv
 | You get | one HTML page and the to-do | report, PDF, single page, PowerPoint, to-do, remeasure protocol |
 | Score | provisional, for a first look | comparable from one audit to the next |
 | Follow-up | `compare.py` between two quick audits | `compare.py` between two full audits, with the protocol |
+
+### Go further with the detailed audit
+
+The quick audit tells you what matters most, in minutes. The detailed audit is the one you show to a client or a management team: a dated screenshot for each finding, the complete AI panel, all 30 criteria, and a report, a PDF and a PowerPoint ready to present.
+
+```
+/audit-seo-geo:audit-seo-geo full https://www.your-site.com
+```
+
+Or ask in your own words: "run a detailed SEO audit of my site". It takes a working day and needs a browser driven by Claude. [See an example](https://tania-bezancon.github.io/audit-seo-geo/demo/). Compare a detailed audit with another detailed audit: a quick score and a detailed score do not rest on the same evidence.
 
 Reports come in **English or French**, following the language you write in. To add a language, translate two files (`assets/ui.json`, `assets/defaults.<lang>.json`), plus `assets/quick.json` for quick mode.
 

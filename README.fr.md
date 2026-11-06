@@ -15,7 +15,35 @@
 
 Puis `/audit-seo-geo:audit-seo-geo quick <url>`, ou demandez-le simplement avec vos mots (« fais un audit SEO rapide de mon site »). Si vous avez le code du site, dites ensuite « corrige mon site avec cet audit » : Claude applique ce qu'il peut sur une branche à part, vous demande ce qu'il ne doit pas inventer, et rien ne part en ligne sans vous. Une fois le site publié, demandez-lui de revérifier.
 
-**Deux vitesses, en français ou en anglais.** `quick <url>` : environ 15 minutes, sans navigateur ni clé d'API, une note provisoire et les 10 corrections les plus utiles sur une page ([procédure](references/quick-mode.md)). `full <url>` : l'audit complet décrit ci-dessous, une journée de travail. Les rapports suivent la langue dans laquelle vous écrivez.
+## Deux audits : rapide ou détaillé
+
+Commencez par l'audit rapide pour savoir où en est le site. Passez à l'audit détaillé quand il vous faut des preuves à présenter. Les rapports suivent la langue dans laquelle vous écrivez, français ou anglais.
+
+| | Rapide | Détaillé |
+|---|---|---|
+| À demander | `quick <url>` | `full <url>` |
+| Durée | environ 15 minutes | une journée de travail |
+| Navigateur | facultatif | nécessaire |
+| Pages | jusqu'à 25 | toutes, jusqu'à 400 |
+| Critères vérifiés | environ 15 à 22 sur 30 | 30 |
+| Preuves | mesures et liens | une capture datée par constat |
+| Panel d'IA | 3 questions, 2 assistants, si un navigateur est disponible | 5 questions, 4 assistants |
+| Ce que vous obtenez | une page HTML et la to-do | rapport, PDF, page unique, PowerPoint, to-do, protocole de remesure |
+| Note | provisoire, pour un premier regard | comparable d'un audit à l'autre |
+| Suivi | `compare.py` entre deux audits rapides | `compare.py` entre deux audits détaillés, avec le protocole |
+
+[Voir un audit rapide](https://tania-bezancon.github.io/audit-seo-geo/demo/quick/) (en anglais) ou la [procédure](references/quick-mode.md).
+
+### Pour aller plus loin : l'audit détaillé
+
+L'audit rapide vous dit l'essentiel en quelques minutes. L'audit détaillé est celui que vous montrez à un client ou à une direction : une capture datée pour chaque constat, le panel d'IA complet, les 30 critères, et un rapport, un PDF et un PowerPoint prêts à présenter.
+
+```
+/audit-seo-geo:audit-seo-geo full https://www.votre-site.com
+```
+
+Ou demandez-le avec vos mots : « fais un audit SEO détaillé de mon site ». Il prend une journée de travail et demande un navigateur piloté par Claude. [Voir un exemple](https://tania-bezancon.github.io/audit-seo-geo/demo/fr/). Comparez un audit détaillé avec un autre audit détaillé : une note rapide et une note détaillée ne reposent pas sur les mêmes preuves.
+
 
 **Un rapport qui se comprend d'un coup d'œil.** Il s'ouvre sur cinq regards avec un feu chacun et les trois tâches par lesquelles commencer. Il montre ensuite le site vu de dehors : son résultat Google, ce qu'on voit quand on le partage, et ce que voit un visiteur à côté de ce que lit un robot d'IA sans JavaScript. Le panel dit qui est cité à la place du site, et combien de fois.
 
