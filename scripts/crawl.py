@@ -147,7 +147,7 @@ def page(url):
         mixed=len(re.findall(r'(?:src|href)="http://', body)),
     )
     # an empty shell has no H1 in its HTML: a short page that has one, such as a legal notice, is simply short
-    o["rendu_js_probable"] = o["words"] < 80 and o["scripts"] >= 5 and not o["h1"]
+    o["rendu_js_probable"] = o["words"] < 80 and o["scripts"] >= 1 and not o["h1"]
     o["social"] = social_links(p.hrefs)
     links = []
     for h in p.hrefs:

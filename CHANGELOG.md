@@ -6,6 +6,8 @@
 - It follows your fixes: the gain of each one, ticks and progress remembered in the browser, and `quick.py check` to reread the site and confirm them.
 - Fixes applied in the code on request (`scripts/repair.py`, `references/repair-mode.md`): on a branch, one commit per task, secrets and invented facts refused, the local site read before and after. Nothing is pushed or published.
 - The install command of the README is fixed, tests run on GitHub, and the exact brand is set after reading the site (`quick.py brand`).
+- A report can take the look of the audited site: titles' weight, logo, and any open-licence font.
+- An empty page built by a few scripts now counts as empty, and a new measure really reads the site again.
 - Speed and accessibility measured without a key: Lighthouse on your machine when PageSpeed refuses.
 - The address of the site itself is checked: a redirect that says nowhere to go no longer scores as healthy.
 - The AI panel looks for an account before sending any question.

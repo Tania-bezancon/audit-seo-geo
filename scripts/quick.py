@@ -18,7 +18,7 @@ Claude completes quick.json between the two steps: judged criteria, AI panel, ta
 A criterion nobody could check is NV: excluded from the score, never guessed. The score is labelled provisional."""
 import argparse, base64, collections, csv, datetime, html, io, tempfile, json, os, re, shutil, statistics, subprocess, sys, urllib.error, urllib.parse, urllib.request
 import fixes
-from common import ASSETS, HOSTED, UI, apply_recheck, repair_block, repair_kind, repair_line, open_questions, task_questions, task_state, date_label, find_chrome, first_html, fix_html, fix_script, font_faces, grid_gain, looks_html, md_details, progress_html, signed_gain, soft_domain, task_marks, view_html, who_html, fmt_score, grid_scores, plural, report_lang, theme_css, translator
+from common import ASSETS, HOSTED, UI, brand_logo, apply_recheck, repair_block, repair_kind, repair_line, open_questions, task_questions, task_state, date_label, find_chrome, first_html, fix_html, fix_script, font_faces, grid_gain, looks_html, md_details, progress_html, signed_gain, soft_domain, task_marks, view_html, who_html, fmt_score, grid_scores, plural, report_lang, theme_css, translator
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 UA = "Mozilla/5.0 (compatible; audit-seo-geo; +https://github.com/Tania-bezancon/audit-seo-geo)"
@@ -218,6 +218,9 @@ def cmd_measure(a):
     if start != a.url:
         print(f"{a.url} redirects to {start}: using that address")
     crawl_dir = os.path.join(a.out, "crawl")
+    # a new measure reads the site again: crawl.py would otherwise resume from the pages already in this folder
+    if os.path.exists(os.path.join(crawl_dir, "crawl.jsonl")):
+        os.remove(os.path.join(crawl_dir, "crawl.jsonl"))
     subprocess.run([sys.executable, os.path.join(HERE, "crawl.py"), start, crawl_dir, "--delay", str(a.delay), "--max", str(a.max)], check=True, stdout=subprocess.DEVNULL)
     m = {"crawl": measures_from_crawl(crawl_dir, start)}
     if not a.offline and m["crawl"]["pages_ok"]:
@@ -568,7 +571,7 @@ def cmd_build(a):
     page = f"""<!doctype html><html lang="{LANG}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{T('quick_doc_title', domain=esc(S['domain']))}</title>
 <style>{fonts}{css}</style></head><body>
-<header class="band"><div class="wrap">
+<header class="band"><div class="wrap">{brand_logo(TH)}
   <p class="eyebrow">{T('quick_eyebrow', domain=esc(S['domain']), date=esc(date))}</p>
   <h1>{T('quick_h1', domain=soft_domain(esc(S['domain'])))}</h1>
   <p class="lead">{T('quick_lead')}</p>

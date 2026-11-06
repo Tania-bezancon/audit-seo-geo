@@ -142,6 +142,15 @@ def asset_file(kind, name):
     return mine if os.path.exists(mine) else os.path.join(ASSETS, kind, name)
 
 
+def brand_logo(TH):
+    """A theme's logo at the top of the report, kept inside the file. logos.report in the theme."""
+    name = (TH.get("logos") or {}).get("report")
+    if not name:
+        return ""
+    data = base64.b64encode(open(asset_file("logos", name), "rb").read()).decode()
+    return f'<img class="brand-logo" src="data:image/{"svg+xml" if name.endswith(".svg") else "png"};base64,{data}" alt="">'
+
+
 def fix_script():
     return "<script>" + open(os.path.join(ASSETS, "fix.js"), encoding="utf-8").read() + "</script>"
 

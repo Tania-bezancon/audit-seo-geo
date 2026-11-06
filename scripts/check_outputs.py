@@ -319,6 +319,9 @@ if common.task_state("B1", "C2", {"C2": {"status": "fixed"}}, {"tasks": {"B1": {
 form = common.answers_form([{"code": "C1", "name": "Mentions", "questions": ["Qui ?"]}], Tfr)
 if "C1 · Mentions" not in form or "- Qui ?" not in form:
     err.append(f"form: {form}")
+crawl_src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "crawl.py"), encoding="utf-8").read()
+if 'o["scripts"] >= 5' in crawl_src:
+    err.append("rendering: an empty page built by a single script must count as empty")
 # a placeholder left in a string reads as a bug
 for f_ in glob.glob(os.path.join(out, "quick", "*.html")) + glob.glob(os.path.join(out, "quick", "fr", "*.html")) + glob.glob(os.path.join(out, "quick", "after", "*.html")) + [os.path.join(out, "en", "index.html"), os.path.join(out, "fr", "index.html")]:
     text_ = re.sub(r"<(style|script)\b.*?</\1>", "", open(f_, encoding="utf-8").read(), flags=re.S)

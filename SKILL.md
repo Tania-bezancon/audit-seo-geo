@@ -76,7 +76,7 @@ If the site is in `~/.claude/audit-seo-geo/sites.json`, ask nothing. Otherwise, 
 
 Also ask, once, what would change the measure: access to Search Console, Bing Webmaster Tools or the analytics (otherwise these criteria are NV), the site's CMS or framework (WordPress, Webflow, Next.js..., to write fixes the team can apply), and whether the business is local (then also look at the Google Business Profile).
 
-Before starting, read what the site's folder already contains (a CLAUDE.md, a reference of facts, claims and competitors) and the site's latest audit, to measure the gap. A site without a theme takes `signature`; for a new brand, add a theme in `~/.claude/audit-seo-geo/themes.json` (colours, open-licence font in `fonts/`, logo in `logos/`, next to that file).
+Before starting, read what the site's folder already contains (a CLAUDE.md, a reference of facts, claims and competitors) and the site's latest audit, to measure the gap. A site without a theme takes `signature`; for a new brand, add a theme in `~/.claude/audit-seo-geo/themes.json` (colours, open-licence font in `fonts/`, logo in `logos/`, next to that file). To dress a report in the look of the audited site, read its colours and fonts in the browser, not in its source: the fonts and colours applied, the shape of its cards. Copy a font only under an open licence, and name it in `font.files`. `--display-weight` sets the weight of the titles, `--logo-filter` corrects a logo the site recolours, and `logos.report` puts it at the top of the report. Tell the requester that a report in a brand's colours is theirs to show, not a document from that brand.
 
 ## 2. The rules of evidence
 

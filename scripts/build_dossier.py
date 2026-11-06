@@ -13,7 +13,7 @@ Fixed strings come from assets/ui.json, shared content (tools, roles, glossary, 
 assets/defaults.<lang>.json, colours and font from assets/themes.json (key site.theme)."""
 import argparse, base64, html, json, os, re, shutil, subprocess, sys
 from fixes import stack_name
-from common import ASSETS, HOSTED, UI, asset_file, repair_block, repair_kind, repair_line, open_questions, task_questions, task_state, defaults, apply_recheck, date_label, first_html, fix_html, fix_script, font_faces, grid_gain, looks_html, md_details, progress_html, signed_gain, soft_domain, task_marks, view_html, who_html, fmt_score, grid_scores, plural, report_lang, score_value, theme_css, translator
+from common import ASSETS, HOSTED, UI, brand_logo, asset_file, repair_block, repair_kind, repair_line, open_questions, task_questions, task_state, defaults, apply_recheck, date_label, first_html, fix_html, fix_script, font_faces, grid_gain, looks_html, md_details, progress_html, signed_gain, soft_domain, task_marks, view_html, who_html, fmt_score, grid_scores, plural, report_lang, score_value, theme_css, translator
 
 CHROME = os.environ.get("CHROME") or next(
     (c for c in ["/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", shutil.which("google-chrome") or "",
@@ -328,7 +328,7 @@ page = f"""<!doctype html><html lang="{LANG}"><head><meta charset="utf-8"><meta 
 <title>{T('doc_title', domain=esc(S['domain']))}</title>
 {fontlink}
 <style>{css}</style></head><body>
-<header class="band"><div class="wrap">
+<header class="band"><div class="wrap">{brand_logo(TH)}
   <p class="eyebrow">{T('eyebrow', domain=esc(S['domain']), date=esc(S['date_label']))}</p>
   <h1>{T('h1', domain=soft_domain(esc(S['domain'])))}</h1>
   <p class="lead">{inline(A['lead'])}</p>
