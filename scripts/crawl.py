@@ -1,32 +1,41 @@
 #!/usr/bin/env python3
-"""Relevé automatique d'un site, lent et reprenable.
+"""Automatic crawl of a site, slow and resumable.
 
-  python3 crawl.py https://exemple.com/fr OUT_DIR [--delay 3] [--max 400] [--jina] [--urls fichier.txt]
+  python3 crawl.py https://example.com/en OUT_DIR [--delay 3] [--max 400] [--jina] [--urls file.txt]
 
-- Découvre les pages par robots.txt, le plan du site (index compris) puis les liens internes.
-- Pour chaque page : code HTTP, redirection, temps de réponse (TTFB), poids du HTML, en-têtes de cache et de serveur,
-  title, description, robots, lang, canonical, hreflang, H1, H2, mots collés (deux mots séparés par <br> sans espace),
-  images et images sans alt, JSON-LD, Open Graph, viewport, nombre de mots, nombre de scripts, dates,
-  et un indice de rendu par JavaScript (page presque vide sans JavaScript : les robots des IA n'y voient rien).
-- Pour le site : robots des IA autorisés ou bloqués, llms.txt, compression, en-têtes de sécurité, fausse 404, www, http.
-- Écrit OUT_DIR/crawl.jsonl (une ligne par page, reprise automatique), OUT_DIR/robots.txt, OUT_DIR/sitemap-urls.txt,
-  OUT_DIR/summary.json (les compteurs du rapport) et OUT_DIR/checks.json (fausse 404, www, http).
-- Prudence : une page toutes les --delay secondes. Certains serveurs bloquent l'adresse au-delà d'une centaine de
-  requêtes rapides (35 min lors d'un audit réel). --jina passe par le lecteur r.jina.ai en cas de blocage.
+- Finds pages through robots.txt, the sitemap (index included), then internal links.
+- For each page: HTTP code, redirect, response time (TTFB), HTML weight, cache and server headers,
+  title, description, robots, lang, canonical, hreflang, H1, H2, glued words (two words split by <br> without a space),
+  images and images without alt, JSON-LD, Open Graph, viewport, word count, script count, dates,
+  and a JavaScript rendering hint (a page nearly empty without JavaScript: AI crawlers see nothing there).
+- For the site: AI crawlers allowed or blocked, llms.txt, compression, security headers, fake 404, www, http.
+- Writes OUT_DIR/crawl.jsonl (one line per page, resumes automatically), OUT_DIR/robots.txt, OUT_DIR/sitemap-urls.txt,
+  OUT_DIR/summary.json (the report's counters) and OUT_DIR/checks.json (fake 404, www, http).
+- Caution: one page every --delay seconds. Some servers block an address after about a hundred fast requests
+  (35 min during a real audit). --jina goes through the r.jina.ai reader when blocked.
 """
 import argparse, collections, gzip, html, json, os, re, sys, time, urllib.error, urllib.parse, urllib.request
 from html.parser import HTMLParser
+from fixes import detect_stack, social_links
 
 ap = argparse.ArgumentParser()
 ap.add_argument("start"); ap.add_argument("out")
 ap.add_argument("--delay", type=float, default=3); ap.add_argument("--max", type=int, default=400)
 ap.add_argument("--jina", action="store_true"); ap.add_argument("--urls")
+ap.add_argument("--map-host", help="addresses on this host are read here instead: a local copy of a live site lists the live addresses in its sitemap")
 a = ap.parse_args()
 os.makedirs(a.out, exist_ok=True)
-START = a.start.rstrip("/")
+START = a.start
 U = urllib.parse.urlparse(START)
 ROOT = f"{U.scheme}://{U.netloc}"
 HOST = U.netloc
+
+
+def here(u):
+    p = urllib.parse.urlparse(u)
+    return urllib.parse.urlunparse(p._replace(scheme=U.scheme, netloc=HOST)) if a.map_host and p.netloc == a.map_host else u
+
+
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36 audit-seo"
 
 
@@ -35,7 +44,7 @@ class NoRedir(urllib.request.HTTPRedirectHandler):
         return None
 
 
-LAST = {}  # en-têtes et temps de la dernière réponse
+LAST = {}  # headers and timing of the last response
 
 
 def get(url, follow=False, timeout=45, headers=None):
@@ -104,7 +113,7 @@ def ld_types(blobs):
         try:
             j = json.loads(b)
         except Exception:
-            out.append("JSON invalide"); continue
+            out.append("invalid JSON"); continue
         stack = [j]
         while stack:
             x = stack.pop()
@@ -132,24 +141,26 @@ def page(url):
         h1=[h for t, h in hn if t == "h1"], h2=[h for t, h in hn if t == "h2"][:20],
         glued=[h for _, h in hn if re.search(r"[^\s>]<BR>[^\s<]", h)],
         imgs=len(p.imgs), imgs_noalt=sum(1 for i in p.imgs if not (i.get("alt") or "").strip()),
-        ld=ld_types(p.ld), words=len(re.findall(r"\w+", " ".join(p.text))), og_image=p.metas.get("og:image"),
+        ld=ld_types(p.ld), words=len(re.findall(r"\w+", " ".join(p.text))), excerpt=re.sub(r"\s+", " ", html.unescape(" ".join(p.text))).strip()[:420], og_image=p.metas.get("og:image"),
         og_title=p.metas.get("og:title"), og_desc=p.metas.get("og:description"), twitter=p.metas.get("twitter:card"),
         viewport=p.metas.get("viewport"), scripts=p.scripts, published=p.metas.get("article:published_time"), times=[t for t in p.time if t],
         mixed=len(re.findall(r'(?:src|href)="http://', body)),
     )
-    o["rendu_js_probable"] = o["words"] < 80 and o["scripts"] >= 5
+    # an empty shell has no H1 in its HTML: a short page that has one, such as a legal notice, is simply short
+    o["rendu_js_probable"] = o["words"] < 80 and o["scripts"] >= 5 and not o["h1"]
+    o["social"] = social_links(p.hrefs)
     links = []
     for h in p.hrefs:
-        u = urllib.parse.urljoin(url, h).split("#")[0]
+        u = here(urllib.parse.urljoin(url, h).split("#")[0])
         if urllib.parse.urlparse(u).netloc == HOST and not re.search(r"\.(pdf|jpe?g|png|gif|svg|webp|zip|mp4|docx?|xlsx?|pptx?)$", u, re.I):
             links.append(u)
     return o, links
 
 
-# --- robots.txt et plan du site
+# --- robots.txt and sitemap
 code, robots, _ = get(ROOT + "/robots.txt", follow=True)
 open(os.path.join(a.out, "robots.txt"), "w").write(robots if code == 200 else f"# {code}\n")
-maps = re.findall(r"(?im)^sitemap:\s*(\S+)", robots) or [ROOT + "/sitemap.xml"]
+maps = [here(m) for m in re.findall(r"(?im)^sitemap:\s*(\S+)", robots)] or [ROOT + "/sitemap.xml"]
 seen_maps, sm_urls = set(), []
 while maps:
     m = maps.pop(0)
@@ -157,15 +168,19 @@ while maps:
     seen_maps.add(m); time.sleep(a.delay / 2)
     c, x, _ = get(m, follow=True)
     if c != 200: continue
-    locs = re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", x)
+    locs = [here(l) for l in re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", x)]
     if "<sitemapindex" in x: maps += locs
     else: sm_urls += [html.unescape(l) for l in locs]
 sm_urls = list(dict.fromkeys(sm_urls))
 open(os.path.join(a.out, "sitemap-urls.txt"), "w").write("\n".join(sm_urls))
-print(f"robots.txt {code}, plan du site : {len(sm_urls)} adresses")
+print(f"robots.txt {code}, sitemap: {len(sm_urls)} addresses")
 
-# --- exploration
-queue = [l.strip() for l in open(a.urls)] if a.urls else [START] + sm_urls
+# --- crawl
+# when the cap is reached, the pages in the language asked for come first
+lang_path = re.match(r"/[a-z]{2}(-[a-zA-Z]{2})?(/|$)", U.path)
+first = lang_path.group(0).rstrip("/") if lang_path else ""
+in_lang = lambda u: urllib.parse.urlparse(u).path == first or urllib.parse.urlparse(u).path.startswith(first + "/")
+queue = [l.strip() for l in open(a.urls)] if a.urls else [START] + sorted(sm_urls, key=lambda u: bool(first) and not in_lang(u))
 done = {}
 JL = os.path.join(a.out, "crawl.jsonl")
 if os.path.exists(JL):
@@ -179,24 +194,28 @@ with open(JL, "a") as f:
         time.sleep(a.delay)
         o, links = page(u)
         if o["status"] in (403, 429, "ERR") and not a.jina:
-            print(f"  {o['status']} sur {u} : le serveur bloque peut-être l'adresse. Relancer plus tard ou avec --jina.")
+            print(f"  {o['status']} on {u}: the server may be blocking this address. Run again later or with --jina.")
         done[u] = o; f.write(json.dumps(o, ensure_ascii=False) + "\n"); f.flush()
         if not a.urls:
             queue += [l for l in links if l not in done and l not in queue]
         i += 1
-        if i % 20 == 0: print(f"  {len(done)} pages…")
+        if i % 20 == 0: print(f"  {len(done)} pages...")
 
-# --- contrôles d'ensemble
-checks = {}
+# --- site-wide checks
+checks = {"robots_txt": {"status": code}}
 time.sleep(a.delay)
 c, _, loc = get(ROOT + "/page-qui-n-existe-pas-audit-404")
-checks["fausse_404"] = {"status": c, "location": loc, "verdict": "vraie 404" if c == 404 else "à vérifier : une adresse inconnue ne renvoie pas 404"}
+checks["fausse_404"] = {"status": c, "location": loc, "verdict": "real 404" if c == 404 else "to check: an unknown address does not return 404"}
 alt = U.netloc[4:] if U.netloc.startswith("www.") else "www." + U.netloc
 for name, u in [("autre_hote", f"{U.scheme}://{alt}/"), ("http", f"http://{U.netloc}/")]:
     time.sleep(a.delay)
     c, _, loc = get(u)
     checks[name] = {"url": u, "status": c, "location": loc}
-# robots des IA : bloqués par robots.txt ?
+# the address people share: the sitemap never lists it when it only redirects
+time.sleep(a.delay)
+c, _, loc = get(ROOT + "/")
+checks["racine"] = {"status": c, "location": loc}
+# AI crawlers: blocked by robots.txt?
 def blocked(agent):
     groups, cur, take = {}, [], False
     for line in robots.splitlines():
@@ -211,11 +230,14 @@ def blocked(agent):
             for ua in cur: groups.setdefault(ua, []).append((k, v))
     rules = groups.get(agent.lower(), groups.get("*", []))
     return any(k == "disallow" and v == "/" for k, v in rules) and not any(k == "allow" and v == "/" for k, v in rules)
-checks["robots_ia"] = {b: ("bloqué" if blocked(b) else "autorisé") for b in
-                       ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot", "Bingbot", "Googlebot"]}
+checks["robots_ia"] = {b: ("blocked" if blocked(b) else "allowed") for b in
+                       ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot", "Bingbot", "Googlebot"]}
 time.sleep(a.delay)
 c, body, _ = get(ROOT + "/llms.txt", follow=True)
 checks["llms_txt"] = {"status": c, "lignes": len(body.splitlines()) if c == 200 else 0}
+time.sleep(a.delay)
+c, body, _ = get(START, follow=True)
+checks["stack"] = detect_stack(body, LAST.get("headers"))
 time.sleep(a.delay)
 get(START, follow=True, headers={"Accept-Encoding": "br, gzip"})
 h = LAST.get("headers", {})
@@ -224,8 +246,8 @@ checks["accueil"] = {"compression": h.get("content-encoding", "aucune"), "cache"
                                                           "x-frame-options", "referrer-policy", "permissions-policy"]}}
 json.dump(checks, open(os.path.join(a.out, "checks.json"), "w"), ensure_ascii=False, indent=1)
 
-# --- compteurs pour le rapport
-R = [r for r in done.values() if r.get("status") == 200]
+# --- the report's counters
+R = [r for r in done.values() if r.get("status") == 200 and "title" in r]  # a 200 with an empty body has no fields
 titles = collections.Counter(r["title"] for r in R)
 summary = {
     "pages_ok": len(R), "pages_total": len(done),

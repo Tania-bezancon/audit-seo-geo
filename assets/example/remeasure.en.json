@@ -1,0 +1,706 @@
+{
+ "site": {
+  "domain": "atelier-lumen.example",
+  "url": "https://www.atelier-lumen.example/",
+  "brand": "Atelier Lumen",
+  "brand_q": "Atelier+Lumen+software",
+  "theme": "signature",
+  "lang": "en",
+  "report_lang": "en",
+  "country": "gb",
+  "date": "2027-02-01",
+  "date_label": "1 February 2027",
+  "date_long": "Monday 1 February 2027",
+  "perimetre": "64 pages, 1 language, 31 blog articles",
+  "pages": 64,
+  "prepared_by": "the communication team, with Claude",
+  "usage": "fictional example",
+  "validateur": "the product manager"
+ },
+ "criteres": [
+  [
+   "A1",
+   "Robot access",
+   "2",
+   "robots.txt blocks nothing useful; sitemap.xml declared, 62 of 64 addresses"
+  ],
+  [
+   "A2",
+   "One version of the site",
+   "2",
+   "http and the address without www both answer 301 to the main address"
+  ],
+  [
+   "A3",
+   "HTTP codes",
+   "2",
+   "An unknown address returns 404, no broken links left in the footer"
+  ],
+  [
+   "A4",
+   "Rendering",
+   "2",
+   "The \"Features\" pages have 420 words without JavaScript since the static export"
+  ],
+  [
+   "A5",
+   "Structure",
+   "2",
+   "Every useful page is at most 3 clicks from the home page"
+  ],
+  [
+   "B1",
+   "Real-user Core Web Vitals",
+   "1",
+   "Enough visitors for real-user data now: LCP 3.1 s, INP 180 ms, CLS 0.05"
+  ],
+  [
+   "B2",
+   "Mobile performance",
+   "1",
+   "PageSpeed mobile 61/100, main element in 5.8 s"
+  ],
+  [
+   "B3",
+   "Images",
+   "1",
+   "WebP on the home page, but still no `srcset`"
+  ],
+  [
+   "B4",
+   "Code",
+   "1",
+   "2 blocking scripts, no mixed content"
+  ],
+  [
+   "B5",
+   "Mobile",
+   "2",
+   "Displays correctly at 375 px, viewport declared"
+  ],
+  [
+   "C1",
+   "Encryption",
+   "2",
+   "SSL Labs A, TLS 1.3, HSTS present"
+  ],
+  [
+   "C2",
+   "Security headers",
+   "1",
+   "Security Headers B: CSP still missing, server version hidden"
+  ],
+  [
+   "C3",
+   "Transport",
+   "1",
+   "gzip compression, but images served with no caching (`max-age=0`)"
+  ],
+  [
+   "C4",
+   "Response time",
+   "2",
+   "Median TTFB 310 ms"
+  ],
+  [
+   "C5",
+   "Privacy",
+   "NV",
+   "Webbkoll and Blacklight did not answer on the day of the measure"
+  ],
+  [
+   "D1",
+   "Titles, descriptions and sharing",
+   "1",
+   "Titles are unique now, 3 pages without a description, share preview complete"
+  ],
+  [
+   "D2",
+   "Headings",
+   "1",
+   "6 pages without an H1, 3 with two H1s"
+  ],
+  [
+   "D3",
+   "Depth",
+   "1",
+   "Feature pages of 150 to 250 words"
+  ],
+  [
+   "D4",
+   "Accuracy",
+   "1",
+   "2 mistakes; 1,200 customer tradespeople on the home page, 900 on “About”"
+  ],
+  [
+   "D5",
+   "Freshness and languages",
+   "0",
+   "Latest article from March 2024; site in a single language"
+  ],
+  [
+   "E1",
+   "The 5 seconds",
+   "2",
+   "“Your quotes and your jobs, on one screen”"
+  ],
+  [
+   "E2",
+   "Call to action and intermediate offer",
+   "1",
+   "“Free trial” missing from the feature pages, no intermediate offer"
+  ],
+  [
+   "E3",
+   "Form",
+   "1",
+   "Since the redesign, the form no longer shows a confirmation after sending"
+  ],
+  [
+   "E4",
+   "Proof and trust",
+   "1",
+   "Customer logos with no testimonial or figure, no author on the articles"
+  ],
+  [
+   "E5",
+   "Accessibility",
+   "1",
+   "WAVE: AIM score 6.1, 23 images without a description, 4 low contrasts"
+  ],
+  [
+   "F1",
+   "Structured data",
+   "2",
+   "Organization on the whole site, SoftwareApplication on the product pages"
+  ],
+  [
+   "F2",
+   "AI access",
+   "2",
+   "AI search crawlers allowed, llms.txt online"
+  ],
+  [
+   "F3",
+   "Entity",
+   "1",
+   "“About” page without a year or an address, no Wikidata entry"
+  ],
+  [
+   "F4",
+   "Citable content and authority",
+   "0",
+   "No FAQ or buying guide, 12 domains link to the site"
+  ],
+  [
+   "F5",
+   "Presence in answers",
+   "1",
+   "Cited in 2 of 16 answers on the market questions, each at least 2 times out of 3"
+  ]
+ ],
+ "resultats": {
+  "01": [
+   "61/100; main element in 5.8 s",
+   "o"
+  ],
+  "09": [
+   "79/100",
+   "o"
+  ],
+  "02": [
+   "Grade B",
+   "o"
+  ],
+  "13": [
+   "Grade A",
+   "v"
+  ],
+  "15": [
+   "AIM score 6.1",
+   "o"
+  ],
+  "10": [
+   "5 errors",
+   "o"
+  ],
+  "lt": [
+   "2 mistakes across 64 pages",
+   "v"
+  ],
+  "06": [
+   "62 results, 1 customer figure",
+   "v"
+  ],
+  "07": [
+   "Organization, SoftwareApplication",
+   "v"
+  ],
+  "40": [
+   "Image and description present",
+   "v"
+  ],
+  "22": [
+   "No entry",
+   "r"
+  ],
+  "ChatGPT": [
+   "Cited 0 times out of 4",
+   "r"
+  ],
+  "Google AI Mode": [
+   "Cited 0 times out of 4",
+   "r"
+  ],
+  "Brave": [
+   "Cited 0 times out of 4",
+   "r"
+  ],
+  "Perplexity": [
+   "Cited 0 times out of 4",
+   "r"
+  ],
+  "08": [
+   "Grade B, 65/100",
+   "o"
+  ],
+  "14": [
+   "Score of 71%",
+   "o"
+  ],
+  "11": [
+   "No advertising trackers",
+   "v"
+  ],
+  "21": [
+   "First on its name, description to review",
+   "o"
+  ],
+  "16": [
+   "Organization, SoftwareApplication",
+   "v"
+  ],
+  "18": [
+   "Too few visits for an estimate",
+   "o"
+  ],
+  "41": [
+   "14 domains link to the site",
+   "o"
+  ]
+ },
+ "reference": {
+  "rows": [
+   [
+    "Overall",
+    "Score on the 30-criteria grid",
+    "5.0 / 10",
+    "rising"
+   ],
+   [
+    "Pages",
+    "Pages without a description",
+    "3",
+    "0"
+   ],
+   [
+    "Speed",
+    "PageSpeed mobile",
+    "61",
+    "≥ 75"
+   ],
+   [
+    "Server",
+    "Words readable without JavaScript (product pages)",
+    "420",
+    "> 300"
+   ],
+   [
+    "AI",
+    "Citations in 16 market answers",
+    "2",
+    "≥ 4"
+   ]
+  ],
+  "missing": "Clicks and positions in Google, because there is no access to Search Console",
+  "tasks": []
+ },
+ "ia": {
+  "questions": {
+   "1": "Which quoting and scheduling software should a UK tradesperson choose?",
+   "2": "What is a simple alternative to big job management software for a small plumbing business?",
+   "3": "How can a tradesperson write quotes on their phone?",
+   "4": "Which quoting software do UK builders use?",
+   "5": "What is Atelier Lumen?"
+  },
+  "brand_question": 5,
+  "intro": "Each question is asked in a fresh conversation, with no account. Competitors are anonymised",
+  "note": "The AI assistants cite press comparisons and buying guides: that is what we are missing",
+  "assistants": [
+   {
+    "name": "ChatGPT",
+    "how": "chatgpt.com, no account, web search",
+    "answers": [
+     {
+      "q": 1,
+      "cited": true,
+      "note": "Now names the product among three options, citing the new buying guide.",
+      "hour": "11 am",
+      "runs": [
+       true,
+       true,
+       false
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "note": "Describes the product, but says it launched in 2019 instead of 2021.",
+      "hour": "3 pm",
+      "runs": [
+       true,
+       true,
+       true
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Google AI Mode",
+    "how": "google.com, udm=50, no account",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "11 am",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 2,
+      "cited": true,
+      "note": "Cites the FAQ page.",
+      "hour": "3 pm",
+      "runs": [
+       true,
+       false,
+       true
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "note": "Describes the product, but says it launched in 2019 instead of 2021.",
+      "hour": "3 pm",
+      "runs": [
+       true,
+       true,
+       true
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Brave",
+    "how": "search.brave.com/ask, no account",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "11 am",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "note": "Describes the product, but says it launched in 2019 instead of 2021.",
+      "hour": "3 pm",
+      "runs": [
+       true,
+       true,
+       true
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Perplexity",
+    "how": "perplexity.ai, no account",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "11 am",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 3,
+      "cited": true,
+      "note": "Names the product once. Only one question was accepted without an account.",
+      "hour": "3 pm",
+      "runs": [
+       true
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "runs": [
+       false,
+       false,
+       false
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "note": "Describes the product, but says it launched in 2019 instead of 2021.",
+      "hour": "3 pm",
+      "runs": [
+       true,
+       true,
+       true
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "tasks": {
+  "C2": {
+   "prio": 1,
+   "name": "Complete “About” page",
+   "what": "add the legal name, the year founded, the address and the team",
+   "check": "Verified when all 4 items are online"
+  },
+  "C4": {
+   "prio": 2,
+   "name": "Descriptions",
+   "what": "write a description of 140 to 160 characters for the 41 pages that have none",
+   "check": "Verified when the scan counts 0 pages without a description"
+  },
+  "C5": {
+   "prio": 2,
+   "name": "Image descriptions",
+   "what": "describe each useful image in the “alt text” field; leave alt empty for decorative images",
+   "check": "Verified when WAVE no longer reports an image without a description"
+  },
+  "C6": {
+   "prio": 2,
+   "name": "Blog sort-out",
+   "what": "keep 12 articles, merge 9, remove 10 outdated articles (redirects: B5)",
+   "check": "Verified when the blog has about 16 up-to-date articles"
+  },
+  "C7": {
+   "prio": 2,
+   "name": "FAQ for tradespeople",
+   "what": "answer on one page the 10 questions tradespeople ask before trying the software (price, data, accounting export...)",
+   "check": "Verified when the page is online and approved"
+  },
+  "C8": {
+   "prio": 3,
+   "name": "Buying guide",
+   "what": "publish “How to choose quoting software”, which also serves as an intermediate offer",
+   "check": "Verified when the guide is online with its form"
+  },
+  "C9": {
+   "prio": 3,
+   "name": "Wikidata entry",
+   "what": "create the company's entry with the official site, the year founded and the head office",
+   "check": "Verified when a Wikidata search finds it"
+  },
+  "F2": {
+   "prio": 2,
+   "name": "Home page images",
+   "what": "switch the photos to WebP or AVIF with `srcset`, `fetchpriority=\"high\"` on the main image, `loading=\"lazy\"` on the others",
+   "check": "Verified when PageSpeed mobile is above 75 on 3 runs"
+  },
+  "F5": {
+   "prio": 3,
+   "name": "Contrast and focus",
+   "what": "darken the 4 light grey texts, add a `:focus-visible` style",
+   "check": "Verified when WAVE no longer reports a contrast issue"
+  },
+  "B1": {
+   "prio": 1,
+   "name": "Search Console",
+   "what": "verify the domain in Search Console and Bing Webmaster Tools, and submit the sitemap there",
+   "check": "Verified when clicks and positions can be read"
+  },
+  "B4": {
+   "prio": 2,
+   "name": "Security headers",
+   "what": "add Content-Security-Policy, Referrer-Policy and Permissions-Policy, and hide the nginx version",
+   "check": "Verified when Security Headers gives B or better"
+  },
+  "B5": {
+   "prio": 2,
+   "name": "Blog redirects",
+   "what": "redirect each removed or merged article to the closest article with a 301",
+   "check": "Verified when no old address returns 404"
+  },
+  "B6": {
+   "prio": 3,
+   "name": "Image caching",
+   "what": "`Cache-Control: public, max-age=31536000, immutable` on versioned static files",
+   "check": "Verified when PageSpeed no longer reports a cache lifetime that is too short"
+  },
+  "F6": {
+   "name": "Form confirmation",
+   "what": "show a confirmation after sending the form, as before the redesign",
+   "check": "Verified when the test form shows its confirmation",
+   "prio": 1
+  }
+ },
+ "_readme": "Fictional remeasure of the Atelier Lumen example, three months later. Only what compare.py reads is kept: a real one is a complete audit.json.",
+ "fiches": {
+  "01": {
+   "big": "61"
+  },
+  "09": {
+   "big": "79"
+  },
+  "02": {
+   "big": "D"
+  },
+  "13": {
+   "big": "A"
+  },
+  "12": {
+   "big": "0"
+  },
+  "40": {
+   "big": "—"
+  },
+  "15": {
+   "big": "6.1"
+  },
+  "10": {
+   "big": "12"
+  },
+  "06": {
+   "big": "58"
+  },
+  "07": {
+   "big": "0"
+  },
+  "22": {
+   "big": "—"
+  }
+ }
+}

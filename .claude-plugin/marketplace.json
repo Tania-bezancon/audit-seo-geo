@@ -1,0 +1,14 @@
+{
+  "name": "tania-bezancon",
+  "description": "Skills by Tania Bezançon",
+  "owner": {
+    "name": "Tania Bezançon"
+  },
+  "plugins": [
+    {
+      "name": "audit-seo-geo",
+      "source": "./",
+      "description": "SEO and GEO audits with real AI answers and evidence for every finding"
+    }
+  ]
+}

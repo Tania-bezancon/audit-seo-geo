@@ -1,0 +1,266 @@
+{
+ "site": {
+  "url": "https://www.atelier-lumen.example/",
+  "domain": "atelier-lumen.example",
+  "brand": "Atelier Lumen",
+  "date": "2026-11-02",
+  "report_lang": "en",
+  "theme": "signature",
+  "max_pages": 25
+ },
+ "measures": {
+  "crawl": {
+   "pages_ok": 25,
+   "pages_total": 26,
+   "errors": 1,
+   "error_urls": [
+    "https://www.atelier-lumen.example/old-pricing"
+   ],
+   "robots_status": 200,
+   "googlebot": "allowed",
+   "sitemap": 64,
+   "noindex": 0,
+   "home_noindex": false,
+   "fake_404_status": 200,
+   "http": {
+    "url": "http://www.atelier-lumen.example/",
+    "status": 301,
+    "location": "https://www.atelier-lumen.example/"
+   },
+   "other_host": {
+    "url": "https://atelier-lumen.example/",
+    "status": 301,
+    "location": "https://www.atelier-lumen.example/"
+   },
+   "no_canonical": 9,
+   "js_pages": 14,
+   "home_js": false,
+   "mixed": 0,
+   "no_viewport": 0,
+   "https": true,
+   "hsts": true,
+   "headers": 1,
+   "server_version": [
+    "nginx/1.18.0"
+   ],
+   "compression": "gzip",
+   "home_cache": null,
+   "ttfb_median": 410,
+   "d1_bad": 16,
+   "no_description": 16,
+   "long_titles": 3,
+   "dup_titles": 4,
+   "no_og": 25,
+   "d2_bad": 6,
+   "jsonld": [],
+   "ai_bots": {
+    "OAI-SearchBot": "allowed",
+    "ChatGPT-User": "allowed",
+    "Claude-SearchBot": "allowed",
+    "Claude-User": "allowed",
+    "PerplexityBot": "allowed"
+   },
+   "llms": 404,
+   "about_page": "https://www.atelier-lumen.example/about",
+   "stack": {
+    "framework": "next",
+    "host": "nginx",
+    "evidence": [
+     "/_next/",
+     "server: nginx/1.18.0"
+    ]
+   },
+   "headers_present": {
+    "strict-transport-security": true,
+    "content-security-policy": false,
+    "x-content-type-options": true,
+    "x-frame-options": false,
+    "referrer-policy": false,
+    "permissions-policy": false
+   },
+   "social": [
+    "https://www.linkedin.com/company/atelier-lumen"
+   ],
+   "pages": [
+    {
+     "url": "https://www.atelier-lumen.example/",
+     "title": "Atelier Lumen",
+     "desc": "Quotes and schedules for tradespeople, on your phone. Write a quote in two minutes and get it signed on site.",
+     "lang": "en"
+    },
+    {
+     "url": "https://www.atelier-lumen.example/features/quotes",
+     "title": "Atelier Lumen",
+     "desc": "",
+     "lang": "en"
+    },
+    {
+     "url": "https://www.atelier-lumen.example/about",
+     "title": "About · Atelier Lumen · Atelier Lumen",
+     "desc": "",
+     "lang": "en"
+    },
+    {
+     "url": "https://www.atelier-lumen.example/pricing",
+     "title": "Pricing · Atelier Lumen",
+     "desc": "Plans for sole traders and small building firms, with a free trial.",
+     "lang": "en"
+    }
+   ],
+   "view": {
+    "google": {
+     "url": "https://www.atelier-lumen.example/",
+     "title": "Atelier Lumen",
+     "desc": "Quotes and schedules for tradespeople, on your phone. Write a quote in two minutes and get it signed on site."
+    },
+    "share": {
+     "domain": "atelier-lumen.example",
+     "title": "",
+     "desc": "",
+     "image": null
+    },
+    "pages": [
+     {
+      "url": "https://www.atelier-lumen.example/",
+      "words": 620,
+      "excerpt": "Your quotes and your jobs, on one screen. Write a quote in two minutes and get it signed on site."
+     },
+     {
+      "url": "https://www.atelier-lumen.example/features/quotes",
+      "words": 31,
+      "excerpt": "You need to enable JavaScript to run this app."
+     }
+    ]
+   }
+  },
+  "psi": {
+   "status": "ok",
+   "source": "api",
+   "perf": 58,
+   "a11y": 84
+  },
+  "observatory": {
+   "status": "ok",
+   "grade": "D",
+   "score": 35
+  },
+  "wikidata": {
+   "status": "ok",
+   "hits": []
+  }
+ },
+ "judged": {
+  "D3": [
+   "1",
+   "The product pages explain the features, but no page answers \"which software should I choose?\" or shows prices clearly"
+  ],
+  "E1": [
+   "2",
+   "The home page says what it is and for whom in its first lines: \"quotes and schedules for tradespeople, on your phone\""
+  ],
+  "E2": [
+   "1",
+   "A free trial button on each key page, but nothing for visitors who are not ready to try"
+  ],
+  "E4": [
+   "1",
+   "Testimonials without surnames, and two different customer figures"
+  ]
+ },
+ "panel": {
+  "questions": {
+   "1": "Which quoting and scheduling software should a UK tradesperson choose?",
+   "2": "How can a tradesperson write quotes on their phone?",
+   "3": "What is Atelier Lumen?"
+  },
+  "brand_question": "3",
+  "assistants": [
+   {
+    "name": "ChatGPT",
+    "kind": "assistant",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "note": "Recommends three products and a press comparison",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B",
+       "Competitor C"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "note": "Lists mobile apps, Atelier Lumen is not one of them",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor D"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": true,
+      "note": "Describes the product correctly, but repeats the older customer figure"
+     }
+    ]
+   },
+   {
+    "name": "Google AI Mode",
+    "kind": "assistant",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "note": "Relies on two buying guides that do not mention the brand",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "note": "Quotes a competitor's help page",
+      "cited_instead": [
+       "Competitor D"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": true,
+      "note": "Correct description, taken from the home page"
+     }
+    ]
+   }
+  ]
+ },
+ "task_overrides": {
+  "A4": {
+   "what": "The product pages are React pages rendered in the browser: pre-render them with the framework's static export, so the text is in the HTML received. Most AI crawlers do not run JavaScript",
+   "prio": 1
+  },
+  "D1": {
+   "before": {
+    "url": "https://www.atelier-lumen.example/features/quotes",
+    "title": "Atelier Lumen"
+   },
+   "after": {
+    "url": "https://www.atelier-lumen.example/features/quotes",
+    "title": "Quotes on your phone for tradespeople · Atelier Lumen"
+   }
+  }
+ },
+ "drop_tasks": [],
+ "headline": "Clear for visitors, hard to read for AI crawlers",
+ "good": [
+  "The offer is clear in 5 seconds",
+  "Encrypted connection with HSTS",
+  "Fast server response"
+ ],
+ "bad": [
+  "14 of 25 pages look empty without JavaScript",
+  "No structured data",
+  "Not cited in any market answer"
+ ]
+}

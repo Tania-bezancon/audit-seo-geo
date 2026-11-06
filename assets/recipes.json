@@ -1,0 +1,133 @@
+{
+ "_readme": "How to apply a fix, by criterion and by platform, in each language. fixes.py picks the entry of the platform detected, otherwise default. A key can group platforms with |. where: the place to act. how: what to do there. snippet: code to adapt. {brand} is replaced. Say when a platform limits what can be done, and only state what you are sure of.",
+ "en": {
+  "A3_root": {"next": {"where": "`redirects()` in `next.config`", "how": "Declare the redirect there instead of calling `redirect()` in a static page, then remove that page. Choose `permanent: false` if the first page depends on the language.", "snippet": "// next.config.mjs\nconst nextConfig = {\n  async redirects() {\n    return [{ source: \"/\", destination: \"/en\", permanent: false }];\n  },\n};"}, "default": {"where": "The redirects of your host or framework", "how": "Add a real redirect from `/` to the home page: an answer with a status and a destination, which a robot can follow without JavaScript."}},
+  "_names": {"next": "Next.js", "nuxt": "Nuxt", "astro": "Astro", "gatsby": "Gatsby", "wordpress": "WordPress", "webflow": "Webflow", "shopify": "Shopify", "wix": "Wix", "squarespace": "Squarespace", "netlify": "Netlify", "vercel": "Vercel", "cloudflare": "Cloudflare", "github": "GitHub Pages", "nginx": "Nginx", "apache": "Apache"},
+  "_files": {
+   "headers_note": "Draft from the audit: read it before using it. The Content-Security-Policy only reports for now: once nothing legitimate shows up as blocked in the browser console, rename it Content-Security-Policy.",
+   "llms_pages": "Main pages",
+   "todo_description": "TODO: one sentence on what this is and for whom",
+   "todo_logo": "TODO-logo.png",
+   "todo_profiles": "TODO: your public profiles",
+   "titles_head": ["Page", "Current title", "Length", "Problem", "Suggested title", "Description length"],
+   "problems": {"no_title": "no title", "repeated": "a name repeated", "long": "over 65 characters", "duplicate": "same title as another page", "no_description": "no description", "long_description": "description over 165 characters"}
+  },
+  "A2": {
+   "netlify": {"where": "A `_redirects` file at the root of the published folder", "how": "Force the main address, then add a canonical tag to the page template.", "snippet": "http://www.your-domain.com/* https://your-domain.com/:splat 301!"},
+   "vercel": {"where": "Project settings, Domains", "how": "Set the main domain and redirect the other one to it with a 301. Then add a canonical tag to the page template."},
+   "nginx": {"where": "The server block of the site", "how": "Send the other address to the main one, then add a canonical tag to the page template.", "snippet": "server {\n  listen 80;\n  server_name your-domain.com www.your-domain.com;\n  return 301 https://your-domain.com$request_uri;\n}"},
+   "apache": {"where": "The `.htaccess` file at the root of the site", "how": "Send the other address to the main one, then add a canonical tag to the page template.", "snippet": "RewriteEngine On\nRewriteCond %{HTTPS} off [OR]\nRewriteCond %{HTTP_HOST} ^www\\. [NC]\nRewriteRule ^ https://your-domain.com%{REQUEST_URI} [L,R=301]"},
+   "wordpress": {"where": "Settings, General, and your SEO plugin", "how": "Use the same address with https in both WordPress address fields. An SEO plugin such as Yoast or Rank Math adds the canonical tags."},
+   "webflow|shopify|wix|squarespace": {"where": "The domain settings of the platform", "how": "Choose the main domain there: the platform redirects the other one and handles most canonical tags."},
+   "default": {"where": "The server or hosting settings, then the page template", "how": "Redirect http and the other host with a 301, and add a canonical tag to each page."}
+  },
+  "A4": {
+   "next": {"where": "The pages and layouts of the site", "how": "Keep the text in server components, without \"use client\" at the top of the page. Move only what is interactive to a small client component."},
+   "nuxt": {"where": "`nuxt.config`", "how": "Keep server rendering on, or pre-render the pages.", "snippet": "export default defineNuxtConfig({ ssr: true })"},
+   "astro": {"where": "The components of the page", "how": "Astro sends HTML by default: look for the components with `client:only`, which appear only in the browser."},
+   "wordpress": {"where": "The theme or page builder", "how": "Look for the block that loads its text through JavaScript, and replace it with a standard block."},
+   "default": {"where": "How the site is built", "how": "Turn on server rendering or pre-rendering for the pages that matter, so that the text is in the HTML received."}
+  },
+  "C2": {
+   "netlify": {"where": "A `_headers` file at the root of the published folder (`public/` with Next.js)", "how": "Put the file below there and publish. Test the site, then enable the Content-Security-Policy."},
+   "cloudflare": {"where": "A `_headers` file in the output folder on Cloudflare Pages, otherwise Rules, Transform Rules, on another Cloudflare setup", "how": "Put the headers below in place and publish. Test the site, then enable the Content-Security-Policy."},
+   "vercel": {"where": "`vercel.json` at the root of the project", "how": "Merge the block below with your file if you already have one, then publish."},
+   "nginx": {"where": "The server block of the site", "how": "Add the lines below, then run `nginx -t` and reload."},
+   "apache": {"where": "The `.htaccess` file at the root of the site", "how": "Add the lines below. The `mod_headers` module must be enabled."},
+   "github": {"where": "GitHub Pages does not let you set these headers", "how": "To set them, put a CDN such as Cloudflare in front of the site, or move to a host that allows it."},
+   "wordpress": {"where": "Your host's panel or a security plugin", "how": "Add the headers below through one of the two, then test the site."},
+   "webflow|shopify|wix|squarespace": {"where": "These platforms usually do not let you set these headers", "how": "Check with the platform. Otherwise only a CDN in front of the site can add them."},
+   "default": {"where": "The server or hosting settings", "how": "Add the headers below, then test the site."}
+  },
+  "D1": {
+   "next": {"where": "`metadata` in the layout and the pages", "how": "Keep the site's name in the layout's template only, and give each page its own short title.", "snippet": "// app/layout.tsx\nexport const metadata = {\n  title: { default: \"{brand}\", template: \"%s · {brand}\" },\n}\n\n// in a page: the template adds the name\nexport const metadata = { title: \"The topic of the page\" }"},
+   "nuxt": {"where": "`app.vue` and the pages", "how": "Keep the site's name in the template only, and give each page its own short title.", "snippet": "useHead({ titleTemplate: '%s · {brand}' })"},
+   "astro": {"where": "The layout", "how": "Keep the site's name in the layout only, and pass each page's own title to it."},
+   "wordpress": {"where": "Your SEO plugin (Yoast, Rank Math), in each page", "how": "Set the title and description of each page there, and the common name in the plugin's settings."},
+   "webflow": {"where": "Page settings, SEO settings, for each page", "how": "Set the title and description there. For a collection, use the fields of the template page."},
+   "shopify": {"where": "Each product or page, section for search engine listings", "how": "Set the title and description there. The home page is in Online Store, Preferences."},
+   "wix|squarespace": {"where": "The SEO settings of each page", "how": "Set the title and description there."},
+   "default": {"where": "The page template, or the CMS page by page", "how": "Use the table below: the topic of the page first, the name last, once."}
+  },
+  "F1": {
+   "next": {"where": "The root layout", "how": "Add the block below to the page, check its content, and add Product, Service, Article or FAQPage on the matching pages.", "snippet": "<script type=\"application/ld+json\" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />"},
+   "wordpress": {"where": "Your SEO plugin (Yoast, Rank Math)", "how": "Fill in the organization section of the plugin, which writes this block for you."},
+   "webflow": {"where": "Site settings, Custom code, Head code", "how": "Paste the block below there."},
+   "shopify": {"where": "`theme.liquid`, before `</head>`", "how": "Paste the block below there. Many themes already write some for products: test before adding."},
+   "wix": {"where": "The SEO settings of the page, structured data", "how": "Paste the content of the block below there, without the script tag."},
+   "squarespace": {"where": "Settings, Developer tools, Code injection, Header", "how": "Paste the block below there."},
+   "default": {"where": "The `<head>` of the page template", "how": "Paste the block below there and check its content. For a personal site, write Person instead of Organization."}
+  },
+  "F2": {
+   "next|nuxt|astro|gatsby": {"where": "The `public/` folder (`static/` with Gatsby)", "how": "Put `llms.txt` there and publish: it must answer at `/llms.txt`. Check that robots.txt does not block OAI-SearchBot, Claude-SearchBot or PerplexityBot."},
+   "wordpress": {"where": "The root of the site, through your host's file manager", "how": "Upload `llms.txt` there: it must answer at `/llms.txt`. Check that robots.txt and your security plugin do not block the AI search crawlers."},
+   "webflow|shopify|wix|squarespace": {"where": "These platforms may not let you add a file at the root", "how": "Check with the platform. The essential part is elsewhere: keep the AI search crawlers allowed in robots.txt."},
+   "default": {"where": "The root of the site", "how": "Put `llms.txt` there: it must answer at `/llms.txt`. Check that robots.txt does not block OAI-SearchBot, Claude-SearchBot or PerplexityBot."}
+  }
+ },
+ "fr": {
+  "A3_root": {"next": {"where": "`redirects()` dans `next.config`", "how": "Y déclarer la redirection au lieu d'appeler `redirect()` dans une page statique, puis retirer cette page. Choisir `permanent: false` si la première page dépend de la langue.", "snippet": "// next.config.mjs\nconst nextConfig = {\n  async redirects() {\n    return [{ source: \"/\", destination: \"/en\", permanent: false }];\n  },\n};"}, "default": {"where": "Les redirections de votre hébergeur ou de votre framework", "how": "Ajouter une vraie redirection de `/` vers la page d'accueil : une réponse avec un statut et une destination, qu'un robot peut suivre sans JavaScript."}},
+  "_names": {"next": "Next.js", "nuxt": "Nuxt", "astro": "Astro", "gatsby": "Gatsby", "wordpress": "WordPress", "webflow": "Webflow", "shopify": "Shopify", "wix": "Wix", "squarespace": "Squarespace", "netlify": "Netlify", "vercel": "Vercel", "cloudflare": "Cloudflare", "github": "GitHub Pages", "nginx": "Nginx", "apache": "Apache"},
+  "_files": {
+   "headers_note": "Brouillon issu de l'audit, à relire avant usage. La Content-Security-Policy ne fait que signaler pour l'instant : une fois que rien de légitime n'apparaît comme bloqué dans la console du navigateur, renommez-la Content-Security-Policy.",
+   "llms_pages": "Pages principales",
+   "todo_description": "À COMPLÉTER : une phrase sur ce que c'est et pour qui",
+   "todo_logo": "A-COMPLETER-logo.png",
+   "todo_profiles": "À COMPLÉTER : vos profils publics",
+   "titles_head": ["Page", "Title actuel", "Longueur", "Problème", "Title proposé", "Longueur de la description"],
+   "problems": {"no_title": "pas de title", "repeated": "un nom répété", "long": "plus de 65 caractères", "duplicate": "même title qu'une autre page", "no_description": "pas de description", "long_description": "description de plus de 165 caractères"}
+  },
+  "A2": {
+   "netlify": {"where": "Un fichier `_redirects` à la racine du dossier publié", "how": "Imposer l'adresse principale, puis ajouter une balise canonical au gabarit des pages.", "snippet": "http://www.votre-domaine.fr/* https://votre-domaine.fr/:splat 301!"},
+   "vercel": {"where": "Réglages du projet, Domains", "how": "Choisir le domaine principal et y rediriger l'autre en 301. Ajouter ensuite une balise canonical au gabarit des pages."},
+   "nginx": {"where": "Le bloc server du site", "how": "Renvoyer l'autre adresse vers la principale, puis ajouter une balise canonical au gabarit des pages.", "snippet": "server {\n  listen 80;\n  server_name votre-domaine.fr www.votre-domaine.fr;\n  return 301 https://votre-domaine.fr$request_uri;\n}"},
+   "apache": {"where": "Le fichier `.htaccess` à la racine du site", "how": "Renvoyer l'autre adresse vers la principale, puis ajouter une balise canonical au gabarit des pages.", "snippet": "RewriteEngine On\nRewriteCond %{HTTPS} off [OR]\nRewriteCond %{HTTP_HOST} ^www\\. [NC]\nRewriteRule ^ https://votre-domaine.fr%{REQUEST_URI} [L,R=301]"},
+   "wordpress": {"where": "Réglages, Général, et votre extension SEO", "how": "Mettre la même adresse en https dans les deux champs d'adresse de WordPress. Une extension SEO comme Yoast ou Rank Math ajoute les balises canonical."},
+   "webflow|shopify|wix|squarespace": {"where": "Les réglages de domaine de la plateforme", "how": "Y choisir le domaine principal : la plateforme redirige l'autre et gère la plupart des balises canonical."},
+   "default": {"where": "Le serveur ou les réglages d'hébergement, puis le gabarit des pages", "how": "Rediriger http et l'autre hôte en 301, et ajouter une balise canonical à chaque page."}
+  },
+  "A4": {
+   "next": {"where": "Les pages et gabarits du site", "how": "Garder le texte dans des composants serveur, sans « use client » en haut de la page. Ne passer côté client que ce qui est interactif, dans un petit composant."},
+   "nuxt": {"where": "`nuxt.config`", "how": "Garder le rendu côté serveur actif, ou pré-rendre les pages.", "snippet": "export default defineNuxtConfig({ ssr: true })"},
+   "astro": {"where": "Les composants de la page", "how": "Astro envoie du HTML par défaut : chercher les composants en `client:only`, qui n'apparaissent que dans le navigateur."},
+   "wordpress": {"where": "Le thème ou le constructeur de pages", "how": "Chercher le bloc qui charge son texte par JavaScript, et le remplacer par un bloc standard."},
+   "default": {"where": "La façon dont le site est construit", "how": "Activer le rendu côté serveur ou le pré-rendu sur les pages qui comptent, pour que le texte soit dans le HTML reçu."}
+  },
+  "C2": {
+   "netlify": {"where": "Un fichier `_headers` à la racine du dossier publié (`public/` avec Next.js)", "how": "Y mettre le fichier ci-dessous et publier. Tester le site, puis activer la Content-Security-Policy."},
+   "cloudflare": {"where": "Un fichier `_headers` dans le dossier de sortie sur Cloudflare Pages, sinon Rules, Transform Rules, sur une autre configuration Cloudflare", "how": "Mettre en place les en-têtes ci-dessous et publier. Tester le site, puis activer la Content-Security-Policy."},
+   "vercel": {"where": "`vercel.json` à la racine du projet", "how": "Fusionner le bloc ci-dessous avec votre fichier s'il existe déjà, puis publier."},
+   "nginx": {"where": "Le bloc server du site", "how": "Ajouter les lignes ci-dessous, puis lancer `nginx -t` et recharger."},
+   "apache": {"where": "Le fichier `.htaccess` à la racine du site", "how": "Ajouter les lignes ci-dessous. Le module `mod_headers` doit être activé."},
+   "github": {"where": "GitHub Pages ne permet pas de régler ces en-têtes", "how": "Pour les régler, placer un CDN comme Cloudflare devant le site, ou passer chez un hébergeur qui le permet."},
+   "wordpress": {"where": "Le panneau de votre hébergeur ou une extension de sécurité", "how": "Ajouter les en-têtes ci-dessous par l'un des deux, puis tester le site."},
+   "webflow|shopify|wix|squarespace": {"where": "Ces plateformes ne permettent en général pas de régler ces en-têtes", "how": "Vérifier auprès de la plateforme. Sinon, seul un CDN placé devant le site peut les ajouter."},
+   "default": {"where": "Le serveur ou les réglages d'hébergement", "how": "Ajouter les en-têtes ci-dessous, puis tester le site."}
+  },
+  "D1": {
+   "next": {"where": "`metadata` dans le gabarit et les pages", "how": "Garder le nom du site dans le modèle du gabarit seulement, et donner à chaque page son propre title court.", "snippet": "// app/layout.tsx\nexport const metadata = {\n  title: { default: \"{brand}\", template: \"%s · {brand}\" },\n}\n\n// dans une page : le modèle ajoute le nom\nexport const metadata = { title: \"Le sujet de la page\" }"},
+   "nuxt": {"where": "`app.vue` et les pages", "how": "Garder le nom du site dans le modèle seulement, et donner à chaque page son propre title court.", "snippet": "useHead({ titleTemplate: '%s · {brand}' })"},
+   "astro": {"where": "Le gabarit", "how": "Garder le nom du site dans le gabarit seulement, et lui passer le title propre à chaque page."},
+   "wordpress": {"where": "Votre extension SEO (Yoast, Rank Math), dans chaque page", "how": "Y régler le title et la description de chaque page, et le nom commun dans les réglages de l'extension."},
+   "webflow": {"where": "Réglages de la page, section SEO, pour chaque page", "how": "Y régler le title et la description. Pour une collection, utiliser les champs de la page modèle."},
+   "shopify": {"where": "Chaque produit ou page, section de référencement", "how": "Y régler le title et la description. L'accueil se règle dans Boutique en ligne, Préférences."},
+   "wix|squarespace": {"where": "Les réglages SEO de chaque page", "how": "Y régler le title et la description."},
+   "default": {"where": "Le gabarit des pages, ou le CMS page par page", "how": "Suivre le tableau ci-dessous : le sujet de la page d'abord, le nom à la fin, une seule fois."}
+  },
+  "F1": {
+   "next": {"where": "Le gabarit racine", "how": "Ajouter le bloc ci-dessous à la page, vérifier son contenu, puis ajouter Product, Service, Article ou FAQPage sur les pages concernées.", "snippet": "<script type=\"application/ld+json\" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />"},
+   "wordpress": {"where": "Votre extension SEO (Yoast, Rank Math)", "how": "Remplir la partie organisation de l'extension, qui écrit ce bloc pour vous."},
+   "webflow": {"where": "Réglages du site, Custom code, Head code", "how": "Y coller le bloc ci-dessous."},
+   "shopify": {"where": "`theme.liquid`, avant `</head>`", "how": "Y coller le bloc ci-dessous. Beaucoup de thèmes en écrivent déjà pour les produits : tester avant d'ajouter."},
+   "wix": {"where": "Les réglages SEO de la page, données structurées", "how": "Y coller le contenu du bloc ci-dessous, sans la balise script."},
+   "squarespace": {"where": "Réglages, Outils de développement, Injection de code, En-tête", "how": "Y coller le bloc ci-dessous."},
+   "default": {"where": "Le `<head>` du gabarit des pages", "how": "Y coller le bloc ci-dessous et vérifier son contenu. Pour un site personnel, écrire Person au lieu d'Organization."}
+  },
+  "F2": {
+   "next|nuxt|astro|gatsby": {"where": "Le dossier `public/` (`static/` avec Gatsby)", "how": "Y mettre `llms.txt` et publier : il doit répondre à `/llms.txt`. Vérifier que robots.txt ne bloque pas OAI-SearchBot, Claude-SearchBot ni PerplexityBot."},
+   "wordpress": {"where": "La racine du site, par le gestionnaire de fichiers de l'hébergeur", "how": "Y déposer `llms.txt` : il doit répondre à `/llms.txt`. Vérifier que robots.txt et votre extension de sécurité ne bloquent pas les robots de recherche des IA."},
+   "webflow|shopify|wix|squarespace": {"where": "Ces plateformes peuvent ne pas permettre d'ajouter un fichier à la racine", "how": "Vérifier auprès de la plateforme. L'essentiel est ailleurs : garder les robots de recherche des IA autorisés dans robots.txt."},
+   "default": {"where": "La racine du site", "how": "Y mettre `llms.txt` : il doit répondre à `/llms.txt`. Vérifier que robots.txt ne bloque pas OAI-SearchBot, Claude-SearchBot ni PerplexityBot."}
+  }
+ }
+}

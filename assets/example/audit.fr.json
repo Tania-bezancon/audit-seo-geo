@@ -1,0 +1,1913 @@
+{
+ "site": {
+  "domain": "atelier-lumen.example",
+  "url": "https://www.atelier-lumen.example/",
+  "brand": "Atelier Lumen",
+  "brand_q": "Atelier+Lumen+logiciel",
+  "theme": "signature",
+  "lang": "fr",
+  "country": "fr",
+  "date": "2026-11-02",
+  "date_label": "2 novembre 2026",
+  "date_long": "lundi 2 novembre 2026",
+  "perimetre": "64 pages, 1 langue, 31 articles de blog",
+  "pages": 64,
+  "prepared_by": "la communication, avec Claude",
+  "usage": "exemple fictif",
+  "validateur": "le responsable produit",
+  "stack": {
+   "framework": "next",
+   "host": "nginx"
+  }
+ },
+ "lead": "Ce dossier est un exemple fictif. Il montre ce que produit le skill : l'état d'un site au 2 novembre 2026 sous cinq angles (Google, visiteurs, serveur, textes, IA), chaque constat avec sa preuve, et trois to-do",
+ "headline": "Un site clair et sûr, que ni Google ni les IA ne savent présenter",
+ "note": {
+  "global": "5,0",
+  "categories": {
+   "A": "6,0",
+   "B": "5,0",
+   "C": "7,0",
+   "D": "3,0",
+   "E": "7,0",
+   "F": "2,0"
+  }
+ },
+ "bulletin": {
+  "d-faits": [
+   "o",
+   "Deux chiffres de clients, et Google affiche les deux"
+  ],
+  "d-pages": [
+   "o",
+   "41 pages sans description, 9 titles en double"
+  ],
+  "d-blog": [
+   "r",
+   "31 articles, le dernier de mars 2024, aucun daté pour Google"
+  ],
+  "d-vitesse": [
+   "o",
+   "58 sur téléphone, 91 sur ordinateur"
+  ],
+  "d-infra": [
+   "r",
+   "Serveur rapide (310 ms), mais le texte des pages produit arrive par JavaScript"
+  ],
+  "d-securite": [
+   "o",
+   "Chiffrement noté A, en-têtes notés D, aucun traceur avant accord"
+  ],
+  "d-google": [
+   "r",
+   "Aucune donnée structurée, une fausse 404, deux adresses pour le même site"
+  ],
+  "d-conversion": [
+   "o",
+   "Formulaire court et clair, aucune offre intermédiaire"
+  ],
+  "d-ia": [
+   "r",
+   "Cité 0 fois sur 16 réponses de marché ; bien décrit sur la question de marque, avec une année fausse"
+  ]
+ },
+ "good": [
+  "On comprend l'offre en 5 secondes",
+  "Connexion chiffrée notée A",
+  "Aucun traceur avant accord",
+  "Un formulaire court qui fonctionne"
+ ],
+ "bad": [
+  "Le texte des pages produit arrive par JavaScript",
+  "Deux chiffres de clients",
+  "41 pages sans description",
+  "Absent des réponses des IA"
+ ],
+ "decisions": [
+  "Valider le chiffre de clients",
+  "Valider le tri du blog",
+  "Confier 5 tâches au front-end et 7 au back-end"
+ ],
+ "conditions": [
+  [
+   "Date",
+   "Lundi 2 novembre 2026, outils de 10 h à 11 h, IA à 11 h et 15 h"
+  ],
+  [
+   "Pages étudiées",
+   "64 : toutes les adresses du plan du site"
+  ],
+  [
+   "Navigateur",
+   "Sans compte, cookies refusés"
+  ]
+ ],
+ "limites": "Exemple fictif : les chiffres et les captures sont inventés pour montrer le format. Dans un vrai audit, sans Search Console ni mesure d'audience, on ne connaît ni les clics ni les positions",
+ "resultats": {
+  "01": [
+   "58/100 ; élément principal en 6,2 s",
+   "o"
+  ],
+  "09": [
+   "91/100",
+   "v"
+  ],
+  "02": [
+   "Note D",
+   "r"
+  ],
+  "13": [
+   "Note A",
+   "v"
+  ],
+  "12": [
+   "Aucun traceur avant accord",
+   "v"
+  ],
+  "15": [
+   "Note AIM 6,1",
+   "o"
+  ],
+  "10": [
+   "12 erreurs",
+   "o"
+  ],
+  "lt": [
+   "2 fautes sur 64 pages",
+   "v"
+  ],
+  "06": [
+   "58 résultats, 2 chiffres de clients",
+   "o"
+  ],
+  "07": [
+   "Aucune donnée structurée",
+   "r"
+  ],
+  "40": [
+   "Ni image, ni description",
+   "r"
+  ],
+  "22": [
+   "Aucune fiche",
+   "r"
+  ],
+  "ChatGPT": [
+   "Cité 0 fois sur 4",
+   "r"
+  ],
+  "Google Mode IA": [
+   "Cité 0 fois sur 4",
+   "r"
+  ],
+  "Brave": [
+   "Cité 0 fois sur 4",
+   "r"
+  ],
+  "Perplexity": [
+   "Cité 0 fois sur 4",
+   "r"
+  ],
+  "08": [
+   "Note D, 35/100",
+   "r"
+  ],
+  "14": [
+   "Score de 71 %",
+   "o"
+  ],
+  "11": [
+   "Aucun traceur publicitaire",
+   "v"
+  ],
+  "21": [
+   "Premier sur son nom, description à revoir",
+   "o"
+  ],
+  "16": [
+   "Aucun élément",
+   "r"
+  ],
+  "18": [
+   "Trop peu de visites pour une estimation",
+   "o"
+  ],
+  "41": [
+   "12 domaines renvoient vers le site",
+   "o"
+  ]
+ },
+ "fiches": {
+  "01": {
+   "who": "PageSpeed Insights · Google · téléphone simulé",
+   "big": "58",
+   "pills": [
+    [
+     "warn",
+     "Performance à améliorer"
+    ]
+   ],
+   "bullets": [
+    "Élément principal affiché en 6,2 s (objectif : 2,5 s)",
+    "Accessibilité 88 · SEO 92"
+   ],
+   "says": "Le poids des images de l'accueil explique l'essentiel du retard",
+   "capture": "01-pagespeed-mobile.png",
+   "caption": "Capture 01 · pagespeed.web.dev, 2 nov. 2026, 10 h"
+  },
+  "09": {
+   "who": "PageSpeed Insights · Google · ordinateur",
+   "big": "91",
+   "pills": [
+    [
+     "ok",
+     "Rapide"
+    ]
+   ],
+   "bullets": [
+    "Pas assez de visiteurs pour des données réelles"
+   ],
+   "says": "Sur ordinateur, le site est rapide",
+   "capture": "09-pagespeed-desktop.png",
+   "caption": "Capture 09 · pagespeed.web.dev, 2 nov. 2026, 10 h"
+  },
+  "02": {
+   "who": "Security Headers · Snyk",
+   "big": "D",
+   "pills": [
+    [
+     "bad",
+     "4 en-têtes absents"
+    ]
+   ],
+   "bullets": [
+    "Content-Security-Policy, X-Frame-Options, Referrer-Policy et Permissions-Policy absents"
+   ],
+   "says": "Quatre lignes de configuration suffisent",
+   "capture": "02-securityheaders.png",
+   "caption": "Capture 02 · securityheaders.com, 2 nov. 2026, 10 h"
+  },
+  "13": {
+   "who": "SSL Server Test · Qualys",
+   "big": "A",
+   "pills": [
+    [
+     "ok",
+     "Connexion bien chiffrée"
+    ]
+   ],
+   "bullets": [
+    "TLS 1.3, certificat valable jusqu'en mars 2027"
+   ],
+   "says": "Rien à faire",
+   "capture": "13-ssllabs.png",
+   "caption": "Capture 13 · ssllabs.com, 2 nov. 2026, 10 h"
+  },
+  "12": {
+   "who": "Webbkoll",
+   "big": "0",
+   "pills": [
+    [
+     "ok",
+     "Aucun traceur avant accord"
+    ]
+   ],
+   "bullets": [
+    "Aucune requête vers un tiers avant le clic sur le bandeau"
+   ],
+   "says": "Le bandeau cookies fait son travail",
+   "capture": "12-webbkoll.png",
+   "caption": "Capture 12 · webbkoll.5july.net, 2 nov. 2026, 10 h"
+  },
+  "40": {
+   "who": "Aperçu de partage · OpenGraph.xyz",
+   "big": "—",
+   "pills": [
+    [
+     "bad",
+     "Ni image, ni description"
+    ]
+   ],
+   "bullets": [
+    "LinkedIn affiche seulement l'adresse et le title « Atelier Lumen »"
+   ],
+   "says": "Chaque partage de page fait une mauvaise première impression",
+   "capture": "40-apercu-partage.png",
+   "caption": "Capture 40 · opengraph.xyz, 2 nov. 2026, 10 h"
+  },
+  "15": {
+   "who": "WAVE · WebAIM",
+   "big": "6,1",
+   "pills": [
+    [
+     "warn",
+     "Note AIM moyenne"
+    ]
+   ],
+   "bullets": [
+    "23 images sans description",
+    "4 contrastes trop faibles"
+   ],
+   "says": "Les textes des images sont la première correction",
+   "capture": "15-wave.png",
+   "caption": "Capture 15 · wave.webaim.org, 2 nov. 2026, 10 h"
+  },
+  "10": {
+   "who": "Nu HTML Checker · W3C",
+   "big": "12",
+   "pills": [
+    [
+     "warn",
+     "12 erreurs"
+    ]
+   ],
+   "bullets": [
+    "Attributs en double, balises mal fermées dans le pied de page"
+   ],
+   "says": "Sans gravité, mais à corriger dans le gabarit",
+   "capture": "10-w3c.png",
+   "caption": "Capture 10 · validator.w3.org, 2 nov. 2026, 10 h"
+  },
+  "06": {
+   "who": "Recherche « site: » · Google",
+   "big": "58",
+   "pills": [
+    [
+     "warn",
+     "2 chiffres de clients affichés"
+    ]
+   ],
+   "bullets": [
+    "Google affiche « 1 200 artisans » et « 900 artisans » dans deux descriptions"
+   ],
+   "says": "Google reprend tel quel ce qui est contradictoire",
+   "capture": "06-google-site.png",
+   "caption": "Capture 06 · google.com, 2 nov. 2026, 10 h"
+  },
+  "07": {
+   "who": "Test des résultats enrichis · Google",
+   "big": "0",
+   "pills": [
+    [
+     "bad",
+     "Aucune donnée structurée"
+    ]
+   ],
+   "bullets": [
+    "Aucun élément détecté sur l'accueil"
+   ],
+   "says": "Google doit deviner qui édite le site",
+   "capture": "07-rich-results.png",
+   "caption": "Capture 07 · search.google.com, 2 nov. 2026, 10 h"
+  },
+  "22": {
+   "who": "Wikidata",
+   "big": "—",
+   "pills": [
+    [
+     "bad",
+     "Aucune fiche"
+    ]
+   ],
+   "bullets": [
+    "Ni Atelier Lumen, ni son éditeur"
+   ],
+   "says": "Sans fiche, les IA identifient mal l'éditeur",
+   "capture": "22-wikidata.png",
+   "caption": "Capture 22 · wikidata.org, 2 nov. 2026, 10 h"
+  },
+  "08": {
+   "who": "HTTP Observatory",
+   "big": "35/100",
+   "pills": [
+    [
+     "bad",
+     "Note D, 35/100"
+    ]
+   ],
+   "bullets": [
+    "Quatre réglages de sécurité absents, les mêmes que sur Security Headers"
+   ],
+   "says": "La même mesure, vue par un second outil",
+   "capture": "08-http-observatory.png",
+   "caption": "Capture 08 · developer.mozilla.org, 2 nov. 2026, 10 h"
+  },
+  "14": {
+   "who": "Internet.nl",
+   "big": "71 %",
+   "pills": [
+    [
+     "warn",
+     "Score de 71 %"
+    ]
+   ],
+   "bullets": [
+    "HTTPS correct, IPv6 absent, DNSSEC absent"
+   ],
+   "says": "Le site suit une partie des standards récents",
+   "capture": "14-internet-nl.png",
+   "caption": "Capture 14 · internet.nl, 2 nov. 2026, 10 h"
+  },
+  "11": {
+   "who": "Blacklight",
+   "big": "0",
+   "pills": [
+    [
+     "ok",
+     "Aucun traceur publicitaire"
+    ]
+   ],
+   "bullets": [
+    "Aucun enregistrement de session, aucune empreinte du navigateur"
+   ],
+   "says": "Le visiteur n'est pas pisté",
+   "capture": "11-blacklight.png",
+   "caption": "Capture 11 · themarkup.org, 2 nov. 2026, 10 h"
+  },
+  "21": {
+   "who": "Recherche de marque · Bing",
+   "big": "1er",
+   "pills": [
+    [
+     "ok",
+     "Premier sur son nom"
+    ]
+   ],
+   "bullets": [
+    "La description affichée reprend le chiffre de 1 200 artisans"
+   ],
+   "says": "Le site se trouve sur son nom, avec un chiffre à vérifier",
+   "capture": "21-recherche-bing.png",
+   "caption": "Capture 21 · bing.com, 2 nov. 2026, 10 h"
+  },
+  "16": {
+   "who": "Schema Markup Validator",
+   "big": "0",
+   "pills": [
+    [
+     "bad",
+     "Aucun élément"
+    ]
+   ],
+   "bullets": [
+    "Aucun élément détecté sur l'accueil, confirme le test de Google"
+   ],
+   "says": "Le second outil dit la même chose que Google",
+   "capture": "16-schema-validator.png",
+   "caption": "Capture 16 · validator.schema.org, 2 nov. 2026, 10 h"
+  },
+  "18": {
+   "who": "Similarweb",
+   "big": "—",
+   "pills": [
+    [
+     "warn",
+     "Trop peu de visites"
+    ]
+   ],
+   "bullets": [
+    "Trafic trop faible pour une estimation, à lire comme une tendance"
+   ],
+   "says": "Sans mesure d'audience, on ne connaît pas le trafic réel",
+   "capture": "18-similarweb.png",
+   "caption": "Capture 18 · similarweb.com, 2 nov. 2026, 10 h"
+  },
+  "41": {
+   "who": "Vérificateur de liens entrants · Ahrefs",
+   "big": "12",
+   "pills": [
+    [
+     "warn",
+     "12 domaines"
+    ]
+   ],
+   "bullets": [
+    "Douze domaines renvoient vers le site, aucun média du secteur"
+   ],
+   "says": "Peu de sources extérieures pour appuyer la marque",
+   "capture": "41-liens-entrants.png",
+   "caption": "Capture 41 · ahrefs.com, 2 nov. 2026, 10 h"
+  }
+ },
+ "domaines": {
+  "d-faits": {
+   "title": "Le nombre de clients change d'une page à l'autre",
+   "feu": "o",
+   "une": "Les chiffres que le site affiche sur l'entreprise : clients, année, équipe",
+   "pourquoi": "Un acheteur, Google et les IA reprennent ces chiffres ; deux versions font douter des deux",
+   "verdict": "Deux chiffres de clients, et Google affiche les deux",
+   "stat": "2",
+   "stat_label": "versions du nombre de clients",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "1 200 artisans sur l'accueil, 900 sur « À propos »",
+     "where": "Accueil et `/a-propos`",
+     "paras": [
+      "Le même fait, deux chiffres. Google les reprend dans ses résultats"
+     ],
+     "captures": [
+      [
+       "site-03",
+       "Capture site-03 · page « À propos »"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "Les faits relevés",
+     "head": [
+      "Fait",
+      "Accueil",
+      "À propos",
+      "Google"
+     ],
+     "rows": [
+      [
+       "Artisans clients",
+       "1 200",
+       "900",
+       "les deux"
+      ],
+      [
+       "Année de création",
+       "—",
+       "—",
+       "—"
+      ]
+     ],
+     "colw": [
+      3.6,
+      2.8,
+      2.8,
+      2.93
+     ]
+    }
+   ],
+   "tools": [
+    "06",
+    "21"
+   ],
+   "tasks": [
+    "C1",
+    "C2"
+   ]
+  },
+  "d-pages": {
+   "title": "Des pages sans description et des images muettes",
+   "feu": "o",
+   "une": "Ce que Google lit en premier : titres, descriptions, intertitres, textes des images",
+   "pourquoi": "C'est ce qui s'affiche dans les résultats et ce qui rend le site lisible par tous",
+   "verdict": "41 pages sans description, 9 titles en double",
+   "stat": "41",
+   "stat_label": "pages sans description sur 64",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "Neuf pages s'appellent « Atelier Lumen »",
+     "where": "Pages fonctionnalités",
+     "paras": [
+      "Le title ne dit pas de quoi parle la page"
+     ],
+     "captures": [
+      [
+       "site-04",
+       "Capture site-04 · une page fonctionnalité"
+      ]
+     ],
+     "code": "<title>[[Atelier Lumen]]</title>"
+    },
+    {
+     "type": "stats",
+     "title": "Le relevé",
+     "head": [
+      "Mesure",
+      "Résultat"
+     ],
+     "rows": [
+      [
+       "Pages sans description",
+       "41 sur 64"
+      ],
+      [
+       "Titles en double",
+       "9"
+      ],
+      [
+       "Images sans alt",
+       "38 %"
+      ]
+     ],
+     "role": "15",
+     "role_title": "WAVE"
+    }
+   ],
+   "tools": [
+    "15",
+    "10",
+    "40"
+   ],
+   "tasks": [
+    "C3",
+    "C4",
+    "C5",
+    "F4",
+    "F5"
+   ]
+  },
+  "d-blog": {
+   "title": "Un blog arrêté depuis mars 2024",
+   "feu": "r",
+   "une": "Les articles : ce qui fait venir des lecteurs qui cherchent une réponse",
+   "pourquoi": "Un blog figé dit au visiteur que l'entreprise ne bouge plus",
+   "verdict": "31 articles, le dernier de mars 2024, aucun daté pour Google",
+   "stat": "31",
+   "stat_label": "articles, aucun depuis mars 2024",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "Le dernier article date de mars 2024",
+     "where": "`/blog`",
+     "paras": [
+      "Les trois articles en tête parlent d'une aide publique qui n'existe plus"
+     ],
+     "captures": [
+      [
+       "site-07",
+       "Capture site-07 · le blog"
+      ]
+     ]
+    },
+    {
+     "type": "tri",
+     "title": "Le blog en chiffres",
+     "head": [
+      "Le blog en chiffres",
+      "Résultat"
+     ],
+     "rows": [
+      [
+       "Articles",
+       "31"
+      ],
+      [
+       "Datés pour Google",
+       "0"
+      ]
+     ],
+     "tri_title": "Le tri proposé",
+     "tri": [
+      [
+       "12",
+       "à garder",
+       "à jour, utiles",
+       "v"
+      ],
+      [
+       "9",
+       "à fusionner",
+       "sujets proches",
+       "o"
+      ],
+      [
+       "10",
+       "à retirer",
+       "périmés",
+       "r"
+      ]
+     ],
+     "tri_note": "Environ 16 articles solides au lieu de 31"
+    }
+   ],
+   "tools": [],
+   "tasks": [
+    "C6",
+    "B5"
+   ]
+  },
+  "d-vitesse": {
+   "title": "Rapide sur ordinateur, lent sur téléphone",
+   "feu": "o",
+   "une": "Le temps qu'il faut pour voir la page",
+   "pourquoi": "Les artisans consultent le site sur leur téléphone, souvent sur un chantier",
+   "verdict": "58 sur téléphone, 91 sur ordinateur",
+   "stat": "6,2 s",
+   "stat_label": "pour afficher l'élément principal sur téléphone",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "L'accueil pèse 4 Mo d'images",
+     "where": "Accueil",
+     "paras": [
+      "Trois photos de chantier non compressées"
+     ],
+     "captures": [
+      [
+       "site-08",
+       "Capture site-08 · accueil à 375 px"
+      ]
+     ]
+    }
+   ],
+   "tools": [
+    "01",
+    "09"
+   ],
+   "tasks": [
+    "F2",
+    "B6"
+   ]
+  },
+  "d-infra": {
+   "title": "Un serveur rapide, des pages que les robots ne savent pas lire",
+   "feu": "r",
+   "une": "Ce que le serveur envoie vraiment : le HTML, les codes, le cache, la compression",
+   "pourquoi": "La plupart des robots d'IA ne lancent pas JavaScript : ce qui n'est pas dans le HTML reçu n'existe pas pour eux",
+   "verdict": "Serveur rapide (310 ms), mais le texte des pages produit arrive par JavaScript",
+   "stat": "31",
+   "stat_label": "mots lisibles sans JavaScript sur les pages fonctionnalités",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "Sans JavaScript, la page « Devis » est presque vide",
+     "where": "`/fonctionnalites/devis`",
+     "paras": [
+      "Le HTML reçu ne contient que le menu et le pied de page. Le texte est chargé ensuite par le navigateur",
+      "Google finit souvent par le lire ; ChatGPT, Perplexity et Claude, en général non"
+     ],
+     "captures": [
+      [
+       "site-09",
+       "Capture site-09 · la page sans JavaScript"
+      ]
+     ],
+     "code": "<main id=\"app\">[[</main>]]  <!-- 31 mots -->"
+    },
+    {
+     "type": "stats",
+     "title": "Le serveur",
+     "head": [
+      "Mesure",
+      "Résultat"
+     ],
+     "rows": [
+      [
+       "Temps de réponse médian",
+       "310 ms"
+      ],
+      [
+       "Compression",
+       "gzip"
+      ],
+      [
+       "Cache des images",
+       "`max-age=0`"
+      ],
+      [
+       "llms.txt",
+       "absent"
+      ]
+     ]
+    }
+   ],
+   "tools": [],
+   "tasks": [
+    "F1"
+   ]
+  },
+  "d-securite": {
+   "title": "Une connexion sûre, des réglages de sécurité absents",
+   "feu": "o",
+   "une": "Ce qui protège le visiteur : chiffrement, en-têtes de sécurité, cookies",
+   "pourquoi": "Un artisan confie ses devis et ses clients au logiciel : le site doit inspirer confiance",
+   "verdict": "Chiffrement noté A, en-têtes notés D, aucun traceur avant accord",
+   "stat": "D",
+   "stat_label": "note des en-têtes de sécurité",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "Le bandeau cookies respecte le refus",
+     "where": "Accueil, premier affichage",
+     "paras": [
+      "Aucune requête vers un tiers avant le clic"
+     ],
+     "captures": [
+      [
+       "site-01",
+       "Capture site-01 · bandeau cookies"
+      ]
+     ]
+    }
+   ],
+   "tools": [
+    "02",
+    "13",
+    "12",
+    "08",
+    "14",
+    "11"
+   ],
+   "tasks": [
+    "B4"
+   ]
+  },
+  "d-google": {
+   "title": "Google doit deviner qui édite le site",
+   "feu": "r",
+   "une": "Ce que Google comprend de l'entreprise et de ses pages",
+   "pourquoi": "Sans données structurées ni Search Console, on ne sait ni ce que Google comprend, ni ce qu'il montre",
+   "verdict": "Aucune donnée structurée, une fausse 404, deux adresses pour le même site",
+   "stat": "0",
+   "stat_label": "donnée structurée détectée",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "Une adresse inconnue répond « 200 »",
+     "where": "`/page-qui-n-existe-pas-audit-404`",
+     "paras": [
+      "Google peut indexer des pages vides"
+     ],
+     "captures": [
+      [
+       "site-05",
+       "Capture site-05 · fausse 404"
+      ]
+     ],
+     "code": "HTTP/2 [[200]]"
+    }
+   ],
+   "tools": [
+    "07",
+    "16",
+    "18"
+   ],
+   "tasks": [
+    "B1",
+    "B2",
+    "B3",
+    "F3"
+   ]
+  },
+  "d-conversion": {
+   "title": "Un bon formulaire, rien pour qui hésite",
+   "feu": "o",
+   "une": "Ce qui transforme un visiteur en essai gratuit",
+   "pourquoi": "Un artisan qui compare n'est pas prêt à essayer tout de suite",
+   "verdict": "Formulaire court et clair, aucune offre intermédiaire",
+   "stat": "4",
+   "stat_label": "champs dans le formulaire d'essai",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "« Essai gratuit » disparaît des pages fonctionnalités",
+     "where": "`/fonctionnalites/devis`",
+     "paras": [
+      "Le visiteur convaincu doit remonter à l'accueil"
+     ],
+     "captures": [
+      [
+       "site-06",
+       "Capture site-06 · page devis"
+      ]
+     ]
+    }
+   ],
+   "tools": [],
+   "tasks": [
+    "C8"
+   ]
+  },
+  "d-ia": {
+   "title": "Absent des réponses des IA",
+   "feu": "r",
+   "une": "Ce que répondent ChatGPT, Google Mode IA, Brave et Perplexity quand on cherche un logiciel comme le nôtre",
+   "pourquoi": "Une part croissante des acheteurs pose la question à une IA avant de chercher sur Google",
+   "verdict": "Cité 0 fois sur 16 réponses de marché ; bien décrit sur la question de marque, avec une année fausse",
+   "stat": "0 / 16",
+   "stat_label": "réponses de marché qui nous citent",
+   "blocks": [
+    {
+     "type": "ia"
+    }
+   ],
+   "tools": [
+    "22",
+    "41"
+   ],
+   "tasks": [
+    "C7",
+    "C9",
+    "B7"
+   ]
+  }
+ },
+ "ia": {
+  "questions": {
+   "1": "Quel logiciel de devis et de planning choisir pour un artisan du bâtiment ?",
+   "2": "Quelle alternative simple aux logiciels de gestion de chantier pour une petite entreprise de plomberie ?",
+   "3": "Comment faire ses devis sur téléphone quand on est artisan ?",
+   "4": "Which quoting software do French builders use?",
+   "5": "Qu'est-ce qu'Atelier Lumen ?"
+  },
+  "brand_question": 5,
+  "intro": "Chaque question est posée dans une conversation neuve, sans compte. Les concurrents sont anonymisés",
+  "note": "Les IA citent des comparatifs de presse et des guides de choix : c'est ce qu'il nous manque",
+  "assistants": [
+   {
+    "name": "ChatGPT",
+    "how": "chatgpt.com, sans compte, recherche web",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "capture": "04",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "11 h",
+      "cited_instead": [
+       "Concurrent A",
+       "Concurrent B",
+       "Concurrent C"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "capture": "23",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent A",
+       "Concurrent B"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "capture": "24",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent A"
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "capture": "25",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent B",
+       "Concurrent C"
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "capture": "26",
+      "note": "Décrit le produit, mais le dit lancé en 2019 au lieu de 2021.",
+      "hour": "15 h"
+     }
+    ]
+   },
+   {
+    "name": "Google Mode IA",
+    "how": "google.com, udm=50, sans compte",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "capture": "05",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "11 h",
+      "cited_instead": [
+       "Concurrent A",
+       "Concurrent B",
+       "Concurrent C"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "capture": "27",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent A",
+       "Concurrent B"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "capture": "28",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent A"
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "capture": "29",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent B",
+       "Concurrent C"
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "capture": "30",
+      "note": "Décrit le produit, mais le dit lancé en 2019 au lieu de 2021.",
+      "hour": "15 h"
+     }
+    ]
+   },
+   {
+    "name": "Brave",
+    "how": "search.brave.com/ask, sans compte",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "capture": "17",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "11 h",
+      "cited_instead": [
+       "Concurrent A",
+       "Concurrent B",
+       "Concurrent C"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "capture": "31",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent A",
+       "Concurrent B"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "capture": "32",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent A"
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "capture": "33",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent B",
+       "Concurrent C"
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "capture": "34",
+      "note": "Décrit le produit, mais le dit lancé en 2019 au lieu de 2021.",
+      "hour": "15 h"
+     }
+    ]
+   },
+   {
+    "name": "Perplexity",
+    "how": "perplexity.ai, sans compte",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "capture": "03",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "11 h",
+      "cited_instead": [
+       "Concurrent A",
+       "Concurrent B",
+       "Concurrent C"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "capture": "35",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent A",
+       "Concurrent B"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "capture": "36",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent A"
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "capture": "37",
+      "note": "Recommande trois logiciels, dont le concurrent A, et un comparatif de presse.",
+      "hour": "15 h",
+      "cited_instead": [
+       "Concurrent B",
+       "Concurrent C"
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "capture": "38",
+      "note": "Décrit le produit, mais le dit lancé en 2019 au lieu de 2021.",
+      "hour": "15 h"
+     }
+    ]
+   }
+  ]
+ },
+ "tasks": {
+  "C1": {
+   "prio": 1,
+   "name": "Un seul chiffre de clients",
+   "what": "choisir le bon nombre d'artisans clients avec le responsable produit et le reporter sur l'accueil et « À propos »",
+   "check": "Vérifié quand la recherche « site: » n'affiche plus qu'un seul chiffre",
+   "criterion": "D4"
+  },
+  "C2": {
+   "prio": 1,
+   "name": "Page « À propos » complète",
+   "what": "ajouter le nom légal, l'année de création, l'adresse et l'équipe",
+   "check": "Vérifié quand les 4 éléments sont en ligne",
+   "criterion": "F3"
+  },
+  "C3": {
+   "prio": 2,
+   "name": "Titles uniques",
+   "what": "écrire un title propre à chacune des 9 pages qui s'appellent « Atelier Lumen » (le sujet d'abord, la marque à la fin)",
+   "check": "Vérifié quand le relevé ne trouve plus de doublon",
+   "before": {
+    "url": "https://www.atelier-lumen.example/fonctionnalites/devis",
+    "title": "Atelier Lumen"
+   },
+   "after": {
+    "url": "https://www.atelier-lumen.example/fonctionnalites/devis",
+    "title": "Des devis sur téléphone pour les artisans · Atelier Lumen"
+   },
+   "where": "`metadata` dans le gabarit et les pages",
+   "snippet": "export const metadata = {\n  title: { default: \"Atelier Lumen\", template: \"%s · Atelier Lumen\" },\n}",
+   "criterion": "D1"
+  },
+  "C4": {
+   "prio": 2,
+   "name": "Descriptions",
+   "what": "écrire une description de 140 à 160 caractères pour les 41 pages qui n'en ont pas",
+   "check": "Vérifié quand le relevé compte 0 page sans description",
+   "criterion": "D1"
+  },
+  "C5": {
+   "prio": 2,
+   "name": "Textes des images",
+   "what": "décrire chaque image utile dans le champ « texte alternatif » ; alt vide pour les images décoratives",
+   "check": "Vérifié quand WAVE ne signale plus d'image sans description",
+   "criterion": "E5"
+  },
+  "C6": {
+   "prio": 2,
+   "name": "Tri du blog",
+   "what": "garder 12 articles, en fusionner 9, retirer 10 articles périmés (redirections : B5)",
+   "check": "Vérifié quand le blog compte environ 16 articles à jour",
+   "criterion": "D5"
+  },
+  "C7": {
+   "prio": 2,
+   "name": "FAQ des artisans",
+   "what": "répondre en une page aux 10 questions que posent les artisans avant d'essayer (prix, données, export comptable…)",
+   "check": "Vérifié quand la page est en ligne et validée",
+   "criterion": "F4"
+  },
+  "C8": {
+   "prio": 3,
+   "name": "Guide de choix",
+   "what": "publier « Comment choisir un logiciel de devis », qui sert aussi d'offre intermédiaire",
+   "check": "Vérifié quand le guide est en ligne avec son formulaire",
+   "criterion": "F4"
+  },
+  "C9": {
+   "prio": 3,
+   "name": "Fiche Wikidata",
+   "what": "créer la fiche de l'entreprise avec le site officiel, l'année et le siège",
+   "check": "Vérifié quand la recherche Wikidata la trouve",
+   "criterion": "F3"
+  },
+  "F1": {
+   "prio": 1,
+   "name": "Texte lisible sans JavaScript",
+   "what": "générer les pages « Fonctionnalités » côté serveur (rendu statique du framework) au lieu de charger le texte dans le navigateur",
+   "check": "Vérifié quand le HTML reçu contient le texte de la page",
+   "criterion": "A4"
+  },
+  "F2": {
+   "prio": 2,
+   "name": "Images de l'accueil",
+   "what": "passer les photos en WebP ou AVIF avec `srcset`, `fetchpriority=\"high\"` sur l'image principale, `loading=\"lazy\"` sur les autres",
+   "check": "Vérifié quand PageSpeed téléphone dépasse 75 sur 3 passages",
+   "criterion": "B3"
+  },
+  "F3": {
+   "prio": 2,
+   "name": "Données structurées",
+   "what": "ajouter Organization (avec `sameAs`) sur tout le site et SoftwareApplication sur les pages produit",
+   "check": "Vérifié quand le test des résultats enrichis les détecte sans erreur",
+   "criterion": "F1"
+  },
+  "F4": {
+   "prio": 2,
+   "name": "Balises de partage",
+   "what": "générer `og:title`, `og:description`, `og:image` (1200 × 630) et `twitter:card` sur chaque gabarit",
+   "check": "Vérifié quand l'aperçu de partage est complet",
+   "criterion": "D1"
+  },
+  "F5": {
+   "prio": 3,
+   "name": "Contrastes et focus",
+   "what": "foncer les 4 textes gris clair, ajouter un style `:focus-visible`",
+   "check": "Vérifié quand WAVE ne signale plus de contraste",
+   "criterion": "E5"
+  },
+  "B1": {
+   "prio": 1,
+   "name": "Search Console",
+   "what": "valider le domaine dans Search Console et Bing Webmaster Tools, y déclarer le sitemap",
+   "check": "Vérifié quand les clics et les positions sont lisibles"
+  },
+  "B2": {
+   "prio": 2,
+   "name": "Vraie 404",
+   "what": "renvoyer le code 404 sur une adresse inconnue",
+   "check": "Vérifié quand `checks.json` indique « vraie 404 »",
+   "criterion": "A3"
+  },
+  "B3": {
+   "prio": 1,
+   "name": "Une seule adresse",
+   "what": "rediriger `atelier-lumen.example` vers `www.atelier-lumen.example` en 301",
+   "check": "Vérifié quand la version sans www redirige en une étape",
+   "criterion": "A2"
+  },
+  "B4": {
+   "prio": 2,
+   "name": "En-têtes de sécurité",
+   "what": "ajouter Content-Security-Policy, Referrer-Policy et Permissions-Policy, masquer la version de nginx",
+   "check": "Vérifié quand Security Headers donne B ou mieux",
+   "where": "Le bloc server du site",
+   "how": "Ajouter les lignes ci-dessous, puis lancer `nginx -t` et recharger. Tester le site avant d'imposer la politique.",
+   "snippet": "add_header Referrer-Policy \"strict-origin-when-cross-origin\" always;\nadd_header Permissions-Policy \"camera=(), microphone=(), geolocation=()\" always;\nadd_header Content-Security-Policy-Report-Only \"default-src 'self'\" always;",
+   "criterion": "C2"
+  },
+  "B5": {
+   "prio": 2,
+   "name": "Redirections du blog",
+   "what": "rediriger en 301 chaque article retiré ou fusionné vers l'article le plus proche",
+   "check": "Vérifié quand aucune ancienne adresse ne renvoie 404",
+   "criterion": "A3"
+  },
+  "B6": {
+   "prio": 3,
+   "name": "Cache des images",
+   "what": "`Cache-Control: public, max-age=31536000, immutable` sur les fichiers statiques versionnés",
+   "check": "Vérifié quand PageSpeed ne signale plus de cache trop court",
+   "criterion": "C3"
+  },
+  "B7": {
+   "prio": 3,
+   "name": "llms.txt",
+   "what": "publier un `/llms.txt` qui présente l'entreprise et pointe vers les pages de référence",
+   "check": "Vérifié quand `/llms.txt` répond 200",
+   "criterion": "F2"
+  }
+ },
+ "todo_intro": "Trois to-do : le contenu se règle dans l'administration du site, le front-end dans le code des pages, le back-end sur le serveur. Commencer par les P1",
+ "validations": [
+  "Le responsable produit valide les chiffres (C1, C2) et la FAQ (C7)",
+  "La direction de la communication valide les nouvelles pages avant publication"
+ ],
+ "concurrents": {
+  "title": "Des concurrents pas plus rapides, mais bien plus cités",
+  "head": [
+   "Mesure, le même jour",
+   "Nous",
+   "A",
+   "B",
+   "C"
+  ],
+  "rows": [
+   [
+    "PageSpeed téléphone",
+    "58",
+    "64",
+    "49",
+    "71"
+   ],
+   [
+    "Security Headers",
+    "D",
+    "B",
+    "D",
+    "A"
+   ],
+   [
+    "Cités par les IA (Q1 à Q4)",
+    "0",
+    "9",
+    "5",
+    "3"
+   ]
+  ],
+  "note": "Concurrents anonymisés"
+ },
+ "reference": {
+  "rows": [
+   [
+    "Global",
+    "Note sur la grille de 30 critères",
+    "5,0 / 10",
+    "en hausse"
+   ],
+   [
+    "Pages",
+    "Pages sans description",
+    "41",
+    "0"
+   ],
+   [
+    "Vitesse",
+    "PageSpeed téléphone",
+    "58",
+    "≥ 75"
+   ],
+   [
+    "Serveur",
+    "Mots lisibles sans JavaScript (pages produit)",
+    "31",
+    "> 300"
+   ],
+   [
+    "IA",
+    "Citations sur 16 réponses de marché",
+    "0",
+    "≥ 4"
+   ]
+  ],
+  "missing": "Les clics et les positions dans Google, faute d'accès à Search Console",
+  "tasks": []
+ },
+ "criteres": [
+  [
+   "A1",
+   "Accès des robots",
+   "2",
+   "robots.txt n'empêche rien d'utile ; sitemap.xml déclaré, 62 adresses sur 64"
+  ],
+  [
+   "A2",
+   "Une seule version du site",
+   "1",
+   "http → https correct, mais `atelier-lumen.example` sans www répond aussi (200) sans rediriger"
+  ],
+  [
+   "A3",
+   "Codes HTTP",
+   "1",
+   "Une adresse inconnue renvoie 200 (fausse 404), 2 liens cassés dans le pied de page"
+  ],
+  [
+   "A4",
+   "Rendu",
+   "0",
+   "Les pages « Fonctionnalités » n'ont que 31 mots sans JavaScript : le texte est chargé par le navigateur"
+  ],
+  [
+   "A5",
+   "Architecture",
+   "2",
+   "Toutes les pages utiles à 3 clics au plus de l'accueil"
+  ],
+  [
+   "B1",
+   "Core Web Vitals réels",
+   "NV",
+   "Pas assez de visiteurs pour des données réelles"
+  ],
+  [
+   "B2",
+   "Performance sur téléphone",
+   "1",
+   "PageSpeed téléphone 58/100, élément principal en 6,2 s"
+  ],
+  [
+   "B3",
+   "Images",
+   "0",
+   "Photos JPEG de 1,2 à 1,6 Mo sur l'accueil, sans `srcset`"
+  ],
+  [
+   "B4",
+   "Code",
+   "1",
+   "2 scripts bloquants, aucun contenu mixte"
+  ],
+  [
+   "B5",
+   "Mobile",
+   "2",
+   "Affichage correct à 375 px, viewport déclaré"
+  ],
+  [
+   "C1",
+   "Chiffrement",
+   "2",
+   "SSL Labs A, TLS 1.3, HSTS présent"
+  ],
+  [
+   "C2",
+   "En-têtes de sécurité",
+   "0",
+   "Security Headers D : CSP, Referrer-Policy, Permissions-Policy absentes ; « nginx/1.18.0 » affiché"
+  ],
+  [
+   "C3",
+   "Transport",
+   "1",
+   "Compression gzip, mais images servies sans cache (`max-age=0`)"
+  ],
+  [
+   "C4",
+   "Temps de réponse",
+   "2",
+   "TTFB médian 310 ms"
+  ],
+  [
+   "C5",
+   "Vie privée",
+   "2",
+   "Aucun traceur avant le consentement, bouton « Refuser » au même niveau"
+  ],
+  [
+   "D1",
+   "Titles, descriptions et partage",
+   "0",
+   "9 titles « Atelier Lumen », 41 pages sans description, aucun aperçu de partage"
+  ],
+  [
+   "D2",
+   "Structure",
+   "1",
+   "6 pages sans H1, 3 avec deux H1"
+  ],
+  [
+   "D3",
+   "Profondeur",
+   "1",
+   "Pages fonctionnalités de 150 à 250 mots"
+  ],
+  [
+   "D4",
+   "Justesse",
+   "1",
+   "2 fautes ; 1 200 artisans clients sur l'accueil, 900 sur « À propos »"
+  ],
+  [
+   "D5",
+   "Fraîcheur et langues",
+   "0",
+   "Dernier article de mars 2024 ; site en une seule langue"
+  ],
+  [
+   "E1",
+   "Les 5 secondes",
+   "2",
+   "« Vos devis et vos chantiers, sur un seul écran »"
+  ],
+  [
+   "E2",
+   "Appel à l'action et offre intermédiaire",
+   "1",
+   "« Essai gratuit » absent des pages fonctionnalités, aucune offre intermédiaire"
+  ],
+  [
+   "E3",
+   "Formulaire",
+   "2",
+   "4 champs étiquetés, confirmation affichée"
+  ],
+  [
+   "E4",
+   "Preuves et confiance",
+   "1",
+   "Logos de clients sans témoignage ni chiffre, pas d'auteur sur les articles"
+  ],
+  [
+   "E5",
+   "Accessibilité",
+   "1",
+   "WAVE : note AIM 6,1, 23 images sans description, 4 contrastes faibles"
+  ],
+  [
+   "F1",
+   "Données structurées",
+   "0",
+   "Aucune donnée structurée détectée"
+  ],
+  [
+   "F2",
+   "Accès des IA",
+   "1",
+   "Robots des IA autorisés, pas de llms.txt"
+  ],
+  [
+   "F3",
+   "Entité",
+   "1",
+   "Page « À propos » sans année ni adresse, aucune fiche Wikidata"
+  ],
+  [
+   "F4",
+   "Contenus citables et autorité",
+   "0",
+   "Ni FAQ ni guide de choix, 12 domaines renvoient vers le site"
+  ],
+  [
+   "F5",
+   "Présence dans les réponses",
+   "0",
+   "Cité dans 0 réponse sur 16 sur les questions de marché"
+  ]
+ ],
+ "evolution": {
+  "title": "Depuis l'audit précédent",
+  "intro": "Premier audit avec cette grille : il sert de point de départ",
+  "head": [
+   "Constat",
+   "État"
+  ],
+  "rows": [
+   [
+    "Fausse 404",
+    "toujours là"
+   ]
+  ]
+ },
+ "fautes": [
+  [
+   "p",
+   "Fautes relevées par LanguageTool et relues à la main :"
+  ],
+  [
+   "li",
+   "Accueil : « un devis envoyer » → « un devis envoyé »"
+  ],
+  [
+   "li",
+   "Blog : « les artisans qui on testé » → « qui ont testé »"
+  ]
+ ],
+ "captures": {
+  "01": [
+   "PageSpeed Insights",
+   "Élément principal affiché en 6,2 s (objectif : 2,5 s)",
+   "10 h",
+   "d-vitesse"
+  ],
+  "09": [
+   "PageSpeed Insights",
+   "Pas assez de visiteurs pour des données réelles",
+   "10 h",
+   "d-vitesse"
+  ],
+  "02": [
+   "Security Headers",
+   "Content-Security-Policy, X-Frame-Options, Referrer-Policy et Permissions-Policy absents",
+   "10 h",
+   "d-securite"
+  ],
+  "13": [
+   "SSL Server Test",
+   "TLS 1.3, certificat valable jusqu'en mars 2027",
+   "10 h",
+   "d-securite"
+  ],
+  "12": [
+   "Webbkoll",
+   "Aucune requête vers un tiers avant le clic sur le bandeau",
+   "10 h",
+   "d-securite"
+  ],
+  "40": [
+   "Aperçu de partage",
+   "LinkedIn affiche seulement l'adresse et le title « Atelier Lumen »",
+   "10 h",
+   "d-pages"
+  ],
+  "15": [
+   "WAVE",
+   "23 images sans description",
+   "10 h",
+   "d-pages"
+  ],
+  "10": [
+   "Nu HTML Checker",
+   "Attributs en double, balises mal fermées dans le pied de page",
+   "10 h",
+   "d-pages"
+  ],
+  "06": [
+   "Recherche « site: »",
+   "Google affiche « 1 200 artisans » et « 900 artisans » dans deux descriptions",
+   "10 h",
+   "d-faits"
+  ],
+  "07": [
+   "Test des résultats enrichis",
+   "Aucun élément détecté sur l'accueil",
+   "10 h",
+   "d-google"
+  ],
+  "22": [
+   "Wikidata",
+   "Ni Atelier Lumen, ni son éditeur",
+   "10 h",
+   "d-ia"
+  ],
+  "04": [
+   "ChatGPT",
+   "Q1 : pas cité",
+   "11 h",
+   "d-ia"
+  ],
+  "23": [
+   "ChatGPT",
+   "Q2 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "24": [
+   "ChatGPT",
+   "Q3 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "25": [
+   "ChatGPT",
+   "Q4 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "26": [
+   "ChatGPT",
+   "Q5 : cité",
+   "15 h",
+   "d-ia"
+  ],
+  "05": [
+   "Google Mode IA",
+   "Q1 : pas cité",
+   "11 h",
+   "d-ia"
+  ],
+  "27": [
+   "Google Mode IA",
+   "Q2 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "28": [
+   "Google Mode IA",
+   "Q3 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "29": [
+   "Google Mode IA",
+   "Q4 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "30": [
+   "Google Mode IA",
+   "Q5 : cité",
+   "15 h",
+   "d-ia"
+  ],
+  "17": [
+   "Brave",
+   "Q1 : pas cité",
+   "11 h",
+   "d-ia"
+  ],
+  "31": [
+   "Brave",
+   "Q2 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "32": [
+   "Brave",
+   "Q3 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "33": [
+   "Brave",
+   "Q4 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "34": [
+   "Brave",
+   "Q5 : cité",
+   "15 h",
+   "d-ia"
+  ],
+  "03": [
+   "Perplexity",
+   "Q1 : pas cité",
+   "11 h",
+   "d-ia"
+  ],
+  "35": [
+   "Perplexity",
+   "Q2 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "36": [
+   "Perplexity",
+   "Q3 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "37": [
+   "Perplexity",
+   "Q4 : pas cité",
+   "15 h",
+   "d-ia"
+  ],
+  "38": [
+   "Perplexity",
+   "Q5 : cité",
+   "15 h",
+   "d-ia"
+  ],
+  "site-01": [
+   "Accueil",
+   "Bandeau cookies",
+   "14 h",
+   "d-securite"
+  ],
+  "site-03": [
+   "À propos",
+   "Chiffre de clients",
+   "14 h",
+   "d-faits"
+  ],
+  "site-04": [
+   "Fonctionnalité",
+   "Title générique",
+   "14 h",
+   "d-pages"
+  ],
+  "site-05": [
+   "Adresse inconnue",
+   "Fausse 404",
+   "14 h",
+   "d-google"
+  ],
+  "site-06": [
+   "Page devis",
+   "Pas d'appel à l'action",
+   "14 h",
+   "d-conversion"
+  ],
+  "site-07": [
+   "Blog",
+   "Dernier article de 2024",
+   "14 h",
+   "d-blog"
+  ],
+  "site-08": [
+   "Accueil à 375 px",
+   "Images lourdes",
+   "14 h",
+   "d-vitesse"
+  ],
+  "site-09": [
+   "Page sans JavaScript",
+   "31 mots",
+   "14 h",
+   "d-infra"
+  ],
+  "08": [
+   "HTTP Observatory",
+   "Mêmes en-têtes absents que sur Security Headers",
+   "10 h",
+   "d-securite"
+  ],
+  "14": [
+   "Internet.nl",
+   "HTTPS correct, IPv6 et DNSSEC absents",
+   "10 h",
+   "d-securite"
+  ],
+  "11": [
+   "Blacklight",
+   "Aucun traceur, aucun enregistrement de session",
+   "10 h",
+   "d-securite"
+  ],
+  "21": [
+   "Recherche de marque",
+   "Le site sort premier, avec le chiffre de 1 200 artisans",
+   "10 h",
+   "d-faits"
+  ],
+  "16": [
+   "Schema Markup Validator",
+   "Aucun élément détecté sur l'accueil",
+   "10 h",
+   "d-google"
+  ],
+  "18": [
+   "Similarweb",
+   "Pas d'estimation de trafic disponible",
+   "10 h",
+   "d-google"
+  ],
+  "41": [
+   "Vérificateur de liens entrants",
+   "Douze domaines, aucun média du secteur",
+   "10 h",
+   "d-ia"
+  ]
+ },
+ "documents": [
+  [
+   "Rapport détaillé",
+   "2026-11-02 Audit SEO GEO - atelier-lumen.example.md"
+  ],
+  [
+   "To-do",
+   "2026-11-02 To-do SEO GEO - atelier-lumen.example.md"
+  ],
+  [
+   "Protocole de remesure",
+   "2026-11-02 Protocole de remesure SEO GEO.md"
+  ]
+ ],
+ "footer_note": "Exemple fictif : aucune de ces mesures ne porte sur un site réel",
+ "competitors_regex": "Chantio|Batiplan|Devisor",
+ "view": {
+  "google": {
+   "url": "https://www.atelier-lumen.example/",
+   "title": "Atelier Lumen",
+   "desc": ""
+  },
+  "share": {
+   "domain": "atelier-lumen.example",
+   "title": "",
+   "desc": "",
+   "image": null
+  },
+  "pages": [
+   {
+    "url": "https://www.atelier-lumen.example/",
+    "words": 620,
+    "image": "site-01",
+    "excerpt": "Vos devis et vos chantiers, sur un seul écran. Écrivez un devis en deux minutes et faites-le signer sur place."
+   },
+   {
+    "url": "https://www.atelier-lumen.example/fonctionnalites/devis",
+    "words": 31,
+    "image": "site-09",
+    "excerpt": "You need to enable JavaScript to run this app."
+   }
+  ]
+ }
+}

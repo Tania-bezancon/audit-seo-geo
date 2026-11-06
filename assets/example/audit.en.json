@@ -1,0 +1,1914 @@
+{
+ "site": {
+  "domain": "atelier-lumen.example",
+  "url": "https://www.atelier-lumen.example/",
+  "brand": "Atelier Lumen",
+  "brand_q": "Atelier+Lumen+software",
+  "theme": "signature",
+  "lang": "en",
+  "report_lang": "en",
+  "country": "gb",
+  "date": "2026-11-02",
+  "date_label": "2 November 2026",
+  "date_long": "Monday 2 November 2026",
+  "perimetre": "64 pages, 1 language, 31 blog articles",
+  "pages": 64,
+  "prepared_by": "the communication team, with Claude",
+  "usage": "fictional example",
+  "validateur": "the product manager",
+  "stack": {
+   "framework": "next",
+   "host": "nginx"
+  }
+ },
+ "lead": "This file is a fictional example. It shows what the skill produces: the state of a site on 2 November 2026 from five angles (Google, visitors, server, text, AI), each finding with its proof, and three to-do lists",
+ "headline": "A clear, safe site that neither Google nor AI assistants know how to present",
+ "note": {
+  "global": "5.0",
+  "categories": {
+   "A": "6.0",
+   "B": "5.0",
+   "C": "7.0",
+   "D": "3.0",
+   "E": "7.0",
+   "F": "2.0"
+  }
+ },
+ "bulletin": {
+  "d-faits": [
+   "o",
+   "Two customer figures, and Google shows both"
+  ],
+  "d-pages": [
+   "o",
+   "41 pages without a description, 9 duplicate titles"
+  ],
+  "d-blog": [
+   "r",
+   "31 articles, the latest from March 2024, none dated for Google"
+  ],
+  "d-vitesse": [
+   "o",
+   "58 on mobile, 91 on desktop"
+  ],
+  "d-infra": [
+   "r",
+   "Fast server (310 ms), but the text of the product pages arrives through JavaScript"
+  ],
+  "d-securite": [
+   "o",
+   "Encryption rated A, headers rated D, no trackers before consent"
+  ],
+  "d-google": [
+   "r",
+   "No structured data, a fake 404, two addresses for the same site"
+  ],
+  "d-conversion": [
+   "o",
+   "Short, clear form, no intermediate offer"
+  ],
+  "d-ia": [
+   "r",
+   "Cited in 0 of 16 market answers; well described on the brand question, with a wrong year"
+  ]
+ },
+ "good": [
+  "The offer is clear in 5 seconds",
+  "Encrypted connection rated A",
+  "No trackers before consent",
+  "A short form that works"
+ ],
+ "bad": [
+  "The text of the product pages arrives through JavaScript",
+  "Two customer figures",
+  "41 pages without a description",
+  "Missing from AI answers"
+ ],
+ "decisions": [
+  "Approve the customer figure",
+  "Approve the blog sort-out",
+  "Hand 5 tasks to the front-end team and 7 to the back-end team"
+ ],
+ "conditions": [
+  [
+   "Date",
+   "Monday 2 November 2026, tools from 10 am to 11 am, AI at 11 am and 3 pm"
+  ],
+  [
+   "Pages studied",
+   "64: every address in the sitemap"
+  ],
+  [
+   "Browser",
+   "No account, cookies refused"
+  ]
+ ],
+ "limites": "Fictional example: the figures and screenshots are invented to show the format. In a real audit, without Search Console or audience measurement, clicks and positions are unknown",
+ "resultats": {
+  "01": [
+   "58/100; main element in 6.2 s",
+   "o"
+  ],
+  "09": [
+   "91/100",
+   "v"
+  ],
+  "02": [
+   "Grade D",
+   "r"
+  ],
+  "13": [
+   "Grade A",
+   "v"
+  ],
+  "12": [
+   "No trackers before consent",
+   "v"
+  ],
+  "15": [
+   "AIM score 6.1",
+   "o"
+  ],
+  "10": [
+   "12 errors",
+   "o"
+  ],
+  "lt": [
+   "2 mistakes across 64 pages",
+   "v"
+  ],
+  "06": [
+   "58 results, 2 customer figures",
+   "o"
+  ],
+  "07": [
+   "No structured data",
+   "r"
+  ],
+  "40": [
+   "No image, no description",
+   "r"
+  ],
+  "22": [
+   "No entry",
+   "r"
+  ],
+  "ChatGPT": [
+   "Cited 0 times out of 4",
+   "r"
+  ],
+  "Google AI Mode": [
+   "Cited 0 times out of 4",
+   "r"
+  ],
+  "Brave": [
+   "Cited 0 times out of 4",
+   "r"
+  ],
+  "Perplexity": [
+   "Cited 0 times out of 4",
+   "r"
+  ],
+  "08": [
+   "Grade D, 35/100",
+   "r"
+  ],
+  "14": [
+   "Score of 71%",
+   "o"
+  ],
+  "11": [
+   "No advertising trackers",
+   "v"
+  ],
+  "21": [
+   "First on its name, description to review",
+   "o"
+  ],
+  "16": [
+   "No items",
+   "r"
+  ],
+  "18": [
+   "Too few visits for an estimate",
+   "o"
+  ],
+  "41": [
+   "12 domains link to the site",
+   "o"
+  ]
+ },
+ "fiches": {
+  "01": {
+   "who": "PageSpeed Insights · Google · simulated phone",
+   "big": "58",
+   "pills": [
+    [
+     "warn",
+     "Performance needs work"
+    ]
+   ],
+   "bullets": [
+    "Main element shown in 6.2 s (target: 2.5 s)",
+    "Accessibility 88 · SEO 92"
+   ],
+   "says": "The weight of the home page images explains most of the delay",
+   "capture": "01-pagespeed-mobile.png",
+   "caption": "Screenshot 01 · pagespeed.web.dev, 2 Nov 2026, 10 am"
+  },
+  "09": {
+   "who": "PageSpeed Insights · Google · desktop",
+   "big": "91",
+   "pills": [
+    [
+     "ok",
+     "Fast"
+    ]
+   ],
+   "bullets": [
+    "Not enough visitors for real-user data"
+   ],
+   "says": "On desktop, the site is fast",
+   "capture": "09-pagespeed-desktop.png",
+   "caption": "Screenshot 09 · pagespeed.web.dev, 2 Nov 2026, 10 am"
+  },
+  "02": {
+   "who": "Security Headers · Snyk",
+   "big": "D",
+   "pills": [
+    [
+     "bad",
+     "4 headers missing"
+    ]
+   ],
+   "bullets": [
+    "Content-Security-Policy, X-Frame-Options, Referrer-Policy and Permissions-Policy are missing"
+   ],
+   "says": "Four lines of configuration are enough",
+   "capture": "02-securityheaders.png",
+   "caption": "Screenshot 02 · securityheaders.com, 2 Nov 2026, 10 am"
+  },
+  "13": {
+   "who": "SSL Server Test · Qualys",
+   "big": "A",
+   "pills": [
+    [
+     "ok",
+     "Connection well encrypted"
+    ]
+   ],
+   "bullets": [
+    "TLS 1.3, certificate valid until March 2027"
+   ],
+   "says": "Nothing to do",
+   "capture": "13-ssllabs.png",
+   "caption": "Screenshot 13 · ssllabs.com, 2 Nov 2026, 10 am"
+  },
+  "12": {
+   "who": "Webbkoll",
+   "big": "0",
+   "pills": [
+    [
+     "ok",
+     "No trackers before consent"
+    ]
+   ],
+   "bullets": [
+    "No request to a third party before the banner is clicked"
+   ],
+   "says": "The cookie banner does its job",
+   "capture": "12-webbkoll.png",
+   "caption": "Screenshot 12 · webbkoll.5july.net, 2 Nov 2026, 10 am"
+  },
+  "40": {
+   "who": "Share preview · OpenGraph.xyz",
+   "big": "—",
+   "pills": [
+    [
+     "bad",
+     "No image, no description"
+    ]
+   ],
+   "bullets": [
+    "LinkedIn shows only the address and the title “Atelier Lumen”"
+   ],
+   "says": "Every page share makes a poor first impression",
+   "capture": "40-share-preview.png",
+   "caption": "Screenshot 40 · opengraph.xyz, 2 Nov 2026, 10 am"
+  },
+  "15": {
+   "who": "WAVE · WebAIM",
+   "big": "6.1",
+   "pills": [
+    [
+     "warn",
+     "Average AIM score"
+    ]
+   ],
+   "bullets": [
+    "23 images without a description",
+    "4 contrasts too low"
+   ],
+   "says": "Image descriptions are the first fix",
+   "capture": "15-wave.png",
+   "caption": "Screenshot 15 · wave.webaim.org, 2 Nov 2026, 10 am"
+  },
+  "10": {
+   "who": "Nu HTML Checker · W3C",
+   "big": "12",
+   "pills": [
+    [
+     "warn",
+     "12 errors"
+    ]
+   ],
+   "bullets": [
+    "Duplicate attributes, badly closed tags in the footer"
+   ],
+   "says": "Not serious, but worth fixing in the template",
+   "capture": "10-w3c.png",
+   "caption": "Screenshot 10 · validator.w3.org, 2 Nov 2026, 10 am"
+  },
+  "06": {
+   "who": "“site:” search · Google",
+   "big": "58",
+   "pills": [
+    [
+     "warn",
+     "2 customer figures shown"
+    ]
+   ],
+   "bullets": [
+    "Google shows “1,200 tradespeople” and “900 tradespeople” in two descriptions"
+   ],
+   "says": "Google repeats the contradiction as it is",
+   "capture": "06-google-site.png",
+   "caption": "Screenshot 06 · google.com, 2 Nov 2026, 10 am"
+  },
+  "07": {
+   "who": "Rich Results Test · Google",
+   "big": "0",
+   "pills": [
+    [
+     "bad",
+     "No structured data"
+    ]
+   ],
+   "bullets": [
+    "No item detected on the home page"
+   ],
+   "says": "Google has to guess who publishes the site",
+   "capture": "07-rich-results.png",
+   "caption": "Screenshot 07 · search.google.com, 2 Nov 2026, 10 am"
+  },
+  "22": {
+   "who": "Wikidata",
+   "big": "—",
+   "pills": [
+    [
+     "bad",
+     "No entry"
+    ]
+   ],
+   "bullets": [
+    "Neither Atelier Lumen nor its publisher"
+   ],
+   "says": "Without an entry, AI assistants identify the publisher poorly",
+   "capture": "22-wikidata.png",
+   "caption": "Screenshot 22 · wikidata.org, 2 Nov 2026, 10 am"
+  },
+  "08": {
+   "who": "HTTP Observatory",
+   "big": "35/100",
+   "pills": [
+    [
+     "bad",
+     "Grade D, 35/100"
+    ]
+   ],
+   "bullets": [
+    "Four security settings missing, the same as on Security Headers"
+   ],
+   "says": "The same measure, seen by a second tool",
+   "capture": "08-http-observatory.png",
+   "caption": "Screenshot 08 · developer.mozilla.org, 2 Nov 2026, 10 am"
+  },
+  "14": {
+   "who": "Internet.nl",
+   "big": "71%",
+   "pills": [
+    [
+     "warn",
+     "Score of 71%"
+    ]
+   ],
+   "bullets": [
+    "HTTPS correct, IPv6 missing, DNSSEC missing"
+   ],
+   "says": "The site follows part of the recent standards",
+   "capture": "14-internet-nl.png",
+   "caption": "Screenshot 14 · internet.nl, 2 Nov 2026, 10 am"
+  },
+  "11": {
+   "who": "Blacklight",
+   "big": "0",
+   "pills": [
+    [
+     "ok",
+     "No advertising trackers"
+    ]
+   ],
+   "bullets": [
+    "No session recording, no browser fingerprinting"
+   ],
+   "says": "Visitors are not tracked",
+   "capture": "11-blacklight.png",
+   "caption": "Screenshot 11 · themarkup.org, 2 Nov 2026, 10 am"
+  },
+  "21": {
+   "who": "Brand search · Bing",
+   "big": "1st",
+   "pills": [
+    [
+     "ok",
+     "First on its name"
+    ]
+   ],
+   "bullets": [
+    "The description shown repeats the figure of 1,200 tradespeople"
+   ],
+   "says": "The site is found on its name, with a figure to check",
+   "capture": "21-brand-search.png",
+   "caption": "Screenshot 21 · bing.com, 2 Nov 2026, 10 am"
+  },
+  "16": {
+   "who": "Schema Markup Validator",
+   "big": "0",
+   "pills": [
+    [
+     "bad",
+     "No items"
+    ]
+   ],
+   "bullets": [
+    "No item detected on the home page, confirming Google's test"
+   ],
+   "says": "The second tool says the same as Google",
+   "capture": "16-schema-validator.png",
+   "caption": "Screenshot 16 · validator.schema.org, 2 Nov 2026, 10 am"
+  },
+  "18": {
+   "who": "Similarweb",
+   "big": "—",
+   "pills": [
+    [
+     "warn",
+     "Too few visits"
+    ]
+   ],
+   "bullets": [
+    "Traffic too low for an estimate, to read as a trend"
+   ],
+   "says": "Without analytics, the real traffic is unknown",
+   "capture": "18-similarweb.png",
+   "caption": "Screenshot 18 · similarweb.com, 2 Nov 2026, 10 am"
+  },
+  "41": {
+   "who": "Backlink checker · Ahrefs",
+   "big": "12",
+   "pills": [
+    [
+     "warn",
+     "12 domains"
+    ]
+   ],
+   "bullets": [
+    "Twelve domains link to the site, no trade media among them"
+   ],
+   "says": "Few outside sources back the brand",
+   "capture": "41-backlinks.png",
+   "caption": "Screenshot 41 · ahrefs.com, 2 Nov 2026, 10 am"
+  }
+ },
+ "domaines": {
+  "d-faits": {
+   "title": "The number of customers changes from page to page",
+   "feu": "o",
+   "une": "The figures the site shows about the company: customers, year, team",
+   "pourquoi": "A buyer, Google and AI assistants repeat these figures; two versions make people doubt both",
+   "verdict": "Two customer figures, and Google shows both",
+   "stat": "2",
+   "stat_label": "versions of the number of customers",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "1,200 tradespeople on the home page, 900 on “About”",
+     "where": "Home page and `/about`",
+     "paras": [
+      "The same fact, two figures. Google repeats them in its results"
+     ],
+     "captures": [
+      [
+       "site-03",
+       "Screenshot site-03 · “About” page"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "The facts found",
+     "head": [
+      "Fact",
+      "Home page",
+      "About",
+      "Google"
+     ],
+     "rows": [
+      [
+       "Tradesperson customers",
+       "1,200",
+       "900",
+       "both"
+      ],
+      [
+       "Year founded",
+       "—",
+       "—",
+       "—"
+      ]
+     ],
+     "colw": [
+      3.6,
+      2.8,
+      2.8,
+      2.93
+     ]
+    }
+   ],
+   "tools": [
+    "06",
+    "21"
+   ],
+   "tasks": [
+    "C1",
+    "C2"
+   ]
+  },
+  "d-pages": {
+   "title": "Pages without descriptions and images without alt text",
+   "feu": "o",
+   "une": "What Google reads first: titles, descriptions, headings, image descriptions",
+   "pourquoi": "This is what shows in the results and what makes the site readable for everyone",
+   "verdict": "41 pages without a description, 9 duplicate titles",
+   "stat": "41",
+   "stat_label": "pages without a description out of 64",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "Nine pages are called “Atelier Lumen”",
+     "where": "Feature pages",
+     "paras": [
+      "The title does not say what the page is about"
+     ],
+     "captures": [
+      [
+       "site-04",
+       "Screenshot site-04 · a feature page"
+      ]
+     ],
+     "code": "<title>[[Atelier Lumen]]</title>"
+    },
+    {
+     "type": "stats",
+     "title": "The scan",
+     "head": [
+      "Measure",
+      "Result"
+     ],
+     "rows": [
+      [
+       "Pages without a description",
+       "41 of 64"
+      ],
+      [
+       "Duplicate titles",
+       "9"
+      ],
+      [
+       "Images without alt",
+       "38%"
+      ]
+     ],
+     "role": "15",
+     "role_title": "WAVE"
+    }
+   ],
+   "tools": [
+    "15",
+    "10",
+    "40"
+   ],
+   "tasks": [
+    "C3",
+    "C4",
+    "C5",
+    "F4",
+    "F5"
+   ]
+  },
+  "d-blog": {
+   "title": "A blog that has stopped since March 2024",
+   "feu": "r",
+   "une": "The articles: what brings in readers who are looking for an answer",
+   "pourquoi": "A frozen blog tells the visitor the company has stopped moving",
+   "verdict": "31 articles, the latest from March 2024, none dated for Google",
+   "stat": "31",
+   "stat_label": "articles, none since March 2024",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "The latest article is from March 2024",
+     "where": "`/blog`",
+     "paras": [
+      "The top three articles talk about a government grant that no longer exists"
+     ],
+     "captures": [
+      [
+       "site-07",
+       "Screenshot site-07 · the blog"
+      ]
+     ]
+    },
+    {
+     "type": "tri",
+     "title": "The blog in figures",
+     "head": [
+      "The blog in figures",
+      "Result"
+     ],
+     "rows": [
+      [
+       "Articles",
+       "31"
+      ],
+      [
+       "Dated for Google",
+       "0"
+      ]
+     ],
+     "tri_title": "The proposed sort-out",
+     "tri": [
+      [
+       "12",
+       "to keep",
+       "up to date, useful",
+       "v"
+      ],
+      [
+       "9",
+       "to merge",
+       "similar topics",
+       "o"
+      ],
+      [
+       "10",
+       "to remove",
+       "outdated",
+       "r"
+      ]
+     ],
+     "tri_note": "About 16 solid articles instead of 31"
+    }
+   ],
+   "tools": [],
+   "tasks": [
+    "C6",
+    "B5"
+   ]
+  },
+  "d-vitesse": {
+   "title": "Fast on desktop, slow on mobile",
+   "feu": "o",
+   "une": "How long it takes to see the page",
+   "pourquoi": "Tradespeople check the site on their phone, often on a job site",
+   "verdict": "58 on mobile, 91 on desktop",
+   "stat": "6.2 s",
+   "stat_label": "to show the main element on a phone",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "The home page weighs 4 MB of images",
+     "where": "Home page",
+     "paras": [
+      "Three uncompressed job-site photos"
+     ],
+     "captures": [
+      [
+       "site-08",
+       "Screenshot site-08 · home page at 375 px"
+      ]
+     ]
+    }
+   ],
+   "tools": [
+    "01",
+    "09"
+   ],
+   "tasks": [
+    "F2",
+    "B6"
+   ]
+  },
+  "d-infra": {
+   "title": "A fast server, pages that robots cannot read",
+   "feu": "r",
+   "une": "What the server really sends: the HTML, the codes, the cache, the compression",
+   "pourquoi": "Most AI robots do not run JavaScript: what is not in the HTML they receive does not exist for them",
+   "verdict": "Fast server (310 ms), but the text of the product pages arrives through JavaScript",
+   "stat": "31",
+   "stat_label": "words readable without JavaScript on the feature pages",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "Without JavaScript, the “Quotes” page is almost empty",
+     "where": "`/features/quotes`",
+     "paras": [
+      "The HTML received contains only the menu and the footer. The text is loaded afterwards by the browser",
+      "Google often ends up reading it; ChatGPT, Perplexity and Claude, generally do not"
+     ],
+     "captures": [
+      [
+       "site-09",
+       "Screenshot site-09 · the page without JavaScript"
+      ]
+     ],
+     "code": "<main id=\"app\">[[</main>]]  <!-- 31 words -->"
+    },
+    {
+     "type": "stats",
+     "title": "The server",
+     "head": [
+      "Measure",
+      "Result"
+     ],
+     "rows": [
+      [
+       "Median response time",
+       "310 ms"
+      ],
+      [
+       "Compression",
+       "gzip"
+      ],
+      [
+       "Image caching",
+       "`max-age=0`"
+      ],
+      [
+       "llms.txt",
+       "missing"
+      ]
+     ]
+    }
+   ],
+   "tools": [],
+   "tasks": [
+    "F1"
+   ]
+  },
+  "d-securite": {
+   "title": "A safe connection, missing security settings",
+   "feu": "o",
+   "une": "What protects the visitor: encryption, security headers, cookies",
+   "pourquoi": "A tradesperson trusts the software with their quotes and their customers: the site must inspire confidence",
+   "verdict": "Encryption rated A, headers rated D, no trackers before consent",
+   "stat": "D",
+   "stat_label": "grade for the security headers",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "The cookie banner respects a refusal",
+     "where": "Home page, first visit",
+     "paras": [
+      "No request to a third party before the click"
+     ],
+     "captures": [
+      [
+       "site-01",
+       "Screenshot site-01 · cookie banner"
+      ]
+     ]
+    }
+   ],
+   "tools": [
+    "02",
+    "13",
+    "12",
+    "08",
+    "14",
+    "11"
+   ],
+   "tasks": [
+    "B4"
+   ]
+  },
+  "d-google": {
+   "title": "Google has to guess who publishes the site",
+   "feu": "r",
+   "une": "What Google understands about the company and its pages",
+   "pourquoi": "Without structured data or Search Console, we cannot tell what Google understands or what it shows",
+   "verdict": "No structured data, a fake 404, two addresses for the same site",
+   "stat": "0",
+   "stat_label": "structured data items detected",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "An unknown address answers “200”",
+     "where": "`/page-that-does-not-exist-audit-404`",
+     "paras": [
+      "Google can index empty pages"
+     ],
+     "captures": [
+      [
+       "site-05",
+       "Screenshot site-05 · fake 404"
+      ]
+     ],
+     "code": "HTTP/2 [[200]]"
+    }
+   ],
+   "tools": [
+    "07",
+    "16",
+    "18"
+   ],
+   "tasks": [
+    "B1",
+    "B2",
+    "B3",
+    "F3"
+   ]
+  },
+  "d-conversion": {
+   "title": "A good form, nothing for those who hesitate",
+   "feu": "o",
+   "une": "What turns a visitor into a free trial",
+   "pourquoi": "A tradesperson who is comparing is not ready to try straight away",
+   "verdict": "Short, clear form, no intermediate offer",
+   "stat": "4",
+   "stat_label": "fields in the trial form",
+   "blocks": [
+    {
+     "type": "finding",
+     "title": "“Free trial” disappears from the feature pages",
+     "where": "`/features/quotes`",
+     "paras": [
+      "A convinced visitor has to go back to the home page"
+     ],
+     "captures": [
+      [
+       "site-06",
+       "Screenshot site-06 · quotes page"
+      ]
+     ]
+    }
+   ],
+   "tools": [],
+   "tasks": [
+    "C8"
+   ]
+  },
+  "d-ia": {
+   "title": "Missing from AI answers",
+   "feu": "r",
+   "une": "What ChatGPT, Google AI Mode, Brave and Perplexity answer when someone looks for software like ours",
+   "pourquoi": "A growing share of buyers ask an AI assistant before searching on Google",
+   "verdict": "Cited in 0 of 16 market answers; well described on the brand question, with a wrong year",
+   "stat": "0 / 16",
+   "stat_label": "market answers that cite us",
+   "blocks": [
+    {
+     "type": "ia"
+    }
+   ],
+   "tools": [
+    "22",
+    "41"
+   ],
+   "tasks": [
+    "C7",
+    "C9",
+    "B7"
+   ]
+  }
+ },
+ "ia": {
+  "questions": {
+   "1": "Which quoting and scheduling software should a UK tradesperson choose?",
+   "2": "What is a simple alternative to big job management software for a small plumbing business?",
+   "3": "How can a tradesperson write quotes on their phone?",
+   "4": "Which quoting software do UK builders use?",
+   "5": "What is Atelier Lumen?"
+  },
+  "brand_question": 5,
+  "intro": "Each question is asked in a fresh conversation, with no account. Competitors are anonymised",
+  "note": "The AI assistants cite press comparisons and buying guides: that is what we are missing",
+  "assistants": [
+   {
+    "name": "ChatGPT",
+    "how": "chatgpt.com, no account, web search",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "capture": "04",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "11 am",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B",
+       "Competitor C"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "capture": "23",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "capture": "24",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor A"
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "capture": "25",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor B",
+       "Competitor C"
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "capture": "26",
+      "note": "Describes the product, but says it launched in 2019 instead of 2021.",
+      "hour": "3 pm"
+     }
+    ]
+   },
+   {
+    "name": "Google AI Mode",
+    "how": "google.com, udm=50, no account",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "capture": "05",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "11 am",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B",
+       "Competitor C"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "capture": "27",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "capture": "28",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor A"
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "capture": "29",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor B",
+       "Competitor C"
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "capture": "30",
+      "note": "Describes the product, but says it launched in 2019 instead of 2021.",
+      "hour": "3 pm"
+     }
+    ]
+   },
+   {
+    "name": "Brave",
+    "how": "search.brave.com/ask, no account",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "capture": "17",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "11 am",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B",
+       "Competitor C"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "capture": "31",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "capture": "32",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor A"
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "capture": "33",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor B",
+       "Competitor C"
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "capture": "34",
+      "note": "Describes the product, but says it launched in 2019 instead of 2021.",
+      "hour": "3 pm"
+     }
+    ]
+   },
+   {
+    "name": "Perplexity",
+    "how": "perplexity.ai, no account",
+    "answers": [
+     {
+      "q": 1,
+      "cited": false,
+      "capture": "03",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "11 am",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B",
+       "Competitor C"
+      ]
+     },
+     {
+      "q": 2,
+      "cited": false,
+      "capture": "35",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor A",
+       "Competitor B"
+      ]
+     },
+     {
+      "q": 3,
+      "cited": false,
+      "capture": "36",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor A"
+      ]
+     },
+     {
+      "q": 4,
+      "cited": false,
+      "capture": "37",
+      "note": "Recommends three products, including competitor A, and a press comparison.",
+      "hour": "3 pm",
+      "cited_instead": [
+       "Competitor B",
+       "Competitor C"
+      ]
+     },
+     {
+      "q": 5,
+      "cited": true,
+      "capture": "38",
+      "note": "Describes the product, but says it launched in 2019 instead of 2021.",
+      "hour": "3 pm"
+     }
+    ]
+   }
+  ]
+ },
+ "tasks": {
+  "C1": {
+   "prio": 1,
+   "name": "One customer figure",
+   "what": "choose the right number of customer tradespeople with the product manager and use it on the home page and on “About”",
+   "check": "Verified when the “site:” search shows only one figure",
+   "criterion": "D4"
+  },
+  "C2": {
+   "prio": 1,
+   "name": "Complete “About” page",
+   "what": "add the legal name, the year founded, the address and the team",
+   "check": "Verified when all 4 items are online",
+   "criterion": "F3"
+  },
+  "C3": {
+   "prio": 2,
+   "name": "Unique titles",
+   "what": "write a title specific to each of the 9 pages called “Atelier Lumen” (the topic first, the brand last)",
+   "check": "Verified when the scan finds no duplicate",
+   "before": {
+    "url": "https://www.atelier-lumen.example/features/quotes",
+    "title": "Atelier Lumen"
+   },
+   "after": {
+    "url": "https://www.atelier-lumen.example/features/quotes",
+    "title": "Quotes on your phone for tradespeople · Atelier Lumen"
+   },
+   "where": "`metadata` in the layout and the pages",
+   "snippet": "export const metadata = {\n  title: { default: \"Atelier Lumen\", template: \"%s · Atelier Lumen\" },\n}",
+   "criterion": "D1"
+  },
+  "C4": {
+   "prio": 2,
+   "name": "Descriptions",
+   "what": "write a description of 140 to 160 characters for the 41 pages that have none",
+   "check": "Verified when the scan counts 0 pages without a description",
+   "criterion": "D1"
+  },
+  "C5": {
+   "prio": 2,
+   "name": "Image descriptions",
+   "what": "describe each useful image in the “alt text” field; leave alt empty for decorative images",
+   "check": "Verified when WAVE no longer reports an image without a description",
+   "criterion": "E5"
+  },
+  "C6": {
+   "prio": 2,
+   "name": "Blog sort-out",
+   "what": "keep 12 articles, merge 9, remove 10 outdated articles (redirects: B5)",
+   "check": "Verified when the blog has about 16 up-to-date articles",
+   "criterion": "D5"
+  },
+  "C7": {
+   "prio": 2,
+   "name": "FAQ for tradespeople",
+   "what": "answer on one page the 10 questions tradespeople ask before trying the software (price, data, accounting export...)",
+   "check": "Verified when the page is online and approved",
+   "criterion": "F4"
+  },
+  "C8": {
+   "prio": 3,
+   "name": "Buying guide",
+   "what": "publish “How to choose quoting software”, which also serves as an intermediate offer",
+   "check": "Verified when the guide is online with its form",
+   "criterion": "F4"
+  },
+  "C9": {
+   "prio": 3,
+   "name": "Wikidata entry",
+   "what": "create the company's entry with the official site, the year founded and the head office",
+   "check": "Verified when a Wikidata search finds it",
+   "criterion": "F3"
+  },
+  "F1": {
+   "prio": 1,
+   "name": "Text readable without JavaScript",
+   "what": "generate the “Features” pages on the server (the framework's static rendering) instead of loading the text in the browser",
+   "check": "Verified when the HTML received contains the text of the page",
+   "criterion": "A4"
+  },
+  "F2": {
+   "prio": 2,
+   "name": "Home page images",
+   "what": "switch the photos to WebP or AVIF with `srcset`, `fetchpriority=\"high\"` on the main image, `loading=\"lazy\"` on the others",
+   "check": "Verified when PageSpeed mobile is above 75 on 3 runs",
+   "criterion": "B3"
+  },
+  "F3": {
+   "prio": 2,
+   "name": "Structured data",
+   "what": "add Organization (with `sameAs`) across the whole site and SoftwareApplication on the product pages",
+   "check": "Verified when the rich results test detects them with no errors",
+   "criterion": "F1"
+  },
+  "F4": {
+   "prio": 2,
+   "name": "Sharing tags",
+   "what": "generate `og:title`, `og:description`, `og:image` (1200 × 630) and `twitter:card` on every template",
+   "check": "Verified when the share preview is complete",
+   "criterion": "D1"
+  },
+  "F5": {
+   "prio": 3,
+   "name": "Contrast and focus",
+   "what": "darken the 4 light grey texts, add a `:focus-visible` style",
+   "check": "Verified when WAVE no longer reports a contrast issue",
+   "criterion": "E5"
+  },
+  "B1": {
+   "prio": 1,
+   "name": "Search Console",
+   "what": "verify the domain in Search Console and Bing Webmaster Tools, and submit the sitemap there",
+   "check": "Verified when clicks and positions can be read"
+  },
+  "B2": {
+   "prio": 2,
+   "name": "Real 404",
+   "what": "return the 404 code on an unknown address",
+   "check": "Verified when `checks.json` says “real 404”",
+   "criterion": "A3"
+  },
+  "B3": {
+   "prio": 1,
+   "name": "One address",
+   "what": "redirect `atelier-lumen.example` to `www.atelier-lumen.example` with a 301",
+   "check": "Verified when the version without www redirects in one step",
+   "criterion": "A2"
+  },
+  "B4": {
+   "prio": 2,
+   "name": "Security headers",
+   "what": "add Content-Security-Policy, Referrer-Policy and Permissions-Policy, and hide the nginx version",
+   "check": "Verified when Security Headers gives B or better",
+   "where": "The server block of the site",
+   "how": "Add the lines below, then run `nginx -t` and reload. Test the site before enforcing the policy.",
+   "snippet": "add_header Referrer-Policy \"strict-origin-when-cross-origin\" always;\nadd_header Permissions-Policy \"camera=(), microphone=(), geolocation=()\" always;\nadd_header Content-Security-Policy-Report-Only \"default-src 'self'\" always;",
+   "criterion": "C2"
+  },
+  "B5": {
+   "prio": 2,
+   "name": "Blog redirects",
+   "what": "redirect each removed or merged article to the closest article with a 301",
+   "check": "Verified when no old address returns 404",
+   "criterion": "A3"
+  },
+  "B6": {
+   "prio": 3,
+   "name": "Image caching",
+   "what": "`Cache-Control: public, max-age=31536000, immutable` on versioned static files",
+   "check": "Verified when PageSpeed no longer reports a cache lifetime that is too short",
+   "criterion": "C3"
+  },
+  "B7": {
+   "prio": 3,
+   "name": "llms.txt",
+   "what": "publish a `/llms.txt` that presents the company and points to the reference pages",
+   "check": "Verified when `/llms.txt` answers 200",
+   "criterion": "F2"
+  }
+ },
+ "todo_intro": "Three to-do lists: content is handled in the site's admin area, front-end in the page code, back-end on the server. Start with the P1s",
+ "validations": [
+  "The product manager approves the figures (C1, C2) and the FAQ (C7)",
+  "The head of communication approves the new pages before publication"
+ ],
+ "concurrents": {
+  "title": "Competitors that are no faster, but cited far more",
+  "head": [
+   "Measure, same day",
+   "Us",
+   "A",
+   "B",
+   "C"
+  ],
+  "rows": [
+   [
+    "PageSpeed mobile",
+    "58",
+    "64",
+    "49",
+    "71"
+   ],
+   [
+    "Security Headers",
+    "D",
+    "B",
+    "D",
+    "A"
+   ],
+   [
+    "Cited by AI assistants (Q1 to Q4)",
+    "0",
+    "9",
+    "5",
+    "3"
+   ]
+  ],
+  "note": "Competitors anonymised"
+ },
+ "reference": {
+  "rows": [
+   [
+    "Overall",
+    "Score on the 30-criteria grid",
+    "5.0 / 10",
+    "rising"
+   ],
+   [
+    "Pages",
+    "Pages without a description",
+    "41",
+    "0"
+   ],
+   [
+    "Speed",
+    "PageSpeed mobile",
+    "58",
+    "≥ 75"
+   ],
+   [
+    "Server",
+    "Words readable without JavaScript (product pages)",
+    "31",
+    "> 300"
+   ],
+   [
+    "AI",
+    "Citations in 16 market answers",
+    "0",
+    "≥ 4"
+   ]
+  ],
+  "missing": "Clicks and positions in Google, because there is no access to Search Console",
+  "tasks": []
+ },
+ "criteres": [
+  [
+   "A1",
+   "Robot access",
+   "2",
+   "robots.txt blocks nothing useful; sitemap.xml declared, 62 of 64 addresses"
+  ],
+  [
+   "A2",
+   "One version of the site",
+   "1",
+   "http → https works, but `atelier-lumen.example` without www also answers (200) without redirecting"
+  ],
+  [
+   "A3",
+   "HTTP codes",
+   "1",
+   "An unknown address returns 200 (fake 404), 2 broken links in the footer"
+  ],
+  [
+   "A4",
+   "Rendering",
+   "0",
+   "The “Features” pages have only 31 words without JavaScript: the text is loaded by the browser"
+  ],
+  [
+   "A5",
+   "Structure",
+   "2",
+   "Every useful page is at most 3 clicks from the home page"
+  ],
+  [
+   "B1",
+   "Real-user Core Web Vitals",
+   "NV",
+   "Not enough visitors for real-user data"
+  ],
+  [
+   "B2",
+   "Mobile performance",
+   "1",
+   "PageSpeed mobile 58/100, main element in 6.2 s"
+  ],
+  [
+   "B3",
+   "Images",
+   "0",
+   "JPEG photos of 1.2 to 1.6 MB on the home page, with no `srcset`"
+  ],
+  [
+   "B4",
+   "Code",
+   "1",
+   "2 blocking scripts, no mixed content"
+  ],
+  [
+   "B5",
+   "Mobile",
+   "2",
+   "Displays correctly at 375 px, viewport declared"
+  ],
+  [
+   "C1",
+   "Encryption",
+   "2",
+   "SSL Labs A, TLS 1.3, HSTS present"
+  ],
+  [
+   "C2",
+   "Security headers",
+   "0",
+   "Security Headers D: CSP, Referrer-Policy, Permissions-Policy missing; “nginx/1.18.0” shown"
+  ],
+  [
+   "C3",
+   "Transport",
+   "1",
+   "gzip compression, but images served with no caching (`max-age=0`)"
+  ],
+  [
+   "C4",
+   "Response time",
+   "2",
+   "Median TTFB 310 ms"
+  ],
+  [
+   "C5",
+   "Privacy",
+   "2",
+   "No trackers before consent, “Refuse” button at the same level"
+  ],
+  [
+   "D1",
+   "Titles, descriptions and sharing",
+   "0",
+   "9 titles “Atelier Lumen”, 41 pages without a description, no share preview"
+  ],
+  [
+   "D2",
+   "Headings",
+   "1",
+   "6 pages without an H1, 3 with two H1s"
+  ],
+  [
+   "D3",
+   "Depth",
+   "1",
+   "Feature pages of 150 to 250 words"
+  ],
+  [
+   "D4",
+   "Accuracy",
+   "1",
+   "2 mistakes; 1,200 customer tradespeople on the home page, 900 on “About”"
+  ],
+  [
+   "D5",
+   "Freshness and languages",
+   "0",
+   "Latest article from March 2024; site in a single language"
+  ],
+  [
+   "E1",
+   "The 5 seconds",
+   "2",
+   "“Your quotes and your jobs, on one screen”"
+  ],
+  [
+   "E2",
+   "Call to action and intermediate offer",
+   "1",
+   "“Free trial” missing from the feature pages, no intermediate offer"
+  ],
+  [
+   "E3",
+   "Form",
+   "2",
+   "4 labelled fields, confirmation shown"
+  ],
+  [
+   "E4",
+   "Proof and trust",
+   "1",
+   "Customer logos with no testimonial or figure, no author on the articles"
+  ],
+  [
+   "E5",
+   "Accessibility",
+   "1",
+   "WAVE: AIM score 6.1, 23 images without a description, 4 low contrasts"
+  ],
+  [
+   "F1",
+   "Structured data",
+   "0",
+   "No structured data detected"
+  ],
+  [
+   "F2",
+   "AI access",
+   "1",
+   "AI robots allowed, no llms.txt"
+  ],
+  [
+   "F3",
+   "Entity",
+   "1",
+   "“About” page without a year or an address, no Wikidata entry"
+  ],
+  [
+   "F4",
+   "Citable content and authority",
+   "0",
+   "No FAQ or buying guide, 12 domains link to the site"
+  ],
+  [
+   "F5",
+   "Presence in answers",
+   "0",
+   "Cited in 0 of 16 answers on the market questions"
+  ]
+ ],
+ "evolution": {
+  "title": "Since the previous audit",
+  "intro": "First audit with this grid: it serves as the starting point",
+  "head": [
+   "Finding",
+   "Status"
+  ],
+  "rows": [
+   [
+    "Fake 404",
+    "still there"
+   ]
+  ]
+ },
+ "fautes": [
+  [
+   "p",
+   "Mistakes found by LanguageTool and checked by hand:"
+  ],
+  [
+   "li",
+   "Home page: “a quote sended” → “a quote sent”"
+  ],
+  [
+   "li",
+   "Blog: “the tradespeople who has tried it” → “who have tried it”"
+  ]
+ ],
+ "captures": {
+  "01": [
+   "PageSpeed Insights",
+   "Main element shown in 6.2 s (target: 2.5 s)",
+   "10 am",
+   "d-vitesse"
+  ],
+  "09": [
+   "PageSpeed Insights",
+   "Not enough visitors for real-user data",
+   "10 am",
+   "d-vitesse"
+  ],
+  "02": [
+   "Security Headers",
+   "Content-Security-Policy, X-Frame-Options, Referrer-Policy and Permissions-Policy are missing",
+   "10 am",
+   "d-securite"
+  ],
+  "13": [
+   "SSL Server Test",
+   "TLS 1.3, certificate valid until March 2027",
+   "10 am",
+   "d-securite"
+  ],
+  "12": [
+   "Webbkoll",
+   "No request to a third party before the banner is clicked",
+   "10 am",
+   "d-securite"
+  ],
+  "40": [
+   "Share preview",
+   "LinkedIn shows only the address and the title “Atelier Lumen”",
+   "10 am",
+   "d-pages"
+  ],
+  "15": [
+   "WAVE",
+   "23 images without a description",
+   "10 am",
+   "d-pages"
+  ],
+  "10": [
+   "Nu HTML Checker",
+   "Duplicate attributes, badly closed tags in the footer",
+   "10 am",
+   "d-pages"
+  ],
+  "06": [
+   "“site:” search",
+   "Google shows “1,200 tradespeople” and “900 tradespeople” in two descriptions",
+   "10 am",
+   "d-faits"
+  ],
+  "07": [
+   "Rich Results Test",
+   "No item detected on the home page",
+   "10 am",
+   "d-google"
+  ],
+  "22": [
+   "Wikidata",
+   "Neither Atelier Lumen nor its publisher",
+   "10 am",
+   "d-ia"
+  ],
+  "04": [
+   "ChatGPT",
+   "Q1: not cited",
+   "11 am",
+   "d-ia"
+  ],
+  "23": [
+   "ChatGPT",
+   "Q2: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "24": [
+   "ChatGPT",
+   "Q3: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "25": [
+   "ChatGPT",
+   "Q4: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "26": [
+   "ChatGPT",
+   "Q5: cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "05": [
+   "Google AI Mode",
+   "Q1: not cited",
+   "11 am",
+   "d-ia"
+  ],
+  "27": [
+   "Google AI Mode",
+   "Q2: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "28": [
+   "Google AI Mode",
+   "Q3: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "29": [
+   "Google AI Mode",
+   "Q4: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "30": [
+   "Google AI Mode",
+   "Q5: cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "17": [
+   "Brave",
+   "Q1: not cited",
+   "11 am",
+   "d-ia"
+  ],
+  "31": [
+   "Brave",
+   "Q2: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "32": [
+   "Brave",
+   "Q3: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "33": [
+   "Brave",
+   "Q4: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "34": [
+   "Brave",
+   "Q5: cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "03": [
+   "Perplexity",
+   "Q1: not cited",
+   "11 am",
+   "d-ia"
+  ],
+  "35": [
+   "Perplexity",
+   "Q2: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "36": [
+   "Perplexity",
+   "Q3: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "37": [
+   "Perplexity",
+   "Q4: not cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "38": [
+   "Perplexity",
+   "Q5: cited",
+   "3 pm",
+   "d-ia"
+  ],
+  "site-01": [
+   "Home page",
+   "Cookie banner",
+   "2 pm",
+   "d-securite"
+  ],
+  "site-03": [
+   "About",
+   "Customer figure",
+   "2 pm",
+   "d-faits"
+  ],
+  "site-04": [
+   "Feature",
+   "Generic title",
+   "2 pm",
+   "d-pages"
+  ],
+  "site-05": [
+   "Unknown address",
+   "Fake 404",
+   "2 pm",
+   "d-google"
+  ],
+  "site-06": [
+   "Quotes page",
+   "No call to action",
+   "2 pm",
+   "d-conversion"
+  ],
+  "site-07": [
+   "Blog",
+   "Latest article from 2024",
+   "2 pm",
+   "d-blog"
+  ],
+  "site-08": [
+   "Home page at 375 px",
+   "Heavy images",
+   "2 pm",
+   "d-vitesse"
+  ],
+  "site-09": [
+   "Page without JavaScript",
+   "31 words",
+   "2 pm",
+   "d-infra"
+  ],
+  "08": [
+   "HTTP Observatory",
+   "Same missing headers as on Security Headers",
+   "10 am",
+   "d-securite"
+  ],
+  "14": [
+   "Internet.nl",
+   "HTTPS correct, IPv6 and DNSSEC missing",
+   "10 am",
+   "d-securite"
+  ],
+  "11": [
+   "Blacklight",
+   "No tracker, no session recording",
+   "10 am",
+   "d-securite"
+  ],
+  "21": [
+   "Brand search",
+   "The site comes first, with the figure of 1,200 tradespeople",
+   "10 am",
+   "d-faits"
+  ],
+  "16": [
+   "Schema Markup Validator",
+   "No item detected on the home page",
+   "10 am",
+   "d-google"
+  ],
+  "18": [
+   "Similarweb",
+   "No traffic estimate available",
+   "10 am",
+   "d-google"
+  ],
+  "41": [
+   "Backlink checker",
+   "Twelve domains, no trade media",
+   "10 am",
+   "d-ia"
+  ]
+ },
+ "documents": [
+  [
+   "Detailed report",
+   "2026-11-02 SEO GEO Audit - atelier-lumen.example.md"
+  ],
+  [
+   "To-do",
+   "2026-11-02 SEO GEO To-do - atelier-lumen.example.md"
+  ],
+  [
+   "Re-measurement protocol",
+   "2026-11-02 SEO GEO Re-measurement Protocol.md"
+  ]
+ ],
+ "footer_note": "Fictional example: none of these measurements relates to a real site",
+ "competitors_regex": "Chantio|Batiplan|Devisor",
+ "view": {
+  "google": {
+   "url": "https://www.atelier-lumen.example/",
+   "title": "Atelier Lumen",
+   "desc": ""
+  },
+  "share": {
+   "domain": "atelier-lumen.example",
+   "title": "",
+   "desc": "",
+   "image": null
+  },
+  "pages": [
+   {
+    "url": "https://www.atelier-lumen.example/",
+    "words": 620,
+    "image": "site-01",
+    "excerpt": "Your quotes and your jobs, on one screen. Write a quote in two minutes and get it signed on site."
+   },
+   {
+    "url": "https://www.atelier-lumen.example/features/quotes",
+    "words": 31,
+    "image": "site-09",
+    "excerpt": "You need to enable JavaScript to run this app."
+   }
+  ]
+ }
+}

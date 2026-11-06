@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Encadre en rouge le défaut sur une capture, sans rien modifier d'autre.
+"""Draws a red box around the defect on a screenshot, and changes nothing else.
 
-  python3 annotate.py capture.jpg sortie.jpg x0,y0,x1,y1 [x0,y0,x1,y1 …]
+  python3 annotate.py screenshot.jpg output.jpg x0,y0,x1,y1 [x0,y0,x1,y1 ...]
 
-Coordonnées en pixels de l'image. Vérifier le résultat à l'œil : un cadre mal placé est pire que pas de cadre.
-Captures du navigateur intégré : le préréglage « desktop » donne une fenêtre de 1024 px et une image de 800 px
-(coordonnées de la page × 0,78125)."""
+Coordinates are image pixels. Check the result by eye: a misplaced box is worse than no box.
+Screenshots from the built-in browser: the "desktop" preset gives a 1024 px window and an 800 px image
+(page coordinates x 0.78125)."""
 import sys
 from PIL import Image, ImageDraw
 

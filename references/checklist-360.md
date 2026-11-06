@@ -1,88 +1,88 @@
-# La checklist 360°
+# The 360° checklist
 
-Tous les contrôles de l'audit, rangés par voie : **Contenu** (`C`), **Front-end** (`F`), **Back-end et infra** (`B`). Chaque ligne dit comment le vérifier, la correction type, la priorité par défaut et le critère de la grille qu'elle touche. On part de la correction type, puis on l'adapte au site : son CMS ou son framework, ses pages, ses chiffres.
+Every check of the audit, sorted by lane: **Content** (`C`), **Front-end** (`F`), **Back-end and infra** (`B`). Each row says how to verify it, the standard fix, the default priority and the grid criterion it affects. Start from the standard fix, then adapt it to the site: its CMS or framework, its pages, its figures.
 
-Priorités : **P1** bloquant (Google ou les IA ne peuvent pas lire le site, ou la confiance est abîmée), **P2** important (fait perdre des visiteurs, des citations ou des demandes), **P3** finition. Une priorité peut monter ou descendre selon le site : une fausse 404 sur un site de 10 pages est P2, sur un site de 5 000 pages elle est P1.
+Priorities: **P1** blocking (Google or the AIs cannot read the site, or trust is damaged), **P2** important (loses visitors, citations or enquiries), **P3** polish. A priority can go up or down depending on the site: a false 404 on a 10-page site is P2, on a 5,000-page site it is P1.
 
-Sources des preuves : `summary.json` et `checks.json` du crawl (clé entre crochets), les outils par leur numéro (`references/outils.md`), le panel IA (`panel-geo.md`), ou une capture du site.
+Sources of evidence: `summary.json` and `checks.json` from the crawl (key in square brackets), the tools by their number (`references/tools.md`), the AI panel (`ai-panel.md`), or a screenshot of the site.
 
-## Contenu · ce qui se règle sans développeur
+## Content · what you fix without a developer
 
-| Contrôle | Preuve | Correction type | Vérifié quand | Prio | Critère |
+| Check | Evidence | Standard fix | Verified when | Prio | Criterion |
 |---|---|---|---|---|---|
-| Les mêmes faits partout (clients, année, équipe, certifications, prix) | captures site, outil 06, Q5 du panel | Une fiche de faits validée, reportée sur chaque page | la recherche « site: » n'affiche plus qu'une version | P1 | D4 |
-| Titles uniques et descriptifs (50 à 60 caractères, le sujet d'abord, la marque à la fin) | [titres_doublons], [titres_longs_65] | Réécrire chaque title en défaut | le crawl ne trouve ni doublon ni title de plus de 65 caractères | P2 | D1 |
-| Descriptions présentes (140 à 160 caractères, une promesse et un appel) | [sans_description] | Écrire une description par page | le crawl compte 0 page sans description | P2 | D1 |
-| Aperçu de partage (titre, description, image 1200 × 630) | [sans_open_graph], outil 40 | Remplir les champs de partage du CMS | l'aperçu de l'outil 40 est complet | P3 | D1 |
-| Un H1 par page, des H2 qui découpent la page | [h1_different_de_1] | Corriger les titres dans l'éditeur | le crawl compte 0 page en défaut | P2 | D2 |
-| Mots collés, fautes | [mots_colles], `lt-<lang>.json` | Corriger chaque alerte relue | lt.py ne renvoie plus que des faux positifs | P2 | D4 |
-| Textes alternatifs des images utiles (décoratives : alt vide) | [images_sans_alt], outil 15 | Décrire chaque image utile dans le CMS | WAVE ne signale plus d'image sans description | P2 | E5 |
-| Pages qui répondent aux questions du public (pas seulement des slogans) | [pages_maigres_300_mots], lecture | Ajouter à chaque page clé les questions, les cas d'usage, les chiffres | chaque page clé dépasse 300 mots utiles | P2 | D3 |
-| Blog daté, récent, sans article périmé en avant | [pages_datees], captures blog | Trier : garder, fusionner, retirer (avec redirection, voir B) | plus aucun article périmé en première page | P2 | D5 |
-| Traductions complètes, sans reste d'une autre langue | [lang], captures | Traduire ou retirer la page de la langue | chaque langue n'a que des pages dans sa langue | P2 | D5 |
-| Une page « à propos » qui identifie l'entreprise (nom légal, adresse, année, dirigeants, chiffres sourcés) | capture site-03 | Compléter la page | les 4 éléments sont en ligne | P1 | F3 |
-| Auteurs nommés et dates sur les articles | lecture | Ajouter un auteur réel et une date à chaque article | chaque article a les deux | P3 | E4 |
-| Preuves : clients, témoignages, chiffres sourcés, labels | capture site-02 | Ajouter des preuves avec leur contexte | l'accueil montre au moins 3 preuves vérifiables | P2 | E4 |
-| Un appel à l'action principal sur chaque page clé | captures | Ajouter le bouton principal aux pages qui n'en ont pas | chaque page clé a son appel | P2 | E2 |
-| Une offre intermédiaire (guide, grille, essai, webinaire) | lecture | Créer l'offre et la relier aux pages | l'offre est en ligne avec son formulaire | P3 | E2 |
-| FAQ, guides de choix, définitions | lecture, panel IA | Écrire les pages que les IA citent à notre place | les pages sont en ligne et reliées entre elles | P2 | F4 |
-| Fiche Wikidata, profils cohérents (LinkedIn, annuaires) | outil 22 | Créer ou corriger la fiche, aligner les profils | la fiche existe avec le site officiel | P3 | F3 |
-| Fiche Google Business Profile (activité locale seulement) | recherche de marque | Créer ou compléter la fiche (horaires, catégorie, photos, avis) | la fiche s'affiche sur la recherche de marque | P2 | F3 |
-| Liens et mentions depuis des sites sérieux | outil 41 | Viser la presse spécialisée, les partenaires, les annuaires du secteur | de nouveaux domaines renvoient vers le site | P3 | F4 |
-| Faits repris par les IA justes (Q5) | panel IA | Corriger la source qu'elles citent (page, profil, Wikidata) | Q5 ne contient plus de chiffre faux à la remesure | P2 | F5 |
+| The same facts everywhere (clients, year, team, certifications, prices) | site screenshots, tool 06, panel Q5 | One validated fact sheet, carried over to every page | the "site:" search shows only one version | P1 | D4 |
+| Unique, descriptive titles (50 to 60 characters, topic first, brand last) | [titres_doublons], [titres_longs_65] | Rewrite each faulty title | the crawl finds no duplicate and no title over 65 characters | P2 | D1 |
+| Descriptions present (140 to 160 characters, a promise and a call to action) | [sans_description] | Write one description per page | the crawl counts 0 pages without a description | P2 | D1 |
+| Share preview (title, description, 1200 × 630 image) | [sans_open_graph], tool 40 | Fill in the CMS sharing fields | the preview in tool 40 is complete | P3 | D1 |
+| One H1 per page, H2s that break the page up | [h1_different_de_1] | Fix the headings in the editor | the crawl counts 0 faulty pages | P2 | D2 |
+| Glued words, typos | [mots_colles], `lt-<lang>.json` | Fix each reviewed alert | lt.py returns only false positives | P2 | D4 |
+| Alt text on useful images (decorative: empty alt) | [images_sans_alt], tool 15 | Describe each useful image in the CMS | WAVE reports no image without a description | P2 | E5 |
+| Pages that answer the audience's questions (not just slogans) | [pages_maigres_300_mots], reading | Add the questions, use cases and figures to each key page | every key page exceeds 300 useful words | P2 | D3 |
+| Blog that is dated, recent, with no outdated article up front | [pages_datees], blog screenshots | Sort: keep, merge, remove (with a redirect, see B) | no outdated article left on the first page | P2 | D5 |
+| Complete translations, with no leftovers from another language | [lang], screenshots | Translate the page or remove it from the language | each language has only pages in its own language | P2 | D5 |
+| An "about" page that identifies the company (legal name, address, year, executives, sourced figures) | screenshot site-03 | Complete the page | all 4 items are online | P1 | F3 |
+| Named authors and dates on articles | reading | Add a real author and a date to each article | every article has both | P3 | E4 |
+| Proof: clients, testimonials, sourced figures, labels | screenshot site-02 | Add proof with its context | the home page shows at least 3 verifiable proofs | P2 | E4 |
+| One main call to action on each key page | screenshots | Add the main button to pages that lack one | every key page has its call to action | P2 | E2 |
+| An intermediate offer (guide, grid, trial, webinar) | reading | Create the offer and link it from the pages | the offer is online with its form | P3 | E2 |
+| FAQ, buying guides, definitions | reading, AI panel | Write the pages the AIs cite in our place | the pages are online and linked to each other | P2 | F4 |
+| Wikidata entry, consistent profiles (LinkedIn, directories) | tool 22 | Create or fix the entry, align the profiles | the entry exists with the official site | P3 | F3 |
+| Google Business Profile (local business only) | brand search | Create or complete the profile (hours, category, photos, reviews) | the profile shows on the brand search | P2 | F3 |
+| Links and mentions from reputable sites | tool 41 | Target the trade press, partners, sector directories | new domains link to the site | P3 | F4 |
+| Facts repeated by the AIs are correct (Q5) | AI panel | Fix the source they cite (page, profile, Wikidata) | Q5 contains no wrong figure at the remeasure | P2 | F5 |
 
-## Front-end · ce qui se règle dans le code des pages
+## Front-end · what you fix in the page code
 
-| Contrôle | Preuve | Correction type | Vérifié quand | Prio | Critère |
+| Check | Evidence | Standard fix | Verified when | Prio | Criterion |
 |---|---|---|---|---|---|
-| Contenu lisible sans JavaScript | [rendu_js_probable], page sans JS | Rendu côté serveur ou génération statique (SSR, SSG) pour les pages publiques | le HTML reçu contient le texte principal et les liens | P1 | A4 |
-| Liens en vraies balises `<a href>` | lecture du HTML | Remplacer les liens en JavaScript (`onclick`) par des liens | chaque lien du menu a son `href` | P1 | A4 |
-| Balises de tête dans le HTML reçu (title, description, canonical, hreflang, robots) | crawl | Les générer côté serveur, une fois par page | le crawl les trouve sur chaque page | P1 | A2 |
-| Données structurées par type de page | outils 07 et 16, [jsonld_types] | Organization (avec `sameAs`) sur tout le site ; Product, SoftwareApplication, Service, LocalBusiness, Article, FAQPage, BreadcrumbList selon les pages | le test des résultats enrichis les détecte sans erreur | P2 | F1 |
-| LCP sous 2,5 s | outils 01 et 09 | Image principale en priorité (`fetchpriority="high"`, pas de lazy), préchargée, au bon format | PageSpeed mobile ≥ 75 sur 3 passages | P2 | B1, B2 |
-| INP sous 200 ms | outil 09 (données réelles) | Découper les tâches JavaScript longues, différer les scripts tiers | l'INP réel passe au vert | P2 | B1 |
-| CLS sous 0,1 | outils 01 et 09 | Dimensions sur les images et les vidéos, place réservée aux bandeaux, `font-display: swap` avec polices ajustées | le CLS passe au vert | P2 | B1 |
-| Images au bon format et à la bonne taille | outil 01, [html_lourd_100ko] | WebP ou AVIF, `srcset` et `sizes`, `loading="lazy"` sous la ligne de flottaison | PageSpeed ne signale plus d'image à optimiser | P2 | B3 |
-| JavaScript et CSS bloquants ou inutilisés | outil 01 | Différer (`defer`), découper, retirer le code mort, CSS critique en ligne | PageSpeed ne signale plus de ressource bloquante | P2 | B4 |
-| Polices | outil 01 | Auto-héberger, précharger, limiter les graisses, sous-ensembles | pas de saut de texte au chargement | P3 | B4 |
-| Contenu mixte http | [contenu_mixte_http] | Passer chaque ressource en https | le crawl compte 0 page en défaut | P1 | B4 |
-| Viewport et affichage à 375 px | [sans_viewport], captures site-08 et 09 | `<meta name="viewport" content="width=device-width, initial-scale=1">`, grilles qui se replient | pas de défilement horizontal à 375 px | P1 | B5 |
-| Zones cliquables d'au moins 24 × 24 px | outil 01 (accessibilité) | Agrandir boutons et liens du menu mobile | Lighthouse ne signale plus de cible trop petite | P3 | B5 |
-| Contrastes | outil 15 | Foncer les textes clairs (4,5:1 pour le texte courant) | WAVE ne signale plus de contraste | P2 | E5 |
-| Navigation au clavier et focus visible | test à la main (Tab) | Style `:focus-visible`, ordre logique, lien « aller au contenu » | on parcourt la page au clavier sans se perdre | P2 | E5 |
-| Formulaire accessible et qui confirme | capture site-05 | Étiquettes `<label>`, messages d'erreur clairs, confirmation | WAVE ne signale rien sur le formulaire | P2 | E3 |
-| HTML valide et sémantique (`header`, `nav`, `main`, `footer`) | outil 10 | Corriger les erreurs du gabarit | le validateur W3C compte moins de 5 erreurs | P3 | D2 |
-| Fil d'Ariane et liens entre pages proches | lecture | Fil d'Ariane, blocs « à lire aussi » | chaque page utile reçoit au moins 3 liens internes | P3 | A5 |
-| Pagination et filtres | crawl | Pages de liste indexables, filtres en `noindex` ou canonical vers la liste | pas de milliers d'adresses de filtres dans le crawl | P2 | A5 |
+| Content readable without JavaScript | [rendu_js_probable], page without JS | Server-side rendering or static generation (SSR, SSG) for public pages | the received HTML contains the main text and the links | P1 | A4 |
+| Links as real `<a href>` tags | reading the HTML | Replace JavaScript links (`onclick`) with real links | every menu link has its `href` | P1 | A4 |
+| Head tags in the received HTML (title, description, canonical, hreflang, robots) | crawl | Generate them server-side, once per page | the crawl finds them on every page | P1 | A2 |
+| Structured data by page type | tools 07 and 16, [jsonld_types] | Organization (with `sameAs`) across the whole site; Product, SoftwareApplication, Service, LocalBusiness, Article, FAQPage, BreadcrumbList depending on the pages | the rich results test detects them with no error | P2 | F1 |
+| LCP under 2.5 s | tools 01 and 09 | Main image first (`fetchpriority="high"`, no lazy loading), preloaded, in the right format | PageSpeed mobile ≥ 75 over 3 runs | P2 | B1, B2 |
+| INP under 200 ms | tool 09 (field data) | Break up long JavaScript tasks, defer third-party scripts | the real INP turns green | P2 | B1 |
+| CLS under 0.1 | tools 01 and 09 | Dimensions on images and videos, reserved space for banners, `font-display: swap` with adjusted fonts | the CLS turns green | P2 | B1 |
+| Images in the right format and size | tool 01, [html_lourd_100ko] | WebP or AVIF, `srcset` and `sizes`, `loading="lazy"` below the fold | PageSpeed no longer flags any image to optimise | P2 | B3 |
+| Blocking or unused JavaScript and CSS | tool 01 | Defer (`defer`), split, remove dead code, inline critical CSS | PageSpeed no longer flags any blocking resource | P2 | B4 |
+| Fonts | tool 01 | Self-host, preload, limit the weights, subsets | no text jump while loading | P3 | B4 |
+| Mixed http content | [contenu_mixte_http] | Switch every resource to https | the crawl counts 0 faulty pages | P1 | B4 |
+| Viewport and display at 375 px | [sans_viewport], screenshots site-08 and 09 | `<meta name="viewport" content="width=device-width, initial-scale=1">`, grids that collapse | no horizontal scrolling at 375 px | P1 | B5 |
+| Tap targets of at least 24 × 24 px | tool 01 (accessibility) | Enlarge buttons and mobile menu links | Lighthouse no longer flags a target that is too small | P3 | B5 |
+| Contrast | tool 15 | Darken light text (4.5:1 for body text) | WAVE no longer flags any contrast | P2 | E5 |
+| Keyboard navigation and visible focus | manual test (Tab) | `:focus-visible` style, logical order, "skip to content" link | you can go through the page by keyboard without getting lost | P2 | E5 |
+| Accessible form that confirms | screenshot site-05 | `<label>` tags, clear error messages, confirmation | WAVE flags nothing on the form | P2 | E3 |
+| Valid, semantic HTML (`header`, `nav`, `main`, `footer`) | tool 10 | Fix the template errors | the W3C validator counts fewer than 5 errors | P3 | D2 |
+| Breadcrumb and links between related pages | reading | Breadcrumb, "read also" blocks | each useful page receives at least 3 internal links | P3 | A5 |
+| Pagination and filters | crawl | Indexable list pages, filters set to `noindex` or canonical to the list | no thousands of filter URLs in the crawl | P2 | A5 |
 
-## Back-end et infra · ce qui se règle sur le serveur
+## Back-end and infra · what you fix on the server
 
-| Contrôle | Preuve | Correction type | Vérifié quand | Prio | Critère |
+| Check | Evidence | Standard fix | Verified when | Prio | Criterion |
 |---|---|---|---|---|---|
-| Accès à Search Console et Bing Webmaster Tools | — | Valider le domaine (enregistrement DNS), y déclarer le sitemap | les clics et les positions sont lisibles | P1 | (limites) |
-| robots.txt n'empêche rien d'utile | `robots.txt` du crawl, [robots_bloque] | Retirer les blocages de CSS, JS, images, pages utiles | le crawl ne trouve plus de blocage utile | P1 | A1 |
-| Robots des IA | [robots_ia] dans `checks.json` | Autoriser au moins les robots de recherche (OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot, Bingbot) ; décider en conscience pour ceux d'entraînement (GPTBot, Google-Extended, CCBot) ; vérifier aussi le pare-feu | les robots voulus sont « autorisé » et le pare-feu ne les bloque pas | P1 | F2 |
-| llms.txt | [llms_txt] | Publier `/llms.txt` : une phrase sur l'entreprise et les liens vers les pages de référence | `/llms.txt` répond 200 | P3 | F2 |
-| Sitemap complet et à jour | [plan_du_site], [pages_hors_plan] | Générer le sitemap automatiquement, avec `lastmod`, et le déclarer dans robots.txt | les pages utiles y sont toutes, et rien d'autre | P2 | A1 |
-| Une seule adresse par page | [checks.autre_hote], [checks.http], [sans_canonical] | Redirections 301 vers la version https choisie (avec ou sans www), canonical sur chaque page | les autres versions redirigent en une seule étape | P1 | A2 |
-| hreflang (sites en plusieurs langues) | crawl | Balises réciproques, `x-default` | chaque langue renvoie vers les autres | P2 | A2 |
-| Vraie 404 | [checks.fausse_404] | Renvoyer le code 404 sur une adresse inconnue, avec une page utile | `checks.json` indique « vraie 404 » | P2 | A3 |
-| Pas de liens cassés ni de chaînes de redirections | [codes] | Corriger les liens, rediriger en une étape | le crawl ne compte plus de 404 ni de chaîne | P2 | A3 |
-| Redirections des pages retirées | tri du blog | Une 301 vers la page la plus proche, jamais vers l'accueil par défaut | chaque ancienne adresse redirige vers une page proche | P2 | A3 |
-| Pas d'erreurs 5xx | [codes] | Corriger la cause côté serveur, surveiller | le crawl ne compte plus de 5xx | P1 | A3 |
-| Certificat, TLS, HSTS | outils 13 et 14 | TLS 1.2 et 1.3 seulement, HSTS avec `max-age` d'au moins 6 mois | SSL Labs donne A ou A+ | P1 | C1 |
-| En-têtes de sécurité | outils 02 et 08, [checks.accueil.securite] | Content-Security-Policy, X-Content-Type-Options, frame-ancestors ou X-Frame-Options, Referrer-Policy, Permissions-Policy | Security Headers donne B ou mieux | P2 | C2 |
-| Version du serveur masquée | [version_serveur_affichee] | Retirer la version des en-têtes `Server` et `X-Powered-By` | aucune version n'apparaît | P3 | C2 |
-| Compression | [checks.accueil.compression] | Brotli (ou gzip) sur HTML, CSS, JS, SVG | la compression n'est plus « aucune » | P2 | C3 |
-| Cache des fichiers statiques | [sans_cache], outil 01 | `Cache-Control: public, max-age=31536000, immutable` sur les fichiers versionnés | PageSpeed ne signale plus de cache trop court | P2 | C3 |
-| HTTP/2 ou HTTP/3, CDN | outil 14, en-têtes | Activer chez l'hébergeur ou le CDN | le test le confirme | P3 | C3 |
-| Temps de réponse du serveur | [ttfb_median_ms], outil 01 | Cache de pages, CDN, requêtes en base plus légères | TTFB médian sous 800 ms | P2 | C4 |
-| Aucun traceur avant consentement | outils 11 et 12, capture site-01 | Bloquer les scripts tiers jusqu'au clic, mode de consentement | Webbkoll ne voit aucune requête tierce avant accord | P1 | C5 |
-| Un refus aussi simple que l'acceptation | capture site-01 | Bouton « Refuser » au même niveau que « Accepter » | le bandeau a les deux boutons | P2 | C5 |
-| Mesure d'audience en place et conforme | lecture, outil 12 | Outil de mesure respectueux ou soumis au consentement, objectifs de conversion déclarés | les demandes sont comptées | P2 | (limites) |
-| Sauvegardes et surveillance de disponibilité | — | Surveillance de l'accueil et du formulaire, alerte en cas de panne | une alerte de test arrive | P3 | C4 |
+| Access to Search Console and Bing Webmaster Tools | — | Verify the domain (DNS record), submit the sitemap there | clicks and positions are readable | P1 | (limits) |
+| robots.txt blocks nothing useful | `robots.txt` from the crawl, [robots_bloque] | Remove the blocks on CSS, JS, images, useful pages | the crawl no longer finds a useful block | P1 | A1 |
+| AI robots | [robots_ia] in `checks.json` | Allow at least the search robots (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Bingbot); decide deliberately for the training ones (GPTBot, Google-Extended, CCBot); also check the firewall | the wanted robots are "allowed" and the firewall does not block them | P1 | F2 |
+| llms.txt | [llms_txt] | Publish `/llms.txt`: one sentence about the company and links to the reference pages | `/llms.txt` returns 200 | P3 | F2 |
+| Complete, up-to-date sitemap | [plan_du_site], [pages_hors_plan] | Generate the sitemap automatically, with `lastmod`, and declare it in robots.txt | all useful pages are in it, and nothing else | P2 | A1 |
+| One address per page | [checks.autre_hote], [checks.http], [sans_canonical] | 301 redirects to the chosen https version (with or without www), canonical on every page | the other versions redirect in a single step | P1 | A2 |
+| hreflang (multilingual sites) | crawl | Reciprocal tags, `x-default` | each language links to the others | P2 | A2 |
+| A real 404 | [checks.fausse_404] | Return the 404 code on an unknown address, with a useful page | `checks.json` says "vraie 404" | P2 | A3 |
+| No broken links or redirect chains | [codes] | Fix the links, redirect in one step | the crawl no longer counts any 404 or chain | P2 | A3 |
+| Redirects for removed pages | blog triage | A 301 to the closest page, never to the home page by default | every old address redirects to a related page | P2 | A3 |
+| No 5xx errors | [codes] | Fix the cause on the server, monitor | the crawl no longer counts any 5xx | P1 | A3 |
+| Certificate, TLS, HSTS | tools 13 and 14 | TLS 1.2 and 1.3 only, HSTS with a `max-age` of at least 6 months | SSL Labs gives A or A+ | P1 | C1 |
+| Security headers | tools 02 and 08, [checks.accueil.securite] | Content-Security-Policy, X-Content-Type-Options, frame-ancestors or X-Frame-Options, Referrer-Policy, Permissions-Policy | Security Headers gives B or better | P2 | C2 |
+| Server version hidden | [version_serveur_affichee] | Remove the version from the `Server` and `X-Powered-By` headers | no version appears | P3 | C2 |
+| Compression | [checks.accueil.compression] | Brotli (or gzip) on HTML, CSS, JS, SVG | compression is no longer "aucune" | P2 | C3 |
+| Cache for static files | [sans_cache], tool 01 | `Cache-Control: public, max-age=31536000, immutable` on versioned files | PageSpeed no longer flags a cache that is too short | P2 | C3 |
+| HTTP/2 or HTTP/3, CDN | tool 14, headers | Enable at the host or the CDN | the test confirms it | P3 | C3 |
+| Server response time | [ttfb_median_ms], tool 01 | Page cache, CDN, lighter database queries | median TTFB under 800 ms | P2 | C4 |
+| No tracker before consent | tools 11 and 12, screenshot site-01 | Block third-party scripts until the click, consent mode | Webbkoll sees no third-party request before consent | P1 | C5 |
+| Refusing as easy as accepting | screenshot site-01 | A "Refuse" button at the same level as "Accept" | the banner has both buttons | P2 | C5 |
+| Audience measurement in place and compliant | reading, tool 12 | A privacy-friendly measurement tool, or one subject to consent, with conversion goals declared | enquiries are counted | P2 | (limits) |
+| Backups and uptime monitoring | — | Monitor the home page and the form, alert on failure | a test alert arrives | P3 | C4 |
 
-## Ce qui ne se coche pas
+## What you do not tick off
 
-- **Une position dans Google** ou **une citation par une IA** : ce sont des résultats, pas des tâches. Ils se suivent dans le tableau de référence et à la remesure.
-- **Le volume de trafic** (Similarweb) : une tendance, jamais un objectif.
+- **A position in Google** or **a citation by an AI**: these are results, not tasks. They are tracked in the reference table and at the remeasure.
+- **Traffic volume** (Similarweb): a trend, never a goal.

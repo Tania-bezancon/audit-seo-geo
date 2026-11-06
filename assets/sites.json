@@ -1,13 +1,18 @@
 {
-  "_lisez-moi": "Les sites déjà audités : quand l'URL demandée est ici, le skill ne pose aucune question. Ajouter un site après son premier audit. priorites : l'ordre des groupes de la to-do (facultatif).",
+  "_readme": "An example of the format. Your own sites go in ~/.claude/audit-seo-geo/sites.json, which updates keep: when the requested URL is there, the skill asks no question. priorites: the order of the to-do groups (optional).",
   "atelier-lumen.example": {
-    "activite": "logiciel de devis et de planning pour artisans du bâtiment (site fictif)",
-    "public": "artisans et petites entreprises du bâtiment",
-    "zone": "la France",
-    "objectif": "essais gratuits",
-    "theme": "exemple",
-    "validateur": "le responsable produit",
+    "activite": "quoting and scheduling software for UK tradespeople (fictional site)",
+    "public": "tradespeople and small building firms",
+    "zone": "the United Kingdom",
+    "objectif": "free trials",
+    "theme": "signature",
+    "validateur": "the product manager",
     "dossier": "~/Audits/atelier-lumen/",
-    "priorites": ["Les faits", "Des pages propres", "Le blog", "SEO et GEO"]
+    "priorites": [
+      "The facts",
+      "Clean pages",
+      "The blog",
+      "SEO and GEO"
+    ]
   }
 }

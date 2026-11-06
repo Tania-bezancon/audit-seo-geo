@@ -1,183 +1,250 @@
-<p align="center"><img src="docs/cover.png" alt="audit-seo-geo : auditer un site à 360°" width="100%"></p>
+<p align="center"><img src="docs/cover.png" alt="audit-seo-geo: audit your site, fix it, check it holds" width="100%"></p>
 
 # audit-seo-geo
 
-**Le skill Claude qui audite n'importe quel site à 360° : ce que Google peut lire, ce que vivent les visiteurs, ce que fait le serveur, ce que disent les textes et ce que répondent les IA. Chaque constat a sa preuve, chaque problème devient une tâche, rangée dans la bonne to-do : contenu, front-end ou back-end.**
+**A Claude skill that audits any website the same way every time: what Google can read, what visitors experience, what the server does, what the copy says, and what AI assistants really answer. Every finding has its evidence, and every problem becomes a task for the person who can fix it. Then, if you want, it applies the fixes in your code on a branch, and checks on your live site what holds.**
 
-[Voir la page du projet](https://tania-bezancon.github.io/audit-seo-geo/) · [Ouvrir un audit d'exemple](https://tania-bezancon.github.io/audit-seo-geo/demo/) · [English summary](#in-english)
+[Project page](https://tania-bezancon.github.io/audit-seo-geo/) · [Example: quick audit](https://tania-bezancon.github.io/audit-seo-geo/demo/quick/) · [Example: full audit](https://tania-bezancon.github.io/audit-seo-geo/demo/) · [Example: comparison](https://tania-bezancon.github.io/audit-seo-geo/demo/compare/) · [Version française](README.fr.md)
 
----
+## Try it in 15 minutes
 
-## Pourquoi un audit de plus
+Type this in a Claude Code conversation, not in your shell:
 
-La plupart des audits SEO se ressemblent : un score tiré d'un seul outil, cinquante recommandations génériques, un calendrier que personne ne tient. Trois mois plus tard, on refait l'audit avec un autre outil, la note a changé, et personne ne sait si le site s'est amélioré ou si on a juste mesuré autrement.
+```
+/plugin marketplace add Tania-bezancon/audit-seo-geo
+/plugin install audit-seo-geo@tania-bezancon
+```
 
-Deux questions restent souvent sans réponse :
-- **qui doit faire quoi ?** Une liste de 50 points mélange ce que la communication règle en dix minutes dans le CMS et ce qui demande une journée de développeur ;
-- **est-ce que les IA nous citent ?** Les acheteurs posent leurs questions à ChatGPT ou à Perplexity avant Google, et beaucoup de sites modernes leur sont invisibles parce que leur texte arrive par JavaScript.
+Then run an audit, or just ask for one in your own words ("run a quick SEO audit of my site"):
 
-Ce skill répond aux deux.
+```
+/audit-seo-geo:audit-seo-geo quick https://www.your-site.com
+```
 
-## Ce qui en fait un audit à 360°
+You need Claude Code and Python 3.9+. No browser and no API key are required: what cannot be measured is marked as not checked and excluded from the score, never guessed.
 
-### 1. Cinq regards, 23 examinateurs gratuits
-Pas une API payante, pas un score maison opaque : n'importe qui peut refaire la mesure à la même adresse.
+You get one HTML page with a provisional score and the fixes in order of usefulness, plus the to-do as Markdown and CSV. Then, if you have the site's code:
 
-| Regard | Ce qu'on vérifie | Avec quoi |
+```
+Fix my site with this audit.
+```
+
+Claude applies what it can on a branch of its own, asks you what it must not invent, and nothing goes online without you. Once you have published, ask it to recheck: it reads the live site and says which fixes hold.
+
+ [See an example](https://tania-bezancon.github.io/audit-seo-geo/demo/quick/).
+
+## Two speeds
+
+| | Quick | Full |
 |---|---|---|
-| **Google** | robots.txt, sitemap, redirections, fausses 404, canonicals, hreflang, rendu sans JavaScript | relevé automatique, recherche « site: », Bing, test des résultats enrichis, Schema Markup Validator |
-| **Visiteurs** | Core Web Vitals, téléphone, accessibilité, appel à l'action, formulaire, preuves | PageSpeed Insights (téléphone et ordinateur), WAVE, validateur W3C |
-| **Serveur** | temps de réponse, compression, cache, TLS, en-têtes de sécurité, traceurs | relevé automatique, SSL Labs, Security Headers, Mozilla Observatory, Internet.nl, Webbkoll, Blacklight |
-| **Textes** | titles, descriptions, aperçus de partage, fautes, faits contradictoires, fraîcheur | relevé automatique, LanguageTool, OpenGraph.xyz |
-| **IA** | qui est cité à votre place, quels faits faux circulent, robots des IA, llms.txt, entité | ChatGPT, Google Mode IA, Brave, Perplexity (sans compte), Wikidata, Ahrefs, Similarweb |
+| Ask for | `quick <url>` | `full <url>` |
+| Time | about 15 minutes | a working day |
+| Browser | optional | required |
+| Pages | up to 25 | all, up to 400 |
+| Criteria checked | about 15 to 22 of 30 | 30 |
+| Evidence | measures and links | a dated screenshot for each finding |
+| AI panel | 3 questions, 2 assistants, if a browser is available | 5 questions, 4 assistants |
+| You get | one HTML page and the to-do | report, PDF, single page, PowerPoint, to-do, remeasure protocol |
+| Score | provisional, for a first look | comparable from one audit to the next |
+| Follow-up | `compare.py` between two quick audits | `compare.py` between two full audits, with the protocol |
 
-Le relevé automatique (`crawl.py`) lit chaque page comme le fait un robot d'IA, sans JavaScript, et signale les pages presque vides : c'est souvent le problème le plus grave d'un site récent, et aucun outil grand public ne le montre.
+Reports come in **English or French**, following the language you write in. To add a language, translate two files (`assets/ui.json`, `assets/defaults.<lang>.json`), plus `assets/quick.json` for quick mode.
 
-### 2. Une note qui se compare
-La grille est **fixe** : 6 catégories × 5 critères, chacun noté 0, 1 ou 2. Mêmes outils, mêmes réglages, mêmes questions aux IA à chaque audit. Quand la note bouge, c'est le site qui a bougé, pas la méthode.
+## Why another audit
 
-| | Catégorie | Ce qu'on regarde |
+Most SEO audits look alike: a score from a single tool, fifty generic recommendations, and a schedule nobody keeps. Three months later you run another tool, the score has changed, and nobody knows whether the site improved or the measure did.
+
+Two questions often stay unanswered:
+- **who does what?** A list of 50 items mixes what marketing fixes in ten minutes in the CMS with what takes a developer a day;
+- **do AI assistants cite us?** Buyers also ask ChatGPT or Perplexity now, and many modern sites are invisible to them because their text arrives through JavaScript.
+
+This skill answers both.
+
+## What makes it different
+
+### Real AI answers, with no API key or paid service
+The panel asks fixed questions to real assistants, in the same pages a buyer uses, without an account: market questions a buyer would ask without knowing the brand, and "What is <brand>?". It notes who gets cited instead of you and every wrong figure repeated about you. When remeasuring, each question is asked 3 times, and a citation only counts if it comes back at least 2 times out of 3.
+
+### A score you can compare
+The grid is **fixed**: 6 categories × 5 criteria, each scored 0, 1 or 2. Same tools, same settings, same questions at each audit. When the score moves, the site moved, not the method. A criterion that cannot be verified (without Search Console, for instance) is scored **NV** and excluded, rather than guessed.
+
+| | Category | What it looks at |
 |---|---|---|
-| A | Exploration et indexation | accès des robots, une seule version du site, codes HTTP, rendu sans JavaScript, architecture |
-| B | Performance et front-end | LCP, INP et CLS réels, PageSpeed téléphone, images, JavaScript et CSS, mobile |
-| C | Serveur, sécurité et vie privée | TLS et HSTS, en-têtes de sécurité, compression et cache, temps de réponse, consentement |
-| D | Contenus et SEO éditorial | titles, descriptions et partage, structure, profondeur, justesse des faits, fraîcheur et langues |
-| E | Expérience, accessibilité et conversion | les 5 premières secondes, appel à l'action, formulaire, preuves, WCAG |
-| F | GEO et autorité | données structurées, robots des IA et llms.txt, entité, contenus citables, présence dans les réponses |
+| A | Crawling and indexing | robot access, one version of the site, HTTP codes, rendering without JavaScript, structure |
+| B | Performance and front-end | real LCP, INP and CLS, mobile PageSpeed, images, JavaScript and CSS, mobile |
+| C | Server, security and privacy | TLS and HSTS, security headers, compression and cache, response time, consent |
+| D | Content and editorial SEO | titles, descriptions and sharing, structure, depth, accuracy of facts, freshness and languages |
+| E | Experience, accessibility and conversion | the first 5 seconds, call to action, form, proof, WCAG |
+| F | GEO and authority | structured data, AI crawlers and llms.txt, entity, citable content, presence in answers |
 
-Un critère invérifiable (sans Search Console, par exemple) est noté **NV** et retiré du calcul, au lieu d'être deviné.
+### It follows your fixes
+Each fix shows what it can bring on the audit's score. Tick what you have done: the page remembers it in your browser and estimates the score, clearly as an estimate. Then ask Claude to recheck: `quick.py check` reads the site again and marks on each card what is confirmed fixed, better or not yet, without touching the audit's score.
 
-### 3. Trois to-do, zéro calendrier
-Chaque problème devient une tâche précise, avec la correction et un « Vérifié quand… » que n'importe qui peut refaire. Elle va dans la to-do de la personne qui peut la faire :
+### It says what really changed
+`scripts/compare.py` compares two audits of a site and writes one page: the score on the criteria checked both times only, what improved, what got worse, the tools read with noise thresholds (under 5 PageSpeed points is noise), the AI answers, and the tasks still open. A tool that was down on the day does not look like progress, and a task that left the list is "no longer listed", not "done". `--fail-on-regression` makes it usable in CI. [See an example](https://tania-bezancon.github.io/audit-seo-geo/demo/compare/).
 
-- **Contenu** (`C1`, `C2`…) : ce qui se règle dans l'administration du site, sans développeur ;
-- **Front-end** (`F1`…) : ce qui se règle dans le code des pages ;
-- **Back-end et infra** (`B1`…) : ce qui se règle sur le serveur.
+```bash
+python3 scripts/compare.py audits/my-site/2026-11-05/audit.json audits/my-site/2027-02-01/audit.json
+```
 
-Chaque tâche a sa priorité : **P1** bloquant, **P2** important, **P3** finition. Aucune date, aucun délai, aucun effort en jours. La to-do sort aussi en **Markdown** (à cocher, à coller dans un ticket) et en **CSV** (à importer dans Notion, Jira, Linear, Trello ou GitHub Projects).
+Or ask Claude: `compare` the last two audits of a site.
 
-La [checklist 360°](references/checklist-360.md) donne, pour plus de 60 contrôles, la preuve attendue, la correction type, la priorité par défaut et le critère touché.
+### It can apply the fixes in your code
+Say "fix my site" and give it the folder of the code. Each task is sorted: Claude can do it, it needs your facts, or it is settled off the code. Tasks that need you come with their questions, and a form to fill in and paste. Claude works on a branch of its own, with one commit per task, and refuses to invent a legal name or a figure. It builds the site, reads it on your machine before and after, and stops if something that worked got worse. It cannot push or publish: you read the branch, you put it online, and `quick.py check` then confirms what holds on the live site.
 
-### 4. Le GEO mesuré, pas promis
-Le panel IA pose **5 questions fixes** à 4 assistants : 4 questions de marché (celles qu'un acheteur pose sans connaître la marque) et 1 question de marque (« Qu'est-ce que X ? »). On note qui est cité à votre place, et chaque chiffre faux que les IA répètent sur vous. À la remesure, chaque question est posée 3 fois : une citation ne compte que si elle revient 2 fois sur 3.
+### A report you understand at a glance
+It opens on five looks with one light each, and the three tasks to start with. Then it shows the site from outside: its Google result, what people see when it is shared, and what a visitor sees next to what an AI crawler reads without JavaScript. The AI panel says who gets cited instead, by name and by how often.
 
-### 5. Une preuve pour chaque constat
-Chaque constat est rangé **vérifié**, **hypothèse** ou **non vérifiable**. Un constat vérifié a sa capture réelle, prise le jour de la mesure, avec un cadre rouge sur le défaut, ou son lien. Aucune statistique inventée, aucune position Google supposée, aucune promesse de classement.
+### Fixes you can apply
+A task says where to act and what to paste, for the platform of the site, which the crawl detects (Next.js, WordPress, Webflow, Shopify, Netlify, Vercel, Nginx...). The report shows the real page before and after, gives code to copy, and writes ready files in `fixes/`: the missing security headers in the host's format, an `llms.txt` from the site's own titles and descriptions, an Organization block, a table of the titles to fix. They are drafts to read, and nothing is ever applied to the site.
 
-### 6. Un dossier qu'on a envie de lire
-Tout part d'un seul fichier, `audit.json`. Les scripts en tirent :
-- un **dossier HTML** en 5 parties (lire en 5 minutes, comprendre la mesure, 9 domaines, agir, suivre) et ses annexes ;
-- son **PDF A4** et une **page unique** (un seul fichier, captures intégrées, à envoyer par mail) ;
-- la **to-do** en Markdown et en CSV ;
-- un **PowerPoint 16:9** d'une centaine de slides aux couleurs de la marque.
+### Evidence for every finding
+Each finding is filed as **verified**, **hypothesis** or **not verifiable**. In the full audit, a verified finding has its real screenshot, taken on the day of the measure, with a red box on the defect, or a link. No invented statistics, no assumed Google positions, no ranking promises.
 
-![Trois pages du dossier d'exemple : la note, un domaine, la to-do](docs/apercu-dossier.png)
+### Three to-do lists, no calendar
+Each problem becomes a precise task, with the fix and a "Verified when..." check that anyone can repeat. It goes in the list of the person who can do it:
 
-### 7. Il se contrôle tout seul
-Avant de produire quoi que ce soit, `build_dossier.py` s'arrête si une tâche est citée sans exister ou existe sans être citée, si une tâche n'a pas de voie ou de priorité valide, s'il manque un critère, ou **si une note ne correspond pas aux critères** : il recalcule chaque catégorie et la note globale. Il signale aussi tout nom de concurrent resté dans le texte. `scripts/selftest.sh` fabrique l'exemple de bout en bout et vérifie chaque sortie.
+- **Content** (`C1`, `C2`...): what is settled in the site's admin, with no developer;
+- **Front-end** (`F1`...): what is settled in the page code;
+- **Back-end and infra** (`B1`...): what is settled on the server.
 
-### 8. Il respecte les sites qu'il audite
-Le relevé laisse 3 secondes entre deux requêtes et reprend là où il s'est arrêté. Le skill ne modifie jamais le site, ne remplit aucun formulaire réel, ne coche jamais une case « je suis humain » et ne capture jamais un espace connecté.
+Each task has a priority: **P1** blocking, **P2** important, **P3** polish. No dates, no deadlines, no effort in days. The to-do also comes as **Markdown** (to tick, to paste in a ticket) and **CSV** (to import in Notion, Jira, Linear, Trello or GitHub Projects).
 
-## Installation
+The [360° checklist](references/checklist-360.md) gives, for more than 60 checks, the expected evidence, the standard fix, the default priority and the criterion affected.
+
+### Five looks, 23 free examiners
+No paid API, no opaque in-house score: anyone can repeat the measure at the same address.
+
+| Look | What it checks | With what |
+|---|---|---|
+| **Google** | robots.txt, sitemap, redirects, fake 404s, canonicals, hreflang, rendering without JavaScript | automatic crawl, `site:` search, Bing, Rich Results Test, Schema Markup Validator |
+| **Visitors** | Core Web Vitals, mobile, accessibility, call to action, form, proof | PageSpeed Insights (mobile and desktop), WAVE, W3C validator |
+| **Server** | response time, compression, cache, TLS, security headers, trackers | automatic crawl, SSL Labs, Security Headers, Mozilla Observatory, Internet.nl, Webbkoll, Blacklight |
+| **Copy** | titles, descriptions, share previews, typos, contradictory facts, freshness | automatic crawl, LanguageTool, OpenGraph.xyz |
+| **AI** | who gets cited instead of you, which wrong facts circulate, AI crawlers, llms.txt, entity | ChatGPT, Google AI Mode, Brave, Perplexity (no account), Wikidata, Ahrefs, Similarweb |
+
+The crawler (`crawl.py`) reads each page the way most AI crawlers do, without JavaScript, and flags pages that are nearly empty: often the most serious problem of a recent site.
+
+### A report people want to read
+Everything starts from one file, `audit.json`. The scripts turn it into:
+- an **HTML report** in 5 parts (read in 5 minutes, understand the measure, 9 domains, act, follow up) and its appendices;
+- its **A4 PDF** and a **single page** (one file, screenshots embedded, to send by email);
+- the **to-do** as Markdown and CSV;
+- a **16:9 PowerPoint** of about a hundred slides in the brand's colours.
+
+![Three pages of the example report: the score, a domain, the to-do](docs/apercu-dossier.png)
+
+### It checks itself
+Before producing anything, the build stops if a task is cited but does not exist or exists but is never cited, if a task has no valid lane or priority, if a criterion is missing, or **if a score does not match the criteria**: it recalculates each category and the overall score. `scripts/selftest.sh` builds the example in both languages, runs the quick audit on a local test site, and checks each output, with no network.
+
+### It respects the sites it audits
+The full crawl leaves 3 seconds between two requests (1 second in quick mode) and resumes where it stopped. An audit never changes the site, never fills in a real form, never ticks an "I am human" box and never captures a logged-in area.
+
+## Installing
+
+**As a plugin** (recommended), in Claude Code:
+
+```
+/plugin marketplace add Tania-bezancon/audit-seo-geo
+/plugin install audit-seo-geo@tania-bezancon
+```
+
+Or from your terminal:
+
+```bash
+claude plugin marketplace add Tania-bezancon/audit-seo-geo
+claude plugin install audit-seo-geo@tania-bezancon
+```
+
+**As a plain skill folder**, if you prefer. The command is then the shorter `/audit-seo-geo quick <url>`:
 
 ```bash
 git clone https://github.com/Tania-bezancon/audit-seo-geo.git ~/.claude/skills/audit-seo-geo
-cd ~/.claude/skills/audit-seo-geo/scripts && npm install
-./selftest.sh
 ```
 
-Puis, dans Claude Code :
+The skill costs about 240 tokens per session while idle, and about 5,700 when it loads. Your sites, themes, fonts and logos stay in `~/.claude/audit-seo-geo/`, and your audits go in `audits/<domain>/<date>/` under the current folder: updates touch neither. To remove the plugin: `/plugin uninstall audit-seo-geo@tania-bezancon`.
 
-```
-/audit-seo-geo https://www.votre-site.fr
-```
+The PowerPoint needs one more step, which Claude runs the first time you ask for one: `scripts/setup_pptx.sh`.
 
-Le skill se déclenche aussi tout seul quand on demande « un audit SEO », « notre visibilité dans les IA », « la liste des corrections front et back », « refais l'audit pour voir les progrès »…
-
-### Ce qu'il faut sur la machine
-
-| Outil | Pour quoi | Obligatoire |
+| Tool | For what | Required |
 |---|---|---|
-| Python 3.9+ avec Pillow | relevé, fautes, cadres rouges, dossier, to-do | oui |
-| Un navigateur piloté par Claude | captures des outils et des IA | oui |
-| Node.js 18+ | PowerPoint (pptxgenjs) | pour le PowerPoint |
-| Google Chrome ou Chromium | PDF du dossier (`CHROME=/chemin` sinon) | pour le PDF |
-| Microsoft PowerPoint ou LibreOffice, PyMuPDF | PDF et planches de contrôle du PowerPoint | non |
+| Python 3.9+ | crawl, report, to-do, quick audit | yes |
+| Pillow (Python) | red boxes on screenshots | for the full audit |
+| A browser driven by Claude | screenshots of the tools and the AIs | for the full audit; in quick mode, for the AI panel |
+| Node.js 18+ | PowerPoint (pptxgenjs), speed measured with Lighthouse | for the PowerPoint; without a PageSpeed key, for speed and accessibility |
+| Google Chrome or Chromium | PDF of the report (`CHROME=/path` otherwise) | for the PDF |
+| Microsoft PowerPoint or LibreOffice, PyMuPDF | PDF and contact sheets of the PowerPoint | no |
 
-## Essayer sans rien auditer
+PageSpeed's public API usually answers 429 without a key. The quick audit then runs Lighthouse on your machine, which needs Chrome and Node.js and downloads Lighthouse with `npx` the first time. Set `PAGESPEED_API_KEY` to use your own free key: only the API has visitors' real data.
 
-L'exemple fictif d'Atelier Lumen (un site en `.example`, des captures factices) produit tout en quelques secondes :
+The skill also triggers by itself when you ask for "an SEO audit", "our visibility in AI", "the list of front-end and back-end fixes", "redo the audit to see the progress"...
+
+## Try it without auditing anything
+
+The fictional example of Atelier Lumen (an `.example` site with placeholder screenshots) builds everything in a few seconds, from a clone of this repository:
 
 ```bash
-cd ~/.claude/skills/audit-seo-geo
-scripts/selftest.sh /tmp/audit-exemple
-open /tmp/audit-exemple/index.html
+scripts/selftest.sh /tmp/audit-example
+open /tmp/audit-example/en/index.html
 ```
 
-Ou directement en ligne : [l'audit d'exemple](https://tania-bezancon.github.io/audit-seo-geo/demo/).
+Or online: [quick audit](https://tania-bezancon.github.io/audit-seo-geo/demo/quick/), [full audit](https://tania-bezancon.github.io/audit-seo-geo/demo/), [full audit in French](https://tania-bezancon.github.io/audit-seo-geo/demo/fr/).
 
-## Comment se déroule un audit
+## How a full audit runs
 
-Une journée de travail, annoncée au début :
+A working day, announced at the start:
 
-1. **Le contexte** : activité, public, objectif, CMS ou framework, accès disponibles. Rien à redemander pour un site déjà dans `assets/sites.json`.
-2. **Les mesures** (environ 3 h) : relevé automatique en arrière-plan, le rendu sans JavaScript, les 19 outils avec leur capture numérotée, le panel des IA, les captures du site, la checklist 360°.
-3. **La note** (environ 2 h) : les 30 critères avec leur preuve, les 9 domaines, les tâches des trois to-do.
-4. **La fabrication** (environ 1 h) : dossier, PDF, page unique, to-do, PowerPoint, puis contrôle à 1 280 et 375 px et planches du PowerPoint.
-5. **Le protocole de remesure** : le seul document daté, pour refaire exactement la même mesure dans 1, 3 ou 6 mois.
+1. **Context**: activity, audience, goal, CMS or framework, available access. Nothing to ask again for a site already in `~/.claude/audit-seo-geo/sites.json`.
+2. **Measures** (about 3 h): crawl in the background, rendering without JavaScript, the 19 tools with their numbered screenshot, the AI panel, site screenshots, the 360° checklist.
+3. **Scoring** (about 2 h): the 30 criteria with their evidence, the 9 domains, the tasks of the three to-do lists.
+4. **Building** (about 1 h): report, PDF, single page, to-do, PowerPoint, then checks at 1,280 and 375 px and contact sheets of the PowerPoint.
+5. **Remeasure protocol**: the only dated document, to repeat exactly the same measure in 1, 3 or 6 months.
 
-## Ce que contient le dépôt
+## What the repository contains
 
 ```
-SKILL.md                 la méthode : contexte, preuve, mesures, grille, tâches, livrables, contrôles
+.claude-plugin/          the plugin's manifest and its marketplace
+SKILL.md                 the method: speed and language, context, evidence, measures, grid, tasks, deliverables, checks
 references/
-  checklist-360.md       plus de 60 contrôles, voie par voie, avec correction type et priorité
-  outils.md              les 19 outils : adresse, réglage, ce qu'on relève, seuils des feux
-  panel-geo.md           les 5 questions et les 4 IA : écrire, poser, noter
-  captures.md            ranger, nommer et encadrer les captures
-  donnees.md             le format de audit.json
+  quick-mode.md          the quick audit, step by step
+  checklist-360.md       more than 60 checks, lane by lane, with standard fix and priority
+  tools.md               the 19 tools: address, setting, what to note, traffic light thresholds
+  ai-panel.md            the 5 questions and the 4 AIs: writing, asking, scoring
+  screenshots.md         storing, naming and boxing screenshots
+  data-format.md         the format of audit.json
 assets/
-  defaults.json          grille, voies, priorités, outils, lexique, règles de remesure, domaines
-  themes.json            couleurs et police par marque (signature, neutre, les vôtres)
-  sites.json             vos sites déjà audités
-  exemple/               l'audit fictif d'Atelier Lumen et ses captures
+  ui.json                the fixed strings of the reports, by language
+  defaults.<lang>.json   grid, lanes, priorities, tools, glossary, remeasure rules, domains
+  quick.json             quick mode: criteria, evidence sentences, default tasks, by language
+  recipes.json           how to apply a fix, by platform, by language
+  themes.json            colours and font by brand (signature, neutral)
+  sites.json             the format of your list of known sites
+  example/               the fictional audit of Atelier Lumen, in English and French
 scripts/
-  crawl.py               relevé des pages, du serveur et des robots des IA, lent et reprenable
-  lt.py                  fautes avec LanguageTool, page par page
-  annotate.py            cadres rouges sur une capture
-  build_dossier.py       audit.json → HTML, PDF, page unique, to-do .md et .csv (après contrôles)
+  quick.py               the quick audit: measure, then build
+  compare.py             what changed between two audits
+  fixes.py               the platform detected, and the files ready to adapt
+  crawl.py               crawl of pages, server and AI crawlers, slow and resumable
+  lt.py                  typos with LanguageTool, page by page
+  annotate.py            red boxes on a screenshot
+  build_dossier.py       audit.json → HTML, PDF, single page, to-do .md and .csv (after checks)
   build_pptx.js          audit.json → PowerPoint
-  render_pptx_pdf.sh     PowerPoint → PDF et planches de contrôle
-  selftest.sh            l'exemple de bout en bout
-docs/                    la page du projet et la démo en ligne
+  render_pptx_pdf.sh     PowerPoint → PDF and contact sheets
+  setup_pptx.sh          installs the PowerPoint dependency, once
+  selftest.sh            the example, the quick audit and the comparison from end to end, offline
+docs/                    the project page and the online examples
 ```
 
-## Ajouter sa marque
+## Adding your brand
 
-Dans `assets/themes.json`, copier le thème `signature`, changer les couleurs, et mettre son nom dans `site.theme` de `audit.json`. Une police sous licence libre va dans `assets/fonts/` (listée dans `font.files`) et sera intégrée à la page unique ; un logo va dans `assets/logos/`. N'ajoutez pas au dépôt une police commerciale ni un logo que vous n'avez pas le droit de diffuser.
+Create `~/.claude/audit-seo-geo/themes.json`, copy into it the `signature` theme of `assets/themes.json` under a new name, change the colours, and put that name in `site.theme`. A font goes in `~/.claude/audit-seo-geo/fonts/` (listed in `font.files`) and will be embedded in the single page, so use an open-licence one or one you may distribute; a logo goes in `~/.claude/audit-seo-geo/logos/`.
 
-## Ce qu'il ne fait pas
+## What it does not do
 
-- Il ne remplace pas Search Console : sans accès, il le dit dans les limites et en fait une tâche P1.
-- Il ne garantit aucun classement ni aucune citation par une IA. Il mesure, il range, il dit quoi corriger.
-- Il ne modifie jamais le site audité.
-- Le dossier est en français.
-
----
-
-## In English
-
-`audit-seo-geo` is a [Claude Code skill](https://docs.claude.com/en/docs/claude-code/skills) for 360° website audits, run the same way every time so scores compare across sites and across months.
-
-- **Five angles, 23 free and independent checkers**: what Google can read, what visitors experience, what the server sends, what the copy says, and what AI assistants answer (ChatGPT, Google AI Mode, Brave, Perplexity, queried without an account). The crawler reads every page the way most AI bots do, without JavaScript, and flags pages that are nearly empty without it.
-- **A fixed 30-criteria grid** in 6 categories (crawl and indexing, performance and front-end, server and security, content, UX and accessibility, GEO and authority), each scored 0/1/2, unverifiable items excluded rather than guessed. Score out of 10.
-- **Three undated to-do lists**: content (CMS), front-end (page code) and back-end (server), each task with a P1 to P3 priority, a precise fix and a "verified when…" check. Exported as Markdown and CSV for Notion, Jira, Linear or GitHub Projects.
-- **Proof for every finding**: real screenshots with red boxes, or a link. No invented stats, no ranking promises.
-- **One JSON file → HTML report, PDF, single-file page, to-do files and a branded PowerPoint**, with a build step that refuses to run if the scores don't match the criteria or a task is orphaned.
-
-The skill and its reports are in French. Try the [live example report](https://tania-bezancon.github.io/audit-seo-geo/demo/).
+- It does not replace Search Console: without access, it says so in the limits and makes it a P1 task.
+- It does not guarantee any ranking or any citation by an AI. It measures, sorts, and says what to fix.
+- An audit never changes the site. Its code changes only if you ask, on a branch, and nothing goes online without you.
 
 ## Licence
 
-MIT. Voir [LICENSE](LICENSE). Imaginé par [Tania Bezançon](https://taniabezancon.netlify.app/en).
+MIT. See [LICENSE](LICENSE). The fonts in `assets/fonts/` (Archivo, Inter, JetBrains Mono) are under the SIL Open Font License, with their licences next to them. Created by [Tania Bezançon](https://taniabezancon.netlify.app/en) · Blue Hours Studio.

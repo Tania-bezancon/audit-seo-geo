@@ -1,188 +1,219 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>audit-seo-geo · le skill Claude qui audite un site à 360°</title>
-<meta name="description" content="Un skill Claude open source : 23 examinateurs gratuits, 30 critères notés sur 10, trois to-do (contenu, front-end, back-end) priorisées et sans dates, et un dossier prêt à présenter.">
-<meta property="og:title" content="audit-seo-geo · auditer un site à 360°">
-<meta property="og:description" content="SEO, performance, serveur, accessibilité et visibilité dans les IA : un skill Claude open source qui transforme chaque problème en tâche.">
+<title>audit-seo-geo · the Claude skill that audits a site in 360°</title>
+<meta name="description" content="An open-source Claude skill for SEO and GEO audits: a 15-minute quick audit or a full one with 23 free examiners, 30 criteria scored out of 10, and three undated to-do lists.">
+<meta property="og:title" content="audit-seo-geo · same grid, real AI answers, proof for every finding">
+<meta property="og:description" content="SEO, performance, server, accessibility and visibility in AI answers: an open-source Claude skill that turns every problem into a task.">
 <meta property="og:image" content="https://tania-bezancon.github.io/audit-seo-geo/cover.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23FF7A55'/%3E%3C/svg%3E">
+<link rel="alternate" hreflang="fr" href="fr/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23BFDDE4'/%3E%3C/svg%3E">
 <style>
-:root {
-  --bg: #FAFAF7; --ink: #0B1F4C; --ink-2: #1E3870; --muted: #5A6C99; --line: #E4E6EC; --coral: #FF7A55; --coral-ink: #D9572F;
-  --glow: #FFD3C2; --card: rgba(255,255,255,.55); --code: #0B1F4C; --code-ink: #E9ECF5;
-  --font: -apple-system, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #08183C; --ink: #F3F4F8; --ink-2: #CBD3E6; --muted: #93A0C2; --line: #22386B; --coral-ink: #FF9A7C; --glow: #3A2A45; --card: rgba(14,34,80,.6); --code: #050F28 } }
-:root[data-theme="dark"] { --bg: #08183C; --ink: #F3F4F8; --ink-2: #CBD3E6; --muted: #93A0C2; --line: #22386B; --coral-ink: #FF9A7C; --glow: #3A2A45; --card: rgba(14,34,80,.6); --code: #050F28 }
+@font-face{font-family:'Archivo';font-weight:400 800;font-style:normal;font-display:swap;src:url(fonts/archivo-latin.woff2) format('woff2')}@font-face{font-family:'Inter';font-weight:400 600;font-style:normal;font-display:swap;src:url(fonts/inter-latin.woff2) format('woff2')}@font-face{font-family:'JetBrains Mono';font-weight:400 500;font-style:normal;font-display:swap;src:url(fonts/jetbrains-mono-latin.woff2) format('woff2')}
+/* The Blue Hours Studio film: petrol black, petrol and glacier, grain, hairlines, a photograph, a lot of empty space */
+:root { --bg: #031418; --deep: #040F13; --petrol: #0F3440; --teal: #3C7C8C; --mist: #7FB0BE; --glacier: #BFDDE4; --ice: #DDEAED; --white: #F4F7F6; --muted: #8FB3BD; --line: rgba(191,221,228,.17);
+  --glass: linear-gradient(160deg, rgba(15,52,64,.62) 0%, rgba(4,15,19,.42) 100%); --lit: linear-gradient(205deg, #0F3440 0%, #3C7C8C 58%, #BFDDE4 135%);
+  --display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif; --font: 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color-scheme: dark }
 * { box-sizing: border-box }
-html { scroll-behavior: smooth }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden }
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left)) }
-a { color: var(--coral-ink) }
-.glow { position: absolute; width: 900px; height: 900px; right: -260px; top: -380px; border-radius: 50%; background: radial-gradient(circle, var(--glow) 0%, transparent 65%); pointer-events: none; z-index: 0 }
-nav { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; padding: 22px 0; font-size: 15px }
-nav .name::before, .eyebrow::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); margin-right: 10px; vertical-align: 1px }
-nav a { color: var(--muted); text-decoration: none; margin-left: 22px } nav a:hover { color: var(--ink) }
-nav .name { color: var(--ink); margin: 0 }
-header { position: relative; z-index: 1; padding: 72px 0 64px }
-.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 0 }
-h1 { font-size: clamp(44px, 9vw, 104px); line-height: .98; letter-spacing: -0.045em; font-weight: 600; margin: 22px 0 28px; text-wrap: balance }
-h1 .c { color: var(--coral) }
-h2 { font-size: clamp(30px, 4.6vw, 46px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: 0 0 14px; text-wrap: balance }
-h2::after { content: "."; color: var(--coral) }
-h3 { font-size: 19px; letter-spacing: -0.01em; margin: 0 0 6px; font-weight: 600 }
-.lead { font-size: clamp(18px, 2.2vw, 22px); color: var(--ink-2); max-width: 34em; margin: 0 }
-.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px }
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 15.5px; text-decoration: none; border: 1px solid var(--line) }
-.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink) }
-.btn.ghost { color: var(--ink); background: var(--card); backdrop-filter: blur(8px) }
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); margin-top: 64px; padding-top: 28px }
-.stats div { padding-right: 16px }
-.stats b { display: block; font-size: clamp(34px, 5vw, 52px); letter-spacing: -0.04em; font-weight: 600; line-height: 1 }
-.stats b i { font-style: normal; color: var(--coral) }
-.stats span { font-size: 14px; color: var(--muted) }
-@media (max-width: 720px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px } }
-section { padding: 88px 0 0; position: relative; z-index: 1 }
-.intro { color: var(--muted); max-width: 40em; margin: 0 0 36px }
+html { scroll-behavior: smooth; background: var(--bg) }
+body { margin: 0; background: radial-gradient(70% 40% at 100% 28%, rgba(60,124,140,.2), transparent 70%), radial-gradient(60% 30% at 0% 62%, rgba(15,52,64,.6), transparent 70%), var(--bg); color: var(--white); font-family: var(--font); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden }
+body::before { content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .07; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>") }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left)) }
+a { color: var(--glacier); text-underline-offset: 3px; text-decoration-thickness: 1px }
+.photo { position: absolute; top: 0; right: 0; width: min(54vw, 760px); height: 760px; background: radial-gradient(120% 90% at 85% 95%, #BFDDE4 0%, #7FB0BE 16%, #3C7C8C 38%, #0F3440 66%, transparent 92%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 52%), linear-gradient(180deg, #000 62%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0%, #000 52%), linear-gradient(180deg, #000 62%, transparent 100%); mask-composite: intersect; opacity: .9; pointer-events: none }
+nav { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 24px 0; font-size: 14px }
+nav .name { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: 17px; color: var(--white); margin: 0 }
+nav a { color: var(--ice); text-decoration: none; margin-left: 20px } nav a:hover { color: var(--white) }
+header { position: relative; z-index: 2; padding: 104px 0 72px }
+.eyebrow, .tag, th { font-size: 11.5px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--ice); margin: 0 }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance }
+h1 { font-size: clamp(54px, 9.4vw, 124px); line-height: .94; letter-spacing: -0.05em; margin: 26px 0 30px }
+h1 .c { color: var(--glacier) }
+h2 { font-size: clamp(34px, 5vw, 60px); line-height: 1; letter-spacing: -0.04em; margin: 0 0 18px }
+h3 { font-size: 21px; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 8px }
+.lead { font-size: clamp(18px, 2.1vw, 21px); color: var(--ice); max-width: 25em; margin: 0 }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px }
+.btn { display: inline-flex; align-items: center; padding: 13px 22px; border-radius: 999px; font-weight: 500; font-size: 15px; text-decoration: none; color: var(--white); background: rgba(244,247,246,.08); box-shadow: inset 0 0 0 1px var(--line); backdrop-filter: blur(14px) }
+.btn.primary { background: var(--glacier); color: var(--bg); box-shadow: none }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border-radius: 22px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); margin-top: 88px }
+.stats div { background: var(--bg); padding: 22px; display: flex; flex-direction: column; gap: 26px; justify-content: space-between }
+.stats div:first-child { background: var(--lit) }
+.stats div:first-child span { color: var(--white) }
+.stats b { font-family: var(--display); font-size: clamp(38px, 5vw, 60px); letter-spacing: -0.04em; font-weight: 500; line-height: 1 }
+.stats b i { display: none }
+.stats span { font-size: 13.5px; color: var(--muted); line-height: 1.35 }
+@media (max-width: 720px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+section { padding: 112px 0 0; position: relative; z-index: 1 }
+.intro { color: var(--ice); max-width: 40em; margin: 0 0 36px }
 .grid { display: grid; gap: 14px; grid-template-columns: repeat(3, minmax(0, 1fr)) }
 .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)) }
 @media (max-width: 860px) { .grid, .grid.two { grid-template-columns: 1fr } }
-.card { background: var(--card); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 18px; padding: 24px; min-width: 0 }
-.card p { margin: 0; color: var(--ink-2); font-size: 15.5px }
-.tag { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 14px }
-.tag b { color: var(--coral-ink); font-weight: 600 }
-.lane { border-top: 3px solid var(--ink) }
-.lane.c { border-top-color: var(--coral) }
-.lane.b { border-top-color: var(--muted) }
-.lane ul { margin: 14px 0 0; padding: 0; list-style: none; font-size: 15px; color: var(--ink-2); display: flex; flex-direction: column; gap: 7px }
-.lane li::before { content: "○"; color: var(--coral); margin-right: 9px; font-size: 12px }
-.prios { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px }
-.prio { font-family: var(--mono); font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card) }
-.prio b { margin-right: 6px } .p1 b { color: #C23A2B } .p2 b { color: #9A6500 } .p3 b { color: var(--muted) }
+.card { background: var(--glass); box-shadow: inset 0 0 0 1px var(--line); border-radius: 22px; padding: 24px; min-width: 0; display: flex; flex-direction: column; min-height: 240px }
+.card p { margin: 0; color: var(--ice); font-size: 15px }
+.card h3 { margin-top: auto }
+.tag { display: block; margin-bottom: 30px; color: var(--muted); letter-spacing: .18em; font-size: 11px }
+.tag b { color: var(--glacier); font-weight: 500 }
+.lane h3, .steps .card h3 { margin-top: 0 }
+.lane ul { margin: 12px 0 0; padding: 0; list-style: none; font-size: 15px; color: var(--ice); display: flex; flex-direction: column }
+.lane li { padding: 9px 0; border-top: 1px solid var(--line) }
+.lit { background: var(--lit) }
+.lit .tag, .lit li, .lit p { color: var(--white) }
+.lit li { border-color: rgba(244,247,246,.28) }
+.prios { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px }
+.prio { font-family: var(--mono); font-size: 12.5px; padding: 6px 13px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); color: var(--ice) }
+.prio b { margin-right: 7px; font-weight: 500; color: var(--glacier) }
 table { width: 100%; border-collapse: collapse; font-size: 15px }
-td, th { text-align: left; padding: 13px 10px; border-bottom: 1px solid var(--line); vertical-align: top }
-th { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 500 }
-td:first-child { font-family: var(--mono); color: var(--coral-ink); width: 44px }
-td:nth-child(2) { font-weight: 600; width: 32% }
-td:last-child { color: var(--ink-2) }
-.tbl { overflow-x: auto }
-.shot { margin-top: 36px; border-radius: 18px; border: 1px solid var(--line); overflow: hidden; display: block; background: #fff }
+td, th { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top }
+tr:last-child td { border-bottom: 0 }
+th { font-size: 11px; color: var(--muted) }
+td:first-child { font-family: var(--mono); color: var(--glacier); width: 44px }
+td:nth-child(2) { font-weight: 500; width: 34% }
+td:last-child { color: var(--ice) }
+.tbl { overflow-x: auto; border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); background: rgba(15,52,64,.26) }
+.shot { margin-top: 36px; border-radius: 22px; box-shadow: 0 0 0 1px var(--line); overflow: hidden; display: block }
 .shot img { display: block; width: 100%; height: auto }
-pre { background: var(--code); color: var(--code-ink); border-radius: 16px; padding: 22px 24px; font-family: var(--mono); font-size: 14px; line-height: 1.7; overflow-x: auto; margin: 0 }
-pre .k { color: #FFB59E } pre .m { color: #8E9BC2 }
+pre { background: var(--glass); box-shadow: inset 0 0 0 1px var(--line); color: var(--ice); border-radius: 22px; padding: 24px 26px; font-family: var(--mono); font-size: 14px; line-height: 1.7; overflow-x: auto; margin: 0 }
+pre .k { color: var(--white) } pre .m { color: var(--muted) }
 .steps { counter-reset: s; display: grid; gap: 14px; grid-template-columns: repeat(5, minmax(0, 1fr)) }
 @media (max-width: 860px) { .steps { grid-template-columns: 1fr } }
-.steps .card::before { counter-increment: s; content: "0" counter(s); font-family: var(--mono); font-size: 12px; color: var(--coral-ink); display: block; margin-bottom: 10px }
+.steps .card { min-height: 0 }
+.steps .card::before { counter-increment: s; content: "0" counter(s); font-family: var(--mono); font-size: 12px; color: var(--glacier); display: block; margin-bottom: 26px }
 .honest { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; border-top: 1px solid var(--line); padding-top: 24px }
 @media (max-width: 860px) { .honest { grid-template-columns: 1fr } }
-.honest p { margin: 0; color: var(--ink-2); font-size: 15.5px }
-footer { margin-top: 110px; border-top: 1px solid var(--line); padding: 28px 0 44px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px }
-footer a { color: var(--ink); text-decoration: none }
+.honest p { margin: 0; color: var(--ice); font-size: 15.5px }
+.honest b { color: var(--white); font-weight: 500 }
+footer { margin-top: 120px; border-top: 1px solid var(--line); padding: 28px 0 44px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px }
+footer a { color: var(--white); text-decoration: none }
+@media (max-width: 760px) { .photo { width: 100%; height: 520px; opacity: .5; -webkit-mask-image: linear-gradient(180deg, #000 40%, transparent 100%); mask-image: linear-gradient(180deg, #000 40%, transparent 100%) } nav a { margin-left: 0; margin-right: 16px } }
 </style>
 </head>
 <body>
-<div class="glow" aria-hidden="true"></div>
+<div class="photo" aria-hidden="true"></div>
 <div class="wrap">
-<nav><span class="name">audit-seo-geo</span><span><a href="#grille">La grille</a><a href="#todo">Les to-do</a><a href="demo/">La démo</a><a href="https://github.com/Tania-bezancon/audit-seo-geo">GitHub</a></span></nav>
+<nav><span class="name">audit-seo-geo</span><span><a href="#speeds">Two speeds</a><a href="#grid">The grid</a><a href="#todo">The to-do</a><a href="https://github.com/Tania-bezancon/audit-seo-geo">GitHub</a><a href="fr/" hreflang="fr">Français</a></span></nav>
 
 <header>
-  <p class="eyebrow">Skill Claude · open source · MIT</p>
-  <h1>Auditer un site.<br><span class="c">À 360°.</span></h1>
-  <p class="lead">Google, visiteurs, serveur, textes et IA : un skill Claude qui examine n'importe quel site avec 23 outils gratuits, note 30 critères sur 10, prouve chaque constat par une capture, et range chaque correction dans la bonne to-do.</p>
-  <div class="cta"><a class="btn primary" href="https://github.com/Tania-bezancon/audit-seo-geo">Voir sur GitHub →</a><a class="btn ghost" href="demo/">Ouvrir un audit d'exemple</a></div>
+  <p class="eyebrow">Claude skill · open source · MIT</p>
+  <h1>Audit your site.<br><span class="c">Fix it. Check it holds.</span></h1>
+  <p class="lead">It tells you what AI assistants really answer about your site, fixes your code, then checks it holds. A Claude skill with the same grid at every audit, proof for every finding, and no extra key or paid service.</p>
+  <div class="cta"><a class="btn primary" href="https://github.com/Tania-bezancon/audit-seo-geo">See on GitHub →</a><a class="btn ghost" href="demo/quick/">Example: quick audit</a><a class="btn ghost" href="demo/">Example: full audit</a></div>
   <div class="stats">
-    <div><b>23<i>.</i></b><span>examinateurs gratuits et indépendants</span></div>
-    <div><b>30<i>.</i></b><span>critères, la même grille à chaque audit</span></div>
-    <div><b>3<i>.</i></b><span>to-do : contenu, front-end, back-end</span></div>
-    <div><b>0<i>.</i></b><span>date inventée dans la to-do</span></div>
+    <div><b>15<i>.</i></b><span>minutes for the quick audit, no browser or API key required</span></div>
+    <div><b>23<i>.</i></b><span>free and independent examiners in the full audit</span></div>
+    <div><b>30<i>.</i></b><span>criteria, the same grid at each audit</span></div>
+    <div><b>0<i>.</i></b><span>invented dates in the to-do</span></div>
   </div>
 </header>
 
-<section>
-  <h2>Cinq regards sur le même site</h2>
-  <p class="intro">La plupart des audits regardent une seule chose avec un seul outil. Celui-ci croise cinq angles, et chaque angle a ses preuves.</p>
-  <div class="grid">
-    <div class="card"><span class="tag"><b>01</b> · Google</span><h3>Ce qu'il peut lire</h3><p>robots.txt, sitemap, redirections, fausses 404, canonicals, hreflang, et surtout : le texte est-il là sans JavaScript ?</p></div>
-    <div class="card"><span class="tag"><b>02</b> · Visiteurs</span><h3>Ce qu'ils vivent</h3><p>Core Web Vitals, téléphone à 375 px, accessibilité WCAG, appel à l'action, formulaire, preuves de confiance.</p></div>
-    <div class="card"><span class="tag"><b>03</b> · Serveur</span><h3>Ce qu'il envoie</h3><p>Temps de réponse, compression, cache, TLS, en-têtes de sécurité, traceurs avant consentement.</p></div>
-    <div class="card"><span class="tag"><b>04</b> · Textes</span><h3>Ce qu'ils disent</h3><p>Titles, descriptions, aperçus de partage, fautes, et les mêmes faits partout : un chiffre contradictoire, Google et les IA le répètent.</p></div>
-    <div class="card"><span class="tag"><b>05</b> · IA</span><h3>Ce qu'elles répondent</h3><p>5 questions fixes posées à ChatGPT, Google Mode IA, Brave et Perplexity. Qui est cité à votre place, et quels faits faux circulent sur vous.</p></div>
-    <div class="card"><span class="tag"><b>+</b> · Preuve</span><h3>Rien d'inventé</h3><p>Chaque constat est vérifié, hypothèse ou non vérifiable. Une capture réelle avec un cadre rouge, ou un lien. Aucune promesse de classement.</p></div>
+<section id="fix">
+  <h2>From the report to the fix</h2>
+  <p class="intro">Most audits stop at a list. This one carries on, and keeps you in charge of what goes online.</p>
+  <div class="grid three">
+    <div class="card"><span class="tag"><b>01</b> · In your code</span><h3>Claude applies what it can</h3><p>Give it the folder of your site. It works on a branch of its own, one commit per fix, tests the site on your machine, and stops if something that worked got worse.</p></div>
+    <div class="card"><span class="tag"><b>02</b> · Your facts</span><h3>It asks, it does not invent</h3><p>Legal names, figures, clients: the report gives you the questions, and a form to fill in and paste. Secrets and invented facts are refused.</p></div>
+    <div class="card"><span class="tag"><b>03</b> · On the live site</span><h3>It checks what holds</h3><p>You read the branch and publish. Claude then reads the live site again and marks each fix: fixed, better, or not yet.</p></div>
   </div>
 </section>
 
-<section id="grille">
-  <h2>Une note qui se compare</h2>
-  <p class="intro">6 catégories, 5 critères chacune, notés 0, 1 ou 2. Mêmes outils, mêmes réglages, mêmes questions à chaque audit : quand la note bouge, c'est le site qui a bougé, pas la méthode. Un critère invérifiable est retiré du calcul, jamais deviné, et le script refuse un dossier dont les notes ne correspondent pas aux critères.</p>
+<section id="speeds">
+  <h2>Two speeds</h2>
+  <p class="intro">Start with a first look, and take the full audit when you need evidence to present and a score to track. Reports come in English or French.</p>
+  <div class="grid two">
+    <div class="card lane c"><span class="tag">quick · about 15 minutes</span><h3>A first read</h3><ul><li>Automatic crawl of up to 25 pages</li><li>PageSpeed, Mozilla Observatory and Wikidata when they answer</li><li>A small AI panel if a browser is available</li><li>A provisional score: what is not checked is excluded, not guessed</li><li>The 10 most useful fixes, on one HTML page</li></ul></div>
+    <div class="card lane lit"><span class="tag">full · a working day</span><h3>The complete audit</h3><ul><li>23 examiners, a dated screenshot for each finding</li><li>All 30 criteria, a score comparable over time</li><li>5 questions to 4 AI assistants</li><li>Report, PDF, single page and PowerPoint</li><li>A protocol to measure again in 1, 3 or 6 months</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>Five looks at the same site</h2>
+  <p class="intro">Most audits look at one thing with one tool. This one crosses five angles, and each angle has its evidence.</p>
+  <div class="grid">
+    <div class="card"><span class="tag"><b>01</b> · Google</span><h3>What it can read</h3><p>robots.txt, sitemap, redirects, fake 404s, canonicals, hreflang, and above all: is the text there without JavaScript?</p></div>
+    <div class="card"><span class="tag"><b>02</b> · Visitors</span><h3>What they experience</h3><p>Core Web Vitals, a phone at 375 px, WCAG accessibility, call to action, form, proof of trust.</p></div>
+    <div class="card"><span class="tag"><b>03</b> · Server</span><h3>What it sends</h3><p>Response time, compression, cache, TLS, security headers, trackers before consent.</p></div>
+    <div class="card"><span class="tag"><b>04</b> · Copy</span><h3>What it says</h3><p>Titles, descriptions, share previews, typos, and the same facts everywhere: a contradictory figure gets repeated by Google and AI.</p></div>
+    <div class="card"><span class="tag"><b>05</b> · AI</span><h3>What it answers</h3><p>Fixed questions really asked to ChatGPT, Google AI Mode, Brave and Perplexity. Who gets cited instead of you, and which wrong facts circulate.</p></div>
+    <div class="card"><span class="tag"><b>+</b> · Evidence</span><h3>Nothing invented</h3><p>Each finding is verified, a hypothesis or not verifiable. A real screenshot with a red box, or a link. No ranking promise.</p></div>
+  </div>
+</section>
+
+<section id="compare">
+  <h2>What really changed</h2>
+  <p class="intro">One command compares two audits of a site. The score only counts the criteria checked both times, tools follow noise thresholds, and an AI citation counts if it comes back at least 2 times out of 3. A task that left the list is "no longer listed", not "done".</p>
+  <div class="cta"><a class="btn ghost" href="demo/compare/">Example: a comparison</a></div>
+</section>
+
+<section id="grid">
+  <h2>A score you can compare</h2>
+  <p class="intro">6 categories, 5 criteria each, scored 0, 1 or 2. Same tools, same settings, same questions at each audit: when the score moves, the site moved, not the method. A criterion that cannot be verified is excluded, never guessed, and the script refuses a report whose scores do not match the criteria.</p>
   <div class="tbl"><table>
-    <thead><tr><th></th><th>Catégorie</th><th>Ce qu'on regarde</th></tr></thead>
+    <thead><tr><th></th><th>Category</th><th>What it looks at</th></tr></thead>
     <tbody>
-      <tr><td>A</td><td>Exploration et indexation</td><td>accès des robots, une seule version du site, codes HTTP, rendu sans JavaScript, architecture</td></tr>
-      <tr><td>B</td><td>Performance et front-end</td><td>LCP, INP, CLS réels, PageSpeed téléphone, images, JavaScript et CSS, mobile</td></tr>
-      <tr><td>C</td><td>Serveur, sécurité et vie privée</td><td>TLS et HSTS, en-têtes de sécurité, compression et cache, temps de réponse, consentement</td></tr>
-      <tr><td>D</td><td>Contenus et SEO éditorial</td><td>titles, descriptions et partage, structure, profondeur, justesse des faits, fraîcheur et langues</td></tr>
-      <tr><td>E</td><td>Expérience, accessibilité et conversion</td><td>les 5 premières secondes, appel à l'action, formulaire, preuves, WCAG</td></tr>
-      <tr><td>F</td><td>GEO et autorité</td><td>données structurées, robots des IA et llms.txt, entité, contenus citables, présence dans les réponses</td></tr>
+      <tr><td>A</td><td>Crawling and indexing</td><td>robot access, one version of the site, HTTP codes, rendering without JavaScript, structure</td></tr>
+      <tr><td>B</td><td>Performance and front-end</td><td>real LCP, INP, CLS, mobile PageSpeed, images, JavaScript and CSS, mobile</td></tr>
+      <tr><td>C</td><td>Server, security and privacy</td><td>TLS and HSTS, security headers, compression and cache, response time, consent</td></tr>
+      <tr><td>D</td><td>Content and editorial SEO</td><td>titles, descriptions and sharing, structure, depth, accuracy of facts, freshness and languages</td></tr>
+      <tr><td>E</td><td>Experience, accessibility and conversion</td><td>the first 5 seconds, call to action, form, proof, WCAG</td></tr>
+      <tr><td>F</td><td>GEO and authority</td><td>structured data, AI crawlers and llms.txt, entity, citable content, presence in answers</td></tr>
     </tbody>
   </table></div>
 </section>
 
 <section id="todo">
-  <h2>Trois to-do, zéro calendrier</h2>
-  <p class="intro">Chaque problème devient une tâche précise, avec sa correction et un « Vérifié quand… » que n'importe qui peut refaire. Elle va dans la to-do de la personne qui peut la faire.</p>
+  <h2>Three to-do lists, no calendar</h2>
+  <p class="intro">Each problem becomes a precise task, with its fix and a "Verified when..." check anyone can repeat. It goes in the list of the person who can do it.</p>
   <div class="grid">
-    <div class="card lane c"><span class="tag">C1, C2… · Contenu</span><h3>Dans l'administration du site</h3><ul><li>Une fiche de faits, la même partout</li><li>Titles, descriptions, aperçus de partage</li><li>Textes alternatifs, FAQ, guides de choix</li><li>Wikidata, profils, annuaires</li></ul></div>
-    <div class="card lane"><span class="tag">F1, F2… · Front-end</span><h3>Dans le code des pages</h3><ul><li>Rendu côté serveur pour les robots des IA</li><li>Données structurées par type de page</li><li>Images, scripts, polices, Core Web Vitals</li><li>Contrastes, clavier, formulaires</li></ul></div>
-    <div class="card lane b"><span class="tag">B1, B2… · Back-end et infra</span><h3>Sur le serveur</h3><ul><li>Search Console, sitemap, redirections 301</li><li>Robots des IA, llms.txt, vraie 404</li><li>En-têtes de sécurité, compression, cache</li><li>Consentement avant tout traceur</li></ul></div>
+    <div class="card lane c"><span class="tag">C1, C2... · Content</span><h3>In the site's admin</h3><ul><li>One fact sheet, the same everywhere</li><li>Titles, descriptions, share previews</li><li>Alt text, FAQ, buying guides</li><li>Wikidata, profiles, directories</li></ul></div>
+    <div class="card lane lit"><span class="tag">F1, F2... · Front-end</span><h3>In the page code</h3><ul><li>Server rendering for AI crawlers</li><li>Structured data by page type</li><li>Images, scripts, fonts, Core Web Vitals</li><li>Contrast, keyboard, forms</li></ul></div>
+    <div class="card lane b"><span class="tag">B1, B2... · Back-end and infra</span><h3>On the server</h3><ul><li>Search Console, sitemap, 301 redirects</li><li>AI crawlers, llms.txt, real 404</li><li>Security headers, compression, cache</li><li>Consent before any tracker</li></ul></div>
   </div>
-  <div class="prios"><span class="prio p1"><b>P1</b>bloquant</span><span class="prio p2"><b>P2</b>important</span><span class="prio p3"><b>P3</b>finition</span><span class="prio"><b>.md</b>liste à cocher</span><span class="prio"><b>.csv</b>Notion, Jira, Linear, GitHub</span></div>
+  <p class="intro" style="margin:28px 0 0">Each task says where to act and what to paste for the platform of the site, shows the page before and after, and comes with ready files: security headers, llms.txt, structured data, titles. They are drafts to read, and nothing is ever applied to the site.</p>
+  <div class="prios"><span class="prio p1"><b>P1</b>blocking</span><span class="prio p2"><b>P2</b>important</span><span class="prio p3"><b>P3</b>polish</span><span class="prio"><b>.md</b>checklist</span><span class="prio"><b>.csv</b>Notion, Jira, Linear, GitHub</span></div>
 </section>
 
 <section>
-  <h2>Un dossier qu'on a envie de lire</h2>
-  <p class="intro">Tout part d'un seul fichier, audit.json. Les scripts en tirent un dossier HTML en cinq parties, son PDF, une page unique à envoyer par mail, la to-do en Markdown et en CSV, et un PowerPoint d'une centaine de slides aux couleurs de la marque.</p>
-  <a class="shot" href="demo/"><img src="apercu-dossier.png" alt="Trois pages du dossier d'audit d'exemple : la note, la mesure et la to-do" loading="lazy"></a>
+  <h2>A report people want to read</h2>
+  <p class="intro">The full audit starts from one file, audit.json. The scripts turn it into an HTML report in five parts, its PDF, a single page to send by email, the to-do as Markdown and CSV, and a PowerPoint of about a hundred slides in the brand's colours.</p>
+  <a class="shot" href="demo/"><img src="apercu-dossier.png" alt="Three pages of the example audit report: the score, a domain and the to-do" loading="lazy"></a>
 </section>
 
 <section>
-  <h2>Une journée, cinq étapes</h2>
+  <h2>The full audit: a day, five steps</h2>
   <div class="steps">
-    <div class="card"><h3>Le contexte</h3><p>Activité, public, objectif, CMS. Rien à redemander la fois suivante.</p></div>
-    <div class="card"><h3>Les mesures</h3><p>Relevé des pages en arrière-plan, 19 outils, le panel des IA, les captures.</p></div>
-    <div class="card"><h3>La note</h3><p>30 critères avec leur preuve, 9 domaines, les tâches.</p></div>
-    <div class="card"><h3>Le dossier</h3><p>HTML, PDF, page unique, PowerPoint, to-do. Contrôlés avant livraison.</p></div>
-    <div class="card"><h3>La remesure</h3><p>Le même protocole dans 1, 3 ou 6 mois, avec des seuils de bruit.</p></div>
+    <div class="card"><h3>Context</h3><p>Activity, audience, goal, CMS. Nothing to ask again next time.</p></div>
+    <div class="card"><h3>Measures</h3><p>Crawl in the background, 19 tools, the AI panel, the screenshots.</p></div>
+    <div class="card"><h3>Score</h3><p>30 criteria with their evidence, 9 domains, the tasks.</p></div>
+    <div class="card"><h3>Report</h3><p>HTML, PDF, single page, PowerPoint, to-do. Checked before delivery.</p></div>
+    <div class="card"><h3>Remeasure</h3><p>The same protocol in 1, 3 or 6 months, with noise thresholds.</p></div>
   </div>
 </section>
 
 <section>
-  <h2>L'installer</h2>
-  <p class="intro">Il faut Claude Code, Python 3.9 ou plus, et Node.js pour le PowerPoint. Puis une URL suffit.</p>
-<pre><span class="k">git clone</span> https://github.com/Tania-bezancon/audit-seo-geo.git ~/.claude/skills/audit-seo-geo
-<span class="k">cd</span> ~/.claude/skills/audit-seo-geo/scripts && <span class="k">npm install</span>
-<span class="k">./selftest.sh</span>                       <span class="m"># fabrique l'audit d'exemple de bout en bout</span>
+  <h2>Install it</h2>
+  <p class="intro">For the quick audit, Claude Code and Python 3.9 or later are enough, with no browser and no API key. The full audit also needs a browser driven by Claude, and Node.js for the PowerPoint.</p>
+<pre><span class="m"># in Claude Code:</span>
+<span class="k">/plugin marketplace add</span> Tania-bezancon/audit-seo-geo
+<span class="k">/plugin install</span> audit-seo-geo@tania-bezancon
 
-<span class="m"># puis, dans Claude Code :</span>
-/audit-seo-geo https://www.votre-site.fr</pre>
+<span class="m"># then, or just ask in your own words:</span>
+/audit-seo-geo:audit-seo-geo quick https://www.your-site.com   <span class="m"># 15 minutes</span>
+/audit-seo-geo:audit-seo-geo full https://www.your-site.com    <span class="m"># a working day</span></pre>
 </section>
 
 <section>
-  <h2>Ce qu'il ne fait pas</h2>
+  <h2>What it does not do</h2>
   <div class="honest">
-    <p><b>Il ne promet pas de classement.</b> Il mesure, il range, il dit quoi corriger. Les positions et les citations par les IA dépendent aussi des autres.</p>
-    <p><b>Il ne remplace pas Search Console.</b> Sans accès, il le dit dans les limites et en fait une tâche P1.</p>
-    <p><b>Il ne touche jamais au site audité.</b> Il ne remplit aucun formulaire et ne coche aucune case « je suis humain ».</p>
+    <p><b>It promises no ranking.</b> It measures, sorts, and says what to fix. Positions and AI citations also depend on others.</p>
+    <p><b>It does not replace Search Console.</b> Without access, it says so in the limits and makes it a P1 task.</p>
+    <p><b>It never publishes for you.</b> An audit changes nothing. Your code changes only if you ask, on a branch, and you decide what goes online. It fills in no form and ticks no "I am human" box.</p>
   </div>
 </section>
 
-<footer><span>audit-seo-geo · licence MIT · le dossier est en français</span><span>Imaginé par <a href="https://taniabezancon.netlify.app/en">Tania Bezançon</a></span></footer>
+<footer><span>audit-seo-geo · MIT licence · reports in English or French</span><span>Created by <a href="https://taniabezancon.netlify.app/en">Tania Bezançon</a> · Blue Hours Studio</span></footer>
 </div>
 </body>
 </html>

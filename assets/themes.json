@@ -1,37 +1,65 @@
 {
-  "_lisez-moi": "Un thème par marque. css : variables du dossier HTML (mode clair). pptx : couleurs du PowerPoint (hex sans #). font.family : police du PowerPoint ; font.css : pile de polices du dossier (facultatif) ; font.files : fichiers de assets/fonts intégrés dans la page unique (police sous licence libre seulement). logos : fichiers de assets/logos. Le thème par défaut est « signature ».",
+  "_readme": "One theme per brand. css: the variables of assets/dossier.css a theme replaces (its colours, --display and --font); the others keep the look of the film. pptx: PowerPoint colours (hex without #). font.family: PowerPoint font; font.css: text font stack of the report (optional); font.files: files of assets/fonts used by the reports and embedded in the single-file ones, as [weight, file] or [weight, file, family] (fonts you may distribute only). logos: files of assets/logos. The default theme is \"signature\". Add your own in ~/.claude/audit-seo-geo/themes.json, with their fonts/ and logos/ next to it: updates keep them.",
   "signature": {
-    "label": "Signature (blanc cassé, bleu nuit, corail)",
+    "label": "Signature (the Blue Hours Studio film: petrol black, petrol, glacier)",
     "font": {
-      "family": "Helvetica Neue",
-      "fallback": "Arial, sans-serif",
-      "css": "-apple-system, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif",
-      "files": []
+      "family": "Arial",
+      "fallback": "Helvetica, sans-serif",
+      "files": [
+        [
+          "400 800",
+          "archivo-latin.woff2",
+          "Archivo"
+        ],
+        [
+          "400 600",
+          "inter-latin.woff2",
+          "Inter"
+        ],
+        [
+          "400 500",
+          "jetbrains-mono-latin.woff2",
+          "JetBrains Mono"
+        ]
+      ]
     },
-    "css": {
-      "--bg": "#FAFAF7",
-      "--ink": "#0B1F4C",
-      "--ink-2": "#1E3870",
-      "--muted": "#5A6C99",
-      "--line": "#E4E6EC",
-      "--accent": "#D9572F",
-      "--accent-soft": "#FFF0EA",
-      "--band": "#0B1F4C",
-      "--band-muted": "#B8C2DA",
-      "--brand": "#FF7A55",
-      "--glow": "#FFD3C2",
-      "--code-bg": "#F1F2F6"
-    },
+    "css": {},
     "pptx": {
-      "dark": "0B1F4C",
-      "bright": "FF7A55",
-      "accentText": "D9572F",
-      "soft": "FFF0EA",
-      "ink2": "1E3870",
-      "muted": "5A6C99",
-      "line": "E4E6EC",
-      "bg2": "FAFAF7",
-      "darkMuted": "B8C2DA"
+      "dark": "031418",
+      "bright": "BFDDE4",
+      "accentText": "BFDDE4",
+      "soft": "0F3440",
+      "ink2": "DDEAED",
+      "muted": "8FB3BD",
+      "line": "1E4754",
+      "bg2": "0A2129",
+      "darkMuted": "DDEAED",
+      "page": "031418",
+      "panel": "0F3440",
+      "panel2": "3C7C8C",
+      "text": "F4F7F6",
+      "card": "06191F",
+      "glyph": "031418",
+      "backdrop": "pptx-backdrop.jpg",
+      "feu": {
+        "v": [
+          "8FDBC0",
+          "0F3A33"
+        ],
+        "o": [
+          "EBCB8B",
+          "3A3220"
+        ],
+        "r": [
+          "F4A79D",
+          "40231F"
+        ]
+      },
+      "lanes": {
+        "C": "3C7C8C",
+        "F": "0F3440",
+        "B": "1E4754"
+      }
     },
     "logos": {}
   },
@@ -50,11 +78,24 @@
       "--line": "#E5E7EB",
       "--accent": "#1D4ED8",
       "--accent-soft": "#E0E7FF",
-      "--band": "#111827",
-      "--band-muted": "#AEB4C0",
-      "--brand": "#60A5FA",
+      "--band-muted": "#D1D5DB",
       "--code-bg": "#EEF0F3",
-      "--glow": "#DCE6FF"
+      "--page": "#F5F6F8",
+      "--hero": "#111827",
+      "--lit": "#111827",
+      "--surface": "#FFFFFF",
+      "--glass": "#FFFFFF",
+      "--band-ink": "#F9FAFB",
+      "--ok": "#1F7A57",
+      "--ok-soft": "#E4F3EC",
+      "--warn": "#8A5A00",
+      "--warn-soft": "#FBF1DC",
+      "--bad": "#B3362A",
+      "--bad-soft": "#FCE8E4",
+      "--grain": "0",
+      "--scheme": "light",
+      "--display": "Arial, Helvetica, sans-serif",
+      "--font": "Arial, Helvetica, sans-serif"
     },
     "pptx": {
       "dark": "111827",

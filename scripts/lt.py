@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Fautes d'orthographe et de grammaire avec l'API publique de LanguageTool, sur ce que Google lit.
+"""Spelling and grammar with the public LanguageTool API, on what Google reads.
 
-  python3 lt.py CRAWL_DIR [--lang fr] [--prefix https://exemple.com/fr]
+  python3 lt.py CRAWL_DIR [--lang en-GB] [--prefix https://example.com/en]
 
-Relit les titres, descriptions, H1 et H2 relevés par crawl.py (sans doublons), par paquets, avec une pause entre deux
-appels (l'API publique limite le débit). Écrit CRAWL_DIR/lt-<lang>.json, avec l'adresse de la page de chaque alerte. Chaque alerte reste à relire : une préférence
-de style n'est pas une faute, et les noms propres ou l'anglais technique sortent souvent en faux positifs.
+Reads the titles, descriptions, H1 and H2 collected by crawl.py (no duplicates), in batches, with a pause between two
+calls (the public API limits the rate). Writes CRAWL_DIR/lt-<lang>.json, with the page address of each alert. Each alert
+still has to be read: a style preference is not a mistake, and proper nouns or technical terms often come out as false positives.
 """
 import argparse, json, os, time, urllib.parse, urllib.request
 
 ap = argparse.ArgumentParser()
-ap.add_argument("crawl"); ap.add_argument("--lang", default="fr"); ap.add_argument("--prefix", default="")
+ap.add_argument("crawl"); ap.add_argument("--lang", default="en-US"); ap.add_argument("--prefix", default="")
 a = ap.parse_args()
 R = [json.loads(l) for l in open(os.path.join(a.crawl, "crawl.jsonl"))]
 R = [r for r in R if r.get("status") == 200 and r["url"].startswith(a.prefix)]
@@ -32,7 +32,7 @@ def check(chunk):
         except Exception:
             time.sleep(10)
     else:
-        print("API LanguageTool injoignable"); return
+        print("LanguageTool API unreachable"); return
     starts, pos = [], 0
     for u, seg in chunk:
         starts.append((pos, u)); pos += len(seg) + 2
@@ -51,6 +51,6 @@ for u, s in segs:
 if chunk:
     check(chunk)
 json.dump(out, open(os.path.join(a.crawl, f"lt-{a.lang}.json"), "w"), ensure_ascii=False, indent=1)
-print(f"{len(segs)} textes relus, {len(out)} alertes à vérifier une par une")
+print(f"{len(segs)} texts read, {len(out)} alerts to check one by one")
 for o in out:
-    print(f"- « {o['erreur']} » → {o['propositions'][:2]} · {o['message'][:70]} · …{o['extrait']}… · {o['url']}")
+    print(f"- \"{o['erreur']}\" -> {o['propositions'][:2]} · {o['message'][:70]} · …{o['extrait']}… · {o['url']}")
