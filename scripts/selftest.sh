@@ -53,4 +53,7 @@ python3 scripts/compare.py assets/example/audit.en.json assets/example/remeasure
 # the fixes applied in the code of a copy of the test site: what must work, and what must be refused
 python3 tests/repair_test.py "$OUT"
 
+# the defects fixed in 1.1
+python3 tests/v11_test.py "$OUT"
+
 python3 scripts/check_outputs.py "$OUT"

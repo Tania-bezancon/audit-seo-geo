@@ -6,6 +6,12 @@
 
 [Project page](https://tania-bezancon.github.io/audit-seo-geo/) · [Example: quick audit](https://tania-bezancon.github.io/audit-seo-geo/demo/quick/) · [Example: full audit](https://tania-bezancon.github.io/audit-seo-geo/demo/) · [Example: comparison](https://tania-bezancon.github.io/audit-seo-geo/demo/compare/) · [Version française](README.fr.md)
 
+## Who it is for
+
+Freelancers who look after their clients' sites, marketing and communication teams, business owners. You do not need to be a developer, and there is almost nothing to install.
+
+It starts by asking you a few questions: whose site it is, what it should bring in, who will make the changes, and what you want to receive. After the first measures, it asks only what the site cannot tell: your offer and what makes it better, the competitors you are compared with, a fact it found in two versions. "I don't know" is a fine answer: what cannot be checked is marked as such, never guessed. The tasks are then written for the person who will do them: where to click in the site's admin, or the code for a developer.
+
 ## Try it in 15 minutes
 
 Type this in a Claude Code conversation, not in your shell:
@@ -23,7 +29,7 @@ Then run an audit, or just ask for one in your own words ("run a quick SEO audit
 
 You need Claude Code and Python 3.9+. No browser and no API key are required: what cannot be measured is marked as not checked and excluded from the score, never guessed.
 
-You get one HTML page with a provisional score and the fixes in order of usefulness, plus the to-do as Markdown and CSV. Then, if you have the site's code:
+You get one web page with a provisional score and the fixes in order of usefulness, published as a private Claude artifact you can share when you choose (or as a single file), plus the to-do as Markdown and CSV. Then, if you have the site's code:
 
 ```
 Fix my site with this audit.
@@ -46,13 +52,13 @@ Start with the quick audit to see where the site stands. Take the detailed audit
 | Criteria checked | about 15 to 22 of 30 | 30 |
 | Evidence | measures and links | a dated screenshot for each finding |
 | AI panel | 3 questions, 2 assistants, if a browser is available | 5 questions, 4 assistants |
-| You get | one HTML page and the to-do | report, PDF, single page, PowerPoint, to-do, remeasure protocol |
+| You get | one web page and the to-do | a web page, the to-do and a remeasure protocol; a PDF and a PowerPoint if you ask |
 | Score | provisional, for a first look | comparable from one audit to the next |
 | Follow-up | `compare.py` between two quick audits | `compare.py` between two full audits, with the protocol |
 
 ### Go further with the detailed audit
 
-The quick audit tells you what matters most, in minutes. The detailed audit is the one you show to a client or a management team: a dated screenshot for each finding, the complete AI panel, all 30 criteria, and a report, a PDF and a PowerPoint ready to present.
+The quick audit tells you what matters most, in minutes. The detailed audit is the one you show to a client or a management team: a dated screenshot for each finding, the complete AI panel, all 30 criteria, and a report to share as a web page, with a PDF or a PowerPoint ready to present if you ask for them.
 
 ```
 /audit-seo-geo:audit-seo-geo full https://www.your-site.com
@@ -176,16 +182,18 @@ git clone https://github.com/Tania-bezancon/audit-seo-geo.git ~/.claude/skills/a
 
 The skill costs about 240 tokens per session while idle, and about 5,700 when it loads. Your sites, themes, fonts and logos stay in `~/.claude/audit-seo-geo/`, and your audits go in `audits/<domain>/<date>/` under the current folder: updates touch neither. To remove the plugin: `/plugin uninstall audit-seo-geo@tania-bezancon`.
 
-The PowerPoint needs one more step, which Claude runs the first time you ask for one: `scripts/setup_pptx.sh`.
+### What you need
 
-| Tool | For what | Required |
+| | For what | |
 |---|---|---|
-| Python 3.9+ | crawl, report, to-do, quick audit | yes |
-| Pillow (Python) | red boxes on screenshots | for the full audit |
-| A browser driven by Claude | screenshots of the tools and the AIs | for the full audit; in quick mode, for the AI panel |
-| Node.js 18+ | PowerPoint (pptxgenjs), speed measured with Lighthouse | for the PowerPoint; without a PageSpeed key, for speed and accessibility |
-| Google Chrome or Chromium | PDF of the report (`CHROME=/path` otherwise) | for the PDF |
-| Microsoft PowerPoint or LibreOffice, PyMuPDF | PDF and contact sheets of the PowerPoint | no |
+| Claude Code | runs the skill | required |
+| Python 3.9+ | crawl, report, to-do. Already there on a Mac with the developer tools; [python.org](https://www.python.org/downloads/) on Windows | required |
+| A browser Claude can drive: the Claude in Chrome extension, or the browser built into the Claude desktop app | screenshots of the tools and the AI answers | for the detailed audit; in quick mode, for the AI panel |
+| Google Chrome | the PDF; speed measured on your machine when PageSpeed refuses | only if you want them |
+| Node.js 18+ | the PowerPoint (Claude runs `scripts/setup_pptx.sh` the first time); speed measured on your machine | only if you want them |
+| Pillow (`pip install pillow`) | red boxes on the screenshots | optional |
+
+Claude installs nothing on its own: it says what an option needs, and you choose.
 
 PageSpeed's public API usually answers 429 without a key. The quick audit then runs Lighthouse on your machine, which needs Chrome and Node.js and downloads Lighthouse with `npx` the first time. Set `PAGESPEED_API_KEY` to use your own free key: only the API has visitors' real data.
 
@@ -206,10 +214,10 @@ Or online: [quick audit](https://tania-bezancon.github.io/audit-seo-geo/demo/qui
 
 A working day, announced at the start:
 
-1. **Context**: activity, audience, goal, CMS or framework, available access. Nothing to ask again for a site already in `~/.claude/audit-seo-geo/sites.json`.
+1. **A few questions** ([references/intake.md](references/intake.md)): whose site, its goal, who makes the changes, what you want to receive; then, after the first measures, the offer, the competitors and the facts to confirm. Nothing to ask again for a site already in `~/.claude/audit-seo-geo/sites.json`.
 2. **Measures** (about 3 h): crawl in the background, rendering without JavaScript, the 19 tools with their numbered screenshot, the AI panel, site screenshots, the 360° checklist.
 3. **Scoring** (about 2 h): the 30 criteria with their evidence, the 9 domains, the tasks of the three to-do lists.
-4. **Building** (about 1 h): report, PDF, single page, to-do, PowerPoint, then checks at 1,280 and 375 px and contact sheets of the PowerPoint.
+4. **Building** (about 1 h): the web page and the to-do, plus the PDF and the PowerPoint if you asked for them, then checks at 1,280 and 375 px.
 5. **Remeasure protocol**: the only dated document, to repeat exactly the same measure in 1, 3 or 6 months.
 
 ## What the repository contains

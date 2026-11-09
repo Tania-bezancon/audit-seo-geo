@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0
+
+- Made for people who are not developers: freelancers, marketing teams, business owners.
+- A short questionnaire first (`references/intake.md`): whose site, its goal, who makes the changes, what to receive. After the first measures, only what the site cannot tell: the offer and what makes it better, the competitors, a fact found in two versions, the access to statistics, the questions for the AIs. "I don't know" leaves a criterion unchecked, never guessed.
+- The report is delivered first as one web page, published as a private Claude artifact when the tool allows it. The PDF and the PowerPoint are made only when asked for, and Claude installs nothing unasked.
+- Fixed: the home page was read twice when the address had no final slash, which doubled it in `llms.txt` and flagged its title as a duplicate.
+- Fixed: the draft security policy (`_headers` and the others) blocked the fonts, scripts and frames a site loads from other hosts; it now lets them through.
+- Fixed: the full report stopped when the share image of `view.json` was an address, or when a tool without a screenshot, such as LanguageTool, was cited in a domain.
+- Fixed: a site that describes itself as a kind of organisation (a travel agency, a shop, a law firm…) no longer gets an Organization block to add, nor a lower score for it.
+- The full report names the tasks that fall back on general questions, so that each one asks what this audit found.
+
 ## 1.0.0
 
 - Available as a Claude Code plugin, and still as a skill folder.

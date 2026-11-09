@@ -1,8 +1,8 @@
 {
   "name": "audit-seo-geo",
   "displayName": "SEO and GEO audit",
-  "version": "1.0.0",
-  "description": "Audit any website for SEO and GEO: real AI answers, evidence for every finding, a fixed 30-criteria grid and three undated to-do lists. A 15-minute quick audit or a full one, in English or French, a comparison of two audits, and fixes applied in your code on a branch, then checked on your live site.",
+  "version": "1.1.0",
+  "description": "Audit any website for SEO and GEO, made for freelancers and marketing teams: a few questions on your goals and offer, real AI answers, evidence for every finding, a fixed 30-criteria grid and three undated to-do lists, delivered as a web page to share. A 15-minute quick audit or a full one, in English or French, a comparison of two audits, and fixes applied in your code on a branch, then checked on your live site.",
   "author": {
     "name": "Tania Bezançon",
     "url": "https://taniabezancon.netlify.app/en"
@@ -10,5 +10,16 @@
   "homepage": "https://tania-bezancon.github.io/audit-seo-geo/",
   "repository": "https://github.com/Tania-bezancon/audit-seo-geo",
   "license": "MIT",
-  "keywords": ["seo", "geo", "aeo", "seo-audit", "ai-visibility", "technical-seo", "core-web-vitals", "accessibility", "structured-data", "llms-txt"]
+  "keywords": [
+    "seo",
+    "geo",
+    "aeo",
+    "seo-audit",
+    "ai-visibility",
+    "technical-seo",
+    "core-web-vitals",
+    "accessibility",
+    "structured-data",
+    "llms-txt"
+  ]
 }

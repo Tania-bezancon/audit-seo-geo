@@ -25,7 +25,8 @@ ap.add_argument("--jina", action="store_true"); ap.add_argument("--urls")
 ap.add_argument("--map-host", help="addresses on this host are read here instead: a local copy of a live site lists the live addresses in its sitemap")
 a = ap.parse_args()
 os.makedirs(a.out, exist_ok=True)
-START = a.start
+# the home page is one page: "https://site.com" and "https://site.com/" must not be read twice
+START = a.start if urllib.parse.urlparse(a.start).path else a.start + "/"
 U = urllib.parse.urlparse(START)
 ROOT = f"{U.scheme}://{U.netloc}"
 HOST = U.netloc
@@ -73,6 +74,7 @@ class P(HTMLParser):
         super().__init__(convert_charrefs=True)
         s.title = ""; s.in_title = False; s.metas = {}; s.links = []; s.hn = []; s.cur = None; s.buf = ""
         s.imgs = []; s.ld = []; s.in_ld = False; s.ldb = ""; s.hrefs = []; s.lang = None; s.text = []; s.skip = 0; s.time = []; s.scripts = 0
+        s.ext = {"script": set(), "style": set(), "frame": set()}  # the other hosts the page loads code, styles or frames from
 
     def handle_starttag(s, t, at):
         at = dict(at)
@@ -86,6 +88,9 @@ class P(HTMLParser):
         if t == "br" and s.cur: s.buf += "<BR>"
         if t == "img": s.imgs.append(at)
         if t == "script" and at.get("type") != "application/ld+json": s.scripts += 1
+        src = at.get("src") if t in ("script", "iframe") else at.get("href") if t == "link" and "stylesheet" in (at.get("rel") or "") else None
+        if src and src.startswith(("http://", "https://", "//")):
+            s.ext["script" if t == "script" else "frame" if t == "iframe" else "style"].add(urllib.parse.urlparse(src if not src.startswith("//") else "https:" + src).netloc)
         if t == "script" and at.get("type") == "application/ld+json": s.in_ld = True; s.ldb = ""
         elif t in ("script", "style", "noscript"): s.skip += 1
         if t == "a" and at.get("href"): s.hrefs.append(at["href"])
@@ -149,6 +154,7 @@ def page(url):
     # an empty shell has no H1 in its HTML: a short page that has one, such as a legal notice, is simply short
     o["rendu_js_probable"] = o["words"] < 80 and o["scripts"] >= 1 and not o["h1"]
     o["social"] = social_links(p.hrefs)
+    o["third_party"] = {k: sorted(h for h in v if h and h != HOST) for k, v in p.ext.items()}
     links = []
     for h in p.hrefs:
         u = here(urllib.parse.urljoin(url, h).split("#")[0])

@@ -13,6 +13,8 @@ UI = json.load(open(os.path.join(ASSETS, "ui.json"), encoding="utf-8"))
 REPAIR_KIND = {"A1": "code", "A2": "code", "A3": "code", "A4": "code", "A5": "code", "B1": "code", "B2": "code", "B3": "code", "B4": "code", "B5": "code",
                "C1": "outside", "C2": "file", "C3": "outside", "C4": "outside", "C5": "facts", "D1": "code", "D2": "code", "D3": "facts", "D4": "facts", "D5": "facts",
                "E1": "facts", "E2": "facts", "E3": "code", "E4": "facts", "E5": "code", "F1": "code", "F2": "file", "F3": "facts", "F4": "facts", "F5": "outside"}
+# the schema.org types that say who runs the site: Organization and its common kinds (a travel agency, a shop, a law firm…)
+ORG_TYPES = r"Organization|Corporation|LocalBusiness|Agency|Store|ProfessionalService|LegalService|Restaurant|Hotel|LodgingBusiness|NGO|School|MedicalBusiness|Clinic|Dentist|Physician|Attorney|Notary|AccountingService|FinancialService|RealEstateAgent|AutomotiveBusiness|HomeAndConstructionBusiness|HealthAndBeautyBusiness|SportsActivityLocation|EntertainmentBusiness|FoodEstablishment"
 PLACEABLE = ("_headers", "vercel.json", "llms.txt")
 HOSTED = ("wordpress", "webflow", "shopify", "wix", "squarespace")  # fixed in the platform's admin, not in a folder of code
 

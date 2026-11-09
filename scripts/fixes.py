@@ -8,7 +8,7 @@ drafted from the site's own titles and descriptions, an Organization block, and 
 Nothing here touches the site. These are drafts: a person reads them before using them, and what the crawl cannot know stays a TODO.
 quick.py uses this module by itself; run this script for a full audit."""
 import argparse, collections, csv, io, json, os, re
-from common import ASSETS
+from common import ASSETS, ORG_TYPES
 
 RECIPES = os.path.join(ASSETS, "recipes.json")
 HEADER_VALUES = {
@@ -84,11 +84,26 @@ def stack_name(stack, lang):
     return " · ".join(p for p in parts if p)
 
 
-def headers_file(present, host, lang):
+def csp_value(third_party):
+    """The report-only policy, opened to the other hosts the pages really load: otherwise it would block the site's own fonts or booking widget."""
+    tp = third_party or {}
+    styles, scripts, frames = tp.get("style", []), tp.get("script", []), tp.get("frame", [])
+    fonts = ["fonts.gstatic.com"] if "fonts.googleapis.com" in styles else []
+    j = lambda hosts: "".join(" https://" + h for h in hosts)
+    parts = ["default-src 'self'", "img-src 'self' data: https:", "style-src 'self' 'unsafe-inline'" + j(styles), "script-src 'self' 'unsafe-inline'" + j(scripts)]
+    if fonts:
+        parts.append("font-src 'self'" + j(fonts))
+    if frames:
+        parts.append("frame-src 'self'" + j(frames))
+    parts.append("frame-ancestors 'self'")
+    return "; ".join(parts)
+
+
+def headers_file(present, host, lang, third_party=None):
     C = load_recipes(lang)["_files"]
     lines = [(n, v) for k, (n, v) in HEADER_VALUES.items() if not (present or {}).get(k)]
     if not (present or {}).get("content-security-policy"):
-        lines.append(CSP)
+        lines.append((CSP[0], csp_value(third_party)))
     if not lines:
         return None
     note = C["headers_note"]
@@ -113,6 +128,7 @@ def llms_file(pages, url, brand, lang):
     site_lang = (home.get("lang") or "")[:2].lower()
     C = load_recipes(site_lang if site_lang in ("en", "fr") else lang)["_files"]
     same = [p for p in pages if p.get("lang") == home.get("lang")] or pages
+    same = list({p["url"].rstrip("/"): p for p in reversed(same)}.values())[::-1]  # an address with and without a final slash is one page
     out = [f"# {brand}", "", f"> {home.get('desc') or C['todo_description']}", "", "## " + C["llms_pages"], ""]
     for p in same:
         title = re.sub(r"\s+", " ", p.get("title") or p["url"]).strip()
@@ -183,12 +199,12 @@ def titles_file(pages, lang):
 def write_fixes(crawl, url, brand, lang, out_dir):
     """{criterion: {"file", "content"}} for what the measures show is missing, also written to OUT_DIR/fixes."""
     pages, stack, files = crawl.get("pages") or [], crawl.get("stack") or {}, {}
-    made = headers_file(crawl.get("headers_present"), stack.get("host"), lang) if crawl.get("headers_present") is not None else None
+    made = headers_file(crawl.get("headers_present"), stack.get("host"), lang, crawl.get("third_party")) if crawl.get("headers_present") is not None else None
     if made:
         files["C2"] = made
     if pages and crawl.get("llms") != 200:
         files["F2"] = llms_file(pages, url, brand, lang)
-    if pages and not any(re.search(r"Organization|Corporation|LocalBusiness", t) for t in crawl.get("jsonld", [])):
+    if pages and not any(re.search(ORG_TYPES, t) for t in crawl.get("jsonld", [])):
         files["F1"] = organization_file(url, brand, home_page(pages, url).get("desc"), crawl.get("social"), lang)
     if pages:
         made, _ = titles_file(pages, lang)

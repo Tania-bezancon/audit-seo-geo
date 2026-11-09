@@ -18,7 +18,7 @@ Claude completes quick.json between the two steps: judged criteria, AI panel, ta
 A criterion nobody could check is NV: excluded from the score, never guessed. The score is labelled provisional."""
 import argparse, base64, collections, csv, datetime, html, io, tempfile, json, os, re, shutil, statistics, subprocess, sys, urllib.error, urllib.parse, urllib.request
 import fixes
-from common import ASSETS, HOSTED, UI, brand_logo, apply_recheck, repair_block, repair_kind, repair_line, open_questions, task_questions, task_state, date_label, find_chrome, first_html, fix_html, fix_script, font_faces, grid_gain, looks_html, md_details, progress_html, signed_gain, soft_domain, task_marks, view_html, who_html, fmt_score, grid_scores, plural, report_lang, theme_css, translator
+from common import ASSETS, ORG_TYPES, HOSTED, UI, brand_logo, apply_recheck, repair_block, repair_kind, repair_line, open_questions, task_questions, task_state, date_label, find_chrome, first_html, fix_html, fix_script, font_faces, grid_gain, looks_html, md_details, progress_html, signed_gain, soft_domain, task_marks, view_html, who_html, fmt_score, grid_scores, plural, report_lang, theme_css, translator
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 UA = "Mozilla/5.0 (compatible; audit-seo-geo; +https://github.com/Tania-bezancon/audit-seo-geo)"
@@ -136,6 +136,7 @@ def measures_from_crawl(crawl_dir, start):
     S = json.load(open(os.path.join(crawl_dir, "summary.json"), encoding="utf-8"))
     pages = [json.loads(l) for l in open(os.path.join(crawl_dir, "crawl.jsonl"), encoding="utf-8")]
     ok = [p for p in pages if p.get("status") == 200 and "title" in p]
+    ok = list({p["url"].rstrip("/"): p for p in reversed(ok)}.values())[::-1]  # a crawl from before 1.1 may hold the home page twice, with and without a final slash
     C = S["checks"]
     home = next((p for p in ok if p["url"].rstrip("/") == start.rstrip("/")), ok[0] if ok else {})
     glued = {u for u, _ in S["mots_colles"]}
@@ -167,7 +168,7 @@ def measures_from_crawl(crawl_dir, start):
         "ttfb_median": S["ttfb_median_ms"] if S["ttfb_median_ms"] is not None else (statistics.median([p["ttfb_ms"] for p in ok]) if ok else None),
         "d1_bad": len(d1_bad), "no_description": len(S["sans_description"]), "long_titles": len(S["titres_longs_65"]), "dup_titles": len(titles_dup), "repeated_titles": len(repeated), "no_og": len(S["sans_open_graph"]),
         "d2_bad": len(h1_bad | glued), "jsonld": sorted(S["jsonld_types"]), "ai_bots": {b: C["robots_ia"][b] for b in ANSWER_BOTS}, "llms": C["llms_txt"]["status"],
-        "view": view, "headers_present": sec, "stack": C.get("stack") or {}, "social": home.get("social") or [],
+        "view": view, "headers_present": sec, "third_party": {k: sorted({h for p in ok for h in (p.get("third_party") or {}).get(k, [])}) for k in ("script", "style", "frame")}, "stack": C.get("stack") or {}, "social": home.get("social") or [],
         "pages": [{"url": p["url"], "title": p["title"], "desc": p.get("desc") or "", "lang": p.get("lang")} for p in ok],
         "root": C.get("racine"), "js_urls": S["rendu_js_probable"][:5],
         "about_page": next((p["url"] for p in ok if ABOUT_RE.search(urllib.parse.urlparse(p["url"]).path)), None),
@@ -329,7 +330,7 @@ def auto_scores(m, panel, E):
     put("D1", tier(share(c["d1_bad"], pages)), "D1", bad=c["d1_bad"], pages=pages, nd=c["no_description"], rt=c.get("repeated_titles", 0), lt=c["long_titles"], dt=c["dup_titles"], og=c["no_og"])
     put("D2", tier(share(c["d2_bad"], pages)), "D2", bad=c["d2_bad"], pages=pages)
     types = [t for t in c["jsonld"] if t != "invalid JSON"]
-    org = any(re.search(r"Organization|Corporation|LocalBusiness", t) for t in types)
+    org = any(re.search(ORG_TYPES, t) for t in types)
     if types:
         put("F1", "2" if org and len(types) > 1 else "1", "F1", types=", ".join(types[:8]))
     else:

@@ -54,10 +54,15 @@ cited = [c for D in A["domaines"].values() for c in D.get("tasks", [])] + A.get(
 errs = [f"task cited but missing from tasks: {c}" for c in cited if c not in A["tasks"]]
 errs += [f"task never cited in a domain: {c}" for c in A["tasks"] if c not in cited]
 errs += [f"task missing from the to-do: {c}" for c in A["tasks"] if c not in [x for L in A["todo"].values() for _, cs in L for x in cs]]
-errs += [f"tool without a card: {k}" for D in A["domaines"].values() for k in D.get("tools", []) if k not in A["fiches"]]
+# a tool with no screenshot (LanguageTool) only needs its line in "resultats"
+errs += [f"tool without a card: {k}" for D in A["domaines"].values() for k in D.get("tools", []) if k not in A["fiches"] and not (k in OUTILS and OUTILS[k].get("capture") is None and k in A.get("resultats", {}))]
 errs += [f"criteria: {n} instead of {N_CRIT}" for n in [len(A["criteres"])] if n != N_CRIT]
 errs += [f"task in an unknown lane: {c} (lanes: {', '.join(VOIES)})" for c in A["tasks"] if c[0] not in VOIES]
 errs += [f"unknown priority for {c}: {t.get('prio')}" for c, t in A["tasks"].items() if t.get("prio", 2) not in PRIO]
+# a task that waits for the person's facts should ask its own questions: the defaults of a criterion can miss the point
+generic = [c for c, t in A["tasks"].items() if repair_kind({**t, "key": c, "lane": c[0]}) == "facts" and not t.get("questions") and not t.get("repair")]
+if generic:
+    print("note: generic questions on " + ", ".join(generic) + ": write their own \"questions\", or \"repair\": \"outside\" if there is nothing to ask", file=sys.stderr)
 # the scores in "note" must be those of the grid; "5.1" and "5,1" are both accepted, then written for the report language
 calc, calc_global = grid_scores(A["criteres"], LETTERS)
 for L in LETTERS:
@@ -120,14 +125,15 @@ def table(head, rows, cls="tbl"):
 
 # ---------- tool cards ----------
 def fiche(key):
-    t = A["fiches"][key]
+    o = OUTILS.get(key, {})
+    t = A["fiches"].get(key) or {"who": f"{o.get('name', key)} · {o.get('editor', '')}".strip(" ·"), "bullets": [A.get("resultats", {}).get(key, [""])[0]]}
     score = ""
     if t.get("big") or t.get("pills"):
         score = '<div class="score">' + (f'<span class="big num">{esc(t["big"])}</span>' if t.get("big") else "") + "".join(pill(k, p) for k, p in t.get("pills", [])) + "</div>"
     ul = "<ul>" + "".join(f"<li>{inline(b)}</li>" for b in t.get("bullets", [])) + "</ul>" if t.get("bullets") else ""
     says = f'<p class="says">{inline(t["says"])}</p>' if t.get("says") else ""
     return (f'<article class="source"><div class="txt">{role_box(key)}<p class="who">{inline(t["who"])}</p>{score}{ul}{says}</div>'
-            f'{fig(t["capture"].rsplit(".", 1)[0], t["caption"])}</article>')
+            f'{fig(t["capture"].rsplit(".", 1)[0], t["caption"]) if t.get("capture") else ""}</article>')
 
 
 # ---------- tasks ----------
@@ -300,7 +306,8 @@ first_block = first_html([(c, A["tasks"][c]["name"], WHO[c[0]] + (" · " + signe
 progress_block = progress_html(ROWS_NOW, [(c, t.get("criterion")) for c, t in A["tasks"].items()], f"{S['domain']}:{S['date']}", fmt_score(grid_scores(ROWS_NOW, LETTERS)[1], LANG), T, LANG, T("rc_summary", n=sum(1 for v in RECHECK.values() if v["status"] == "fixed"), date=RC_DATE) if RC_DATE else "")
 _all = [{**t, "code": c, "key": c, "lane": c[0], "kind": repair_kind({**t, "key": c, "lane": c[0]}), "questions": task_questions({**t, "key": c, "lane": c[0]}, LANG, T)} for c, t in A["tasks"].items()]
 progress_block += repair_block([t["kind"] for t in _all], REPAIR, S.get("stack"), T, esc, _all)
-view_block = view_html(A.get("view"), T, inline, esc, LANG, lambda p: cap(p + "-"))
+# the share image can be a screenshot of the audit ("40") or the address the site gives, as fixes.py writes it in view.json
+view_block = view_html(A.get("view"), T, inline, esc, LANG, lambda p: p if re.match(r"https?://", p) else cap(p + "-"))
 ul = lambda xs: "<ul>" + "".join(f"<li>{inline(x)}</li>" for x in xs) + "</ul>"
 toc_dom = "".join(f'<li><a href="#{k}">{esc(DOMLAB[k][1])}</a></li>' for k in DOMS if k in A["domaines"])
 crit = []

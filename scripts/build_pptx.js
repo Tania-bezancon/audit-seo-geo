@@ -203,7 +203,9 @@ const cell = (t, o) => ({ text: plain(t), options: o });
 
 // ---------- Templates ----------
 function toolSlide(key, eyebrow) {
-  const t = A.fiches[key], o = OUTIL[key], res = (A.resultats[key] || [""])[0];
+  const o = OUTIL[key], res = (A.resultats[key] || [""])[0];
+  // a tool with no screenshot (LanguageTool) can have no card: its result is enough
+  const t = A.fiches[key] || { who: [o.name, o.editor].filter(Boolean).join(" · "), bullets: res ? [res] : [] };
   const s = content(eyebrow, `${o.name} : ${plain(res)}`);
   const xl = X0, wl = 5.75;
   let y = Y0 + 0.05;
@@ -222,7 +224,7 @@ function toolSlide(key, eyebrow) {
     if ((t.bullets || []).length) y += bullets(s, t.bullets, xl, y, wl, pt) + 0.12;
     if (t.says) noteBox(s, xl, y, wl, t.says, pt - 0.5, BG2, T("says"));
   }
-  capture(s, t.capture, 6.75, Y0 + 0.05, 5.98, 4.7, t.caption);
+  if (t.capture) capture(s, t.capture, 6.75, Y0 + 0.05, 5.98, 4.7, t.caption);
 }
 
 function findingSlide(eyebrow, b) {

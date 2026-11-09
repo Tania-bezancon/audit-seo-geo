@@ -4,6 +4,10 @@ A first read of a site: automatic measures, what Claude can judge by reading the
 
 The score uses the same fixed grid as the full audit, but it is **provisional**: unchecked criteria are NV (excluded, never guessed). Never compare it with a full audit's score, and never present it as one.
 
+## 0. The questionnaire (about 1 minute)
+
+Ask round 1 of `intake.md` (whose site, goal, who makes the changes, what to receive), unless the site is in `sites.json`. Round 2 comes in step 2, once you have read the pages: in quick mode, only questions 5 (the offer) and 9 (the AI questions), plus 7 if you find a fact in two versions. Do not hold the measure for the answers: start it, then ask while it runs.
+
 ## 1. Measure (about 1 to 2 minutes)
 
 ```bash
@@ -31,7 +35,7 @@ Read the pages in `<folder>/crawl/crawl.jsonl` (titles, headings) and fetch the 
 }
 ```
 
-Usually D3, E1, E2 and E4. Also F4 if the pages make it clear. Check the Wikidata candidate in `measures.wikidata.hits` against its description: if it is another entity, rescore F3 in `judged`. If the content is not readable (a page that needs JavaScript and no browser), leave the criterion out rather than guess. A `judged` entry replaces the automatic score of that criterion, so only override an automatic score with evidence that it missed something, such as a firewall blocking crawlers.
+Usually D3, E1, E2 and E4. Also F4 if the pages make it clear. Score E1 and E2 against what the person said in the questionnaire (the offer, the goal), not against your own reading alone. Check the Wikidata candidate in `measures.wikidata.hits` against its description: if it is another entity, rescore F3 in `judged`. If the content is not readable (a page that needs JavaScript and no browser), leave the criterion out rather than guess. A `judged` entry replaces the automatic score of that criterion, so only override an automatic score with evidence that it missed something, such as a firewall blocking crawlers.
 
 **A person's site.** The questions and tasks are written for a company. For a person, ask "Who is <name>?", read a case study as the product page, and rewrite in `task_overrides` what does not fit, such as a legal name or a Wikidata entry. Say that market questions asking for a company are a high bar for a personal site.
 
@@ -93,7 +97,7 @@ python3 scripts/quick.py build <folder>/quick.json
 
 It recomputes the score and refuses unknown criteria, empty evidence and incomplete tasks. It writes `YYYY-MM-DD Quick audit - <domain>.html` (`Audit rapide` in French) (one file, ready to send, with the ready files inside), the to-do as `.md` and `.csv`, and `fixes/`: the missing security headers in the host's format, an `llms.txt` drafted from the site's own titles and descriptions, an Organization block, a table of the titles to fix. Only what the measures show is missing. Nothing is applied to the site: say so, and say they are drafts to read. `--lang fr` or `en` rebuilds in the other language; the text you wrote stays in the language you wrote it in.
 
-Then tell the user, in a few lines: the provisional score and how many criteria were checked, what was unavailable and why, the 3 fixes that matter most, and that the full audit is what gives screenshots as evidence and a comparable score. If the site's code may be on this machine, offer to apply the fixes (`repair-mode.md`), and tell them how many Claude can do alone.
+Deliver the report as asked in round 1: by default, publish the HTML page as a private web page when the tool allows it (a Claude artifact; it is one file with everything inside), otherwise give the file. Then tell the user, in a few lines: the provisional score and how many criteria were checked, what was unavailable and why, the 3 fixes that matter most, and that the full audit is what gives screenshots as evidence and a comparable score. If the site's code may be on this machine, offer to apply the fixes (`repair-mode.md`), and tell them how many Claude can do alone.
 
 To follow progress, keep `quick.json` and run a new quick audit later, then `python3 scripts/compare.py <old quick.json> <new quick.json>` (`SKILL.md`, section 9). Two quick audits compare with each other; a quick audit and a full one only as an indication.
 
@@ -111,5 +115,5 @@ To have Claude apply the fixes in the site's code, on a branch and with nothing 
 | Criteria | about 15 to 22 of 30 | 30 |
 | Evidence | measures and links | a dated screenshot for each finding |
 | AI panel | 3 questions, 2 assistants | 5 questions, 4 assistants |
-| Output | one HTML page, to-do | report, PDF, single page, PowerPoint, to-do, remeasure protocol |
+| Output | one web page, to-do | web page and report, to-do, remeasure protocol; PDF and PowerPoint on request |
 | Score | provisional, not comparable | comparable from one audit to the next |

@@ -1,7 +1,7 @@
 ---
 name: audit-seo-geo
 argument-hint: "[quick|full|compare|fix] <url or audit>"
-description: SEO and GEO audit of any website, in two speeds. Quick (about 15 minutes, no browser or API key required): automatic crawl, public services, small AI panel, provisional score, the 10 most useful fixes. Full (a working day): 23 free external examiners with screenshots, a crawl of all pages, the AI panel (ChatGPT, Google AI Mode, Brave, Perplexity), a fixed grid of 30 criteria scored out of 10, three undated to-do lists (content, front-end, back-end) with P1 to P3 priorities, a report (HTML, PDF, single page) and a branded PowerPoint, plus a remeasure protocol. Reports in English or French. Use for any request for an audit, analysis, score or review of SEO, GEO, AEO, performance, Google visibility or AI visibility of a site, a list of front-end and back-end fixes, remeasuring progress, comparing two audits, or applying the fixes in the code of the site, on a branch, with nothing put online. Also in French: "audit SEO", "audit GEO", "référencement", "visibilité dans les IA", "refais l'audit".
+description: SEO and GEO audit of any website, for freelancers, marketing teams and business owners, in two speeds, after a short questionnaire on the site's goals and offer. Quick (about 15 minutes, no browser or API key required): automatic crawl, public services, small AI panel, provisional score, the 10 most useful fixes. Full (a working day): 23 free external examiners with screenshots, a crawl of all pages, the AI panel (ChatGPT, Google AI Mode, Brave, Perplexity), a fixed grid of 30 criteria scored out of 10, three undated to-do lists (content, front-end, back-end) with P1 to P3 priorities, a report as one web page to read and share (a Claude artifact when available), with a PDF and a branded PowerPoint on request, plus a remeasure protocol. Reports in English or French. Use for any request for an audit, analysis, score or review of SEO, GEO, AEO, performance, Google visibility or AI visibility of a site, a list of front-end and back-end fixes, remeasuring progress, comparing two audits, or applying the fixes in the code of the site, on a branch, with nothing put online. Also in French: "audit SEO", "audit GEO", "référencement", "visibilité dans les IA", "refais l'audit".
 ---
 
 # SEO and GEO audit
@@ -18,11 +18,13 @@ The skill's folder is `${CLAUDE_SKILL_DIR}`. Every `scripts/`, `references/` and
 - **Your audits** go in the folder the requester names, otherwise in `audits/<domain>/YYYY-MM-DD/` under the current directory. Keep each `audit.json` or `quick.json` there: comparing two audits needs them.
 - **Your settings** go in `~/.claude/audit-seo-geo/`: `sites.json`, `themes.json`, `fonts/`, `logos/`. The scripts read them before what the skill ships. `assets/sites.json` only shows the format.
 
-The PowerPoint needs Node.js and one setup: `scripts/setup_pptx.sh`. Run it the first time a PowerPoint is asked for.
+**What has to be installed.** Python 3.9 or later, nothing else, for the quick audit and for the report as a web page. The full audit also needs a browser Claude can drive: the Claude in Chrome extension, or the browser built into the Claude desktop app. The rest is optional and only for what the person asks for: Google Chrome for the PDF, Node.js for the PowerPoint (`scripts/setup_pptx.sh` once, the first time a PowerPoint is asked for), Pillow (`pip install pillow`) for the red boxes on screenshots. Never install them unasked: say what an option needs, and let the person choose.
 
 ## Choose the speed and the language
 
 **Speed.** The word `quick` in the request (or "fast", "first look", "aperçu", "rapide") means the quick audit: follow `references/quick-mode.md` and stop there. `full` (or "detailed", "complet", "détaillé") means the rest of this file. If the request says neither, ask one question and recommend quick for a first look at a site: the full audit takes a working day. Without anyone to answer (a scheduled task), run quick.
+
+**The questionnaire.** Every audit, quick or full, starts with round 1 of `references/intake.md`: whose site it is, what it should bring in, who will make the changes, and what the person wants to receive. Round 2 comes after the first measures, and asks only what the site does not settle: the offer and what makes it better, the competitors, a fact found in two versions, the access to statistics, the questions for the AIs. Everyone can answer "I don't know": the criterion is then NV, never a guess. Write the report for the person who will act: plain words and where to click for someone who works in the site's admin, code for a developer.
 
 **Comparing.** `compare`, "what changed", "did we progress" or "compare to the last audit" means comparing two audits of the same site: run `scripts/compare.py` (section 9). To measure progress, run a new audit first, of the same kind as the previous one.
 
@@ -42,6 +44,7 @@ A working day in all: about 3 h of measures, 2 h of scoring and writing, 1 h of 
 
 | File | Role |
 |---|---|
+| `references/intake.md` | The questionnaire: the person's goals, offer and constraints, before and after the first measures |
 | `references/quick-mode.md` | The quick audit, step by step |
 | `references/repair-mode.md` | Applying the fixes in the site's code: the rules, the steps, who does what |
 | `references/checklist-360.md` | All the checks, lane by lane (content, front-end, back-end), with the expected evidence, the standard fix, the priority and the criterion affected |
@@ -72,9 +75,9 @@ The keys of `audit.json` and of the crawl's output are in French for historical 
 
 ## 1. The site's context
 
-If the site is in `~/.claude/audit-seo-geo/sites.json`, ask nothing. Otherwise, ask only what is missing among: the activity, the target audience, the area and languages, the goal (contact requests, sales, sign-ups, awareness), the brand (for the theme), the fact approver and the folder for the audit, then add the site to that file for next time, creating it if needed.
+Run the questionnaire of `references/intake.md`: round 1 before measuring, round 2 once the crawl has run and you have read the home, offer and "about" pages. If the site is in `~/.claude/audit-seo-geo/sites.json`, round 1 is already answered. Add the answers to that file for next time, creating it if needed: activity, audience, area and languages, goal, offer and what makes it better, competitors, who makes the changes, deliverables, theme, fact approver, folder.
 
-Also ask, once, what would change the measure: access to Search Console, Bing Webmaster Tools or the analytics (otherwise these criteria are NV), the site's CMS or framework (WordPress, Webflow, Next.js..., to write fixes the team can apply), and whether the business is local (then also look at the Google Business Profile).
+The platform (WordPress, Webflow, Astro…) comes from the crawl (`checks.json`, `stack`): ask only if it is not detected, and say which one you found so that the person can correct it.
 
 Before starting, read what the site's folder already contains (a CLAUDE.md, a reference of facts, claims and competitors) and the site's latest audit, to measure the gap. A site without a theme takes `signature`; for a new brand, add a theme in `~/.claude/audit-seo-geo/themes.json` (colours, open-licence font in `fonts/`, logo in `logos/`, next to that file). To dress a report in the look of the audited site, read its colours and fonts in the browser, not in its source: the fonts and colours applied, the shape of its cards. Copy a font only under an open licence, and name it in `font.files`. `--display-weight` sets the weight of the titles, `--logo-filter` corrects a logo the site recolours, and `logos.report` puts it at the top of the report. Tell the requester that a report in a brand's colours is theirs to show, not a document from that brand.
 
@@ -170,18 +173,18 @@ The tasks:
 
 ## 6. The deliverables
 
-Everything starts from `audit.json` (`references/data-format.md`), stored with the audit's sources. In the site's folder:
+Everything starts from `audit.json` (`references/data-format.md`), stored with the audit's sources. Make what the person asked for in round 1 of the questionnaire, and nothing they would have to install for nothing. In the site's folder:
 
 1. **The report** `YYYY-MM-DD SEO GEO Audit - <domain>.md`: scores, the 30 criteria with their evidence, findings, AI panel, appendices.
 2. **The remeasure protocol** `YYYY-MM-DD SEO GEO Remeasure Protocol.md`: exact addresses, settings, questions, searches tracked, noise thresholds (`remesure` in the defaults file), remeasure dates (the only place with dates).
 3. **The complete report**, frozen in `YYYY-MM-DD Full audit/`:
    ```bash
-   python3 scripts/build_dossier.py audit.json "<folder>/YYYY-MM-DD Full audit" --captures "<screenshots>" --pdf --single
-   node scripts/build_pptx.js audit.json "<folder>/YYYY-MM-DD Full audit/captures" "<folder>/YYYY-MM-DD Full audit/YYYY-MM-DD Full audit - <domain>.pptx"
-   scripts/render_pptx_pdf.sh "<...>.pptx" "<...> - slides.pdf" "<temporary folder>/sheets"
+   python3 scripts/build_dossier.py audit.json "<folder>/YYYY-MM-DD Full audit" --captures "<screenshots>" --single [--pdf]
+   node scripts/build_pptx.js audit.json "<folder>/YYYY-MM-DD Full audit/captures" "<folder>/YYYY-MM-DD Full audit/YYYY-MM-DD Full audit - <domain>.pptx"   # only if a PowerPoint was asked for
+   scripts/render_pptx_pdf.sh "<...>.pptx" "<...> - slides.pdf" "<temporary folder>/sheets"   # to check it, when PowerPoint or LibreOffice is there
    ```
-   This gives `index.html` with `captures/`, the A4 PDF, the single page (one file, screenshots and font embedded, ready to send), **the to-do as Markdown** (to tick, to paste in a ticket or a wiki) **and CSV** (to import in Notion, Jira, Linear, Trello or GitHub Projects), the PowerPoint (90 to 110 16:9 slides) and its PDF. Copy `audit.json` to `source/`, with a README. File names follow the report language (`Audit complet` in French).
-4. **A web page** of the report if the tool allows it (a Claude artifact, for example), private until the requester shares it. It stays internal if competitors appear in the screenshots.
+   This always gives `index.html` with `captures/`, the single page (one file, screenshots and fonts embedded, ready to send) and **the to-do as Markdown** (to tick, to paste in a ticket or a wiki) **and CSV** (a file to import in Notion, Jira, Linear, Trello or GitHub Projects). `--pdf` adds the A4 PDF (it needs Google Chrome); the PowerPoint has 90 to 110 16:9 slides. Copy `audit.json` to `source/`, with a README. File names follow the report language (`Audit complet` in French).
+4. **The web page, delivered first.** Publish the single page as a private web page when the tool allows it: a Claude artifact (the `Artifact` tool in Claude Code, artifacts on claude.ai). It is one file under 16 MB with everything inside, so it opens anywhere and the person shares the link when they choose. Without that tool, give the single page file: it opens in any browser and can be sent by email. Never make it public yourself. It stays with the requester if real competitors' names appear in the screenshots.
 5. **The summary for management** if asked: a short deck (12 to 15 slides), competitors anonymised, one message per slide, goals as badges with no dates.
 6. **The trace**: if the folder is tracked by git, a commit describing the work; never a push without agreement.
 
@@ -192,7 +195,7 @@ Everything starts from `audit.json` (`references/data-format.md`), stored with t
 - Each "verified" finding has its screenshot or link; each red box is in the right place.
 - Each P1 is really blocking; if there are more than 8 P1, reread them: a to-do where everything is urgent says nothing.
 - Render the report in Chrome at 1280 px and 375 px (in headless mode, Chrome does not go below 500 px: measure `scrollWidth` rather than trust the screenshot).
-- The PowerPoint: look at the sheets from `render_pptx_pdf.sh` one by one (cut text, overflow, overlap). A `.pptx` cannot carry its fonts, and a missing one can fall back on a serif: `signature` uses Arial there for that reason. With another font, tell the requester that the look depends on the computer that opens the file.
+- If a PowerPoint was made: look at the sheets from `render_pptx_pdf.sh` one by one (cut text, overflow, overlap). A `.pptx` cannot carry its fonts, and a missing one can fall back on a serif: `signature` uses Arial there for that reason. With another font, tell the requester that the look depends on the computer that opens the file.
 - No final period in titles, no field left empty, no date in the to-do.
 
 ## 8. Known traps
@@ -205,6 +208,9 @@ Everything starts from `audit.json` (`references/data-format.md`), stored with t
 - `crawl.py` does not run JavaScript, on purpose: it sees the site as most AI crawlers do. For the speed people experience, trust PageSpeed, not the crawl.
 - A host can answer "allowed" in robots.txt and still block AI crawlers at the firewall (Cloudflare, for example): if the site is absent from AI answers despite an open robots.txt, note it as a hypothesis and ask the developer to check the firewall rules.
 - To check that no shape leaves a slide, `python-pptx` is enough if the pptx skill's `validate.py` does not run.
+- `fixes.py` writes the site's share image as an address in `view.json`: `view.share.image` takes either that address or the prefix of a screenshot of the audit (`"40"`).
+- A tool without a screenshot, such as LanguageTool (`lt`), needs no card in `fiches`: its line in `resultats` is enough to cite it in a domain.
+- A "facts" task (one the person must answer) without its own `questions` falls back on general ones, and `build_dossier.py` names it: write the questions this audit raised ("For the Ibiza trip, who booked the flights?").
 
 ## 9. Comparing two audits
 

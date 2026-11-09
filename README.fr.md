@@ -13,7 +13,13 @@
 /plugin install audit-seo-geo@tania-bezancon
 ```
 
-Puis `/audit-seo-geo:audit-seo-geo quick <url>`, ou demandez-le simplement avec vos mots (« fais un audit SEO rapide de mon site »). Si vous avez le code du site, dites ensuite « corrige mon site avec cet audit » : Claude applique ce qu'il peut sur une branche à part, vous demande ce qu'il ne doit pas inventer, et rien ne part en ligne sans vous. Une fois le site publié, demandez-lui de revérifier.
+Puis `/audit-seo-geo:audit-seo-geo quick <url>`, ou demandez-le simplement avec vos mots (« fais un audit SEO rapide de mon site »). Vous recevez une page web, publiée en artifact Claude privé que vous partagez quand vous voulez (ou un simple fichier), et la to-do. Si vous avez le code du site, dites ensuite « corrige mon site avec cet audit » : Claude applique ce qu'il peut sur une branche à part, vous demande ce qu'il ne doit pas inventer, et rien ne part en ligne sans vous. Une fois le site publié, demandez-lui de revérifier.
+
+## Pour qui
+
+Les freelances qui s'occupent du site de leurs clients, les équipes marketing et communication, les dirigeants. Pas besoin d'être développeur, et presque rien à installer.
+
+Il commence par vous poser quelques questions : à qui est le site, ce qu'il doit rapporter, qui fera les changements, ce que vous voulez recevoir. Après les premières mesures, il ne demande que ce que le site ne dit pas : votre offre et ce qui la rend meilleure, les concurrents auxquels on vous compare, un fait trouvé en deux versions. « Je ne sais pas » est une bonne réponse : ce qui ne peut pas être vérifié est noté comme tel, jamais deviné. Les tâches sont ensuite écrites pour la personne qui les fera : où cliquer dans l'administration du site, ou le code pour un développeur.
 
 ## Deux audits : rapide ou détaillé
 
@@ -28,7 +34,7 @@ Commencez par l'audit rapide pour savoir où en est le site. Passez à l'audit d
 | Critères vérifiés | environ 15 à 22 sur 30 | 30 |
 | Preuves | mesures et liens | une capture datée par constat |
 | Panel d'IA | 3 questions, 2 assistants, si un navigateur est disponible | 5 questions, 4 assistants |
-| Ce que vous obtenez | une page HTML et la to-do | rapport, PDF, page unique, PowerPoint, to-do, protocole de remesure |
+| Ce que vous obtenez | une page web et la to-do | une page web, la to-do et un protocole de remesure ; un PDF et un PowerPoint si vous les demandez |
 | Note | provisoire, pour un premier regard | comparable d'un audit à l'autre |
 | Suivi | `compare.py` entre deux audits rapides | `compare.py` entre deux audits détaillés, avec le protocole |
 
@@ -36,7 +42,7 @@ Commencez par l'audit rapide pour savoir où en est le site. Passez à l'audit d
 
 ### Pour aller plus loin : l'audit détaillé
 
-L'audit rapide vous dit l'essentiel en quelques minutes. L'audit détaillé est celui que vous montrez à un client ou à une direction : une capture datée pour chaque constat, le panel d'IA complet, les 30 critères, et un rapport, un PDF et un PowerPoint prêts à présenter.
+L'audit rapide vous dit l'essentiel en quelques minutes. L'audit détaillé est celui que vous montrez à un client ou à une direction : une capture datée pour chaque constat, le panel d'IA complet, les 30 critères, et un rapport à partager en page web, avec un PDF ou un PowerPoint prêts à présenter si vous les demandez.
 
 ```
 /audit-seo-geo:audit-seo-geo full https://www.votre-site.com
@@ -156,19 +162,22 @@ Puis, dans Claude Code :
 git clone https://github.com/Tania-bezancon/audit-seo-geo.git ~/.claude/skills/audit-seo-geo
 ```
 
-Vos sites, thèmes, polices et logos restent dans `~/.claude/audit-seo-geo/`, et vos audits vont dans `audits/<domaine>/<date>/` sous le dossier courant : les mises à jour n'y touchent pas. Le PowerPoint demande une étape de plus, que Claude lance la première fois : `scripts/setup_pptx.sh`.
+Vos sites, thèmes, polices et logos restent dans `~/.claude/audit-seo-geo/`, et vos audits vont dans `audits/<domaine>/<date>/` sous le dossier courant : les mises à jour n'y touchent pas. 
 
 Le skill se déclenche aussi tout seul quand on demande « un audit SEO », « notre visibilité dans les IA », « la liste des corrections front et back », « refais l'audit pour voir les progrès »…
 
 ### Ce qu'il faut sur la machine
 
-| Outil | Pour quoi | Obligatoire |
+| | Pour quoi | |
 |---|---|---|
-| Python 3.9+ avec Pillow | relevé, fautes, cadres rouges, dossier, to-do | oui |
-| Un navigateur piloté par Claude | captures des outils et des IA | oui |
-| Node.js 18+ | PowerPoint (pptxgenjs), vitesse mesurée avec Lighthouse | pour le PowerPoint ; sans clé PageSpeed, pour la vitesse et l'accessibilité |
-| Google Chrome ou Chromium | PDF du dossier (`CHROME=/chemin` sinon) | pour le PDF |
-| Microsoft PowerPoint ou LibreOffice, PyMuPDF | PDF et planches de contrôle du PowerPoint | non |
+| Claude Code | fait tourner le skill | obligatoire |
+| Python 3.9+ | relevé, rapport, to-do. Déjà présent sur Mac avec les outils de développement ; [python.org](https://www.python.org/downloads/) sous Windows | obligatoire |
+| Un navigateur que Claude pilote : l'extension Claude in Chrome, ou le navigateur intégré à l'application Claude | captures des outils et des réponses des IA | pour l'audit détaillé ; en rapide, pour le panel d'IA |
+| Google Chrome | le PDF ; la vitesse mesurée sur votre machine quand PageSpeed refuse | seulement si vous les voulez |
+| Node.js 18+ | le PowerPoint (Claude lance `scripts/setup_pptx.sh` la première fois) ; la vitesse mesurée sur votre machine | seulement si vous les voulez |
+| Pillow (`pip install pillow`) | les cadres rouges sur les captures | facultatif |
+
+Claude n'installe rien de lui-même : il dit ce qu'une option demande, et vous choisissez.
 
 ## Essayer sans rien auditer
 
@@ -185,10 +194,10 @@ Ou directement en ligne : [l'audit d'exemple](https://tania-bezancon.github.io/a
 
 Une journée de travail, annoncée au début :
 
-1. **Le contexte** : activité, public, objectif, CMS ou framework, accès disponibles. Rien à redemander pour un site déjà dans `~/.claude/audit-seo-geo/sites.json`.
+1. **Quelques questions** ([references/intake.md](references/intake.md)) : à qui est le site, son objectif, qui fera les changements, ce que vous voulez recevoir ; puis, après les premières mesures, l'offre, les concurrents et les faits à confirmer. Rien à redemander pour un site déjà dans `~/.claude/audit-seo-geo/sites.json`.
 2. **Les mesures** (environ 3 h) : relevé automatique en arrière-plan, le rendu sans JavaScript, les 19 outils avec leur capture numérotée, le panel des IA, les captures du site, la checklist 360°.
 3. **La note** (environ 2 h) : les 30 critères avec leur preuve, les 9 domaines, les tâches des trois to-do.
-4. **La fabrication** (environ 1 h) : dossier, PDF, page unique, to-do, PowerPoint, puis contrôle à 1 280 et 375 px et planches du PowerPoint.
+4. **La fabrication** (environ 1 h) : la page web et la to-do, plus le PDF et le PowerPoint si vous les avez demandés, puis contrôle à 1 280 et 375 px.
 5. **Le protocole de remesure** : le seul document daté, pour refaire exactement la même mesure dans 1, 3 ou 6 mois.
 
 ## Ce que contient le dépôt

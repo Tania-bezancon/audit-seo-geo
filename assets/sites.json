@@ -1,10 +1,22 @@
 {
-  "_readme": "An example of the format. Your own sites go in ~/.claude/audit-seo-geo/sites.json, which updates keep: when the requested URL is there, the skill asks no question. priorites: the order of the to-do groups (optional).",
+  "_readme": "An example of the format. Your own sites go in ~/.claude/audit-seo-geo/sites.json, which updates keep: when the requested URL is there, the skill skips the first round of questions (references/intake.md). priorites: the order of the to-do groups (optional).",
   "atelier-lumen.example": {
     "activite": "quoting and scheduling software for UK tradespeople (fictional site)",
     "public": "tradespeople and small building firms",
     "zone": "the United Kingdom",
     "objectif": "free trials",
+    "valeur": "a quote written in two minutes on a phone and signed on site, before the tradesperson leaves",
+    "concurrents": [
+      "Competitor A",
+      "Competitor B"
+    ],
+    "qui_corrige": "a web agency, in the site's code",
+    "livrables": [
+      "web page",
+      "PowerPoint",
+      "to-do CSV"
+    ],
+    "role": "the company's marketing team",
     "theme": "signature",
     "validateur": "the product manager",
     "dossier": "~/Audits/atelier-lumen/",
